@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="E:\git\ChenDev-final\app\libs\pinyin4j-2.5.0.jar"
+        jumboMode="false"
+        revision="23.0.0 rc3"
+        sha1="ae353005f973da1cd8545b54354504c2503f6865">
+        <dex dex="E:\git\ChenDev-final\app\build\intermediates\pre-dexed\debug\pinyin4j-2.5.0-a8ef8395ddc2ae546e887233e8eda91919e988d5.jar" />
+    </item>
+    <item
+        jar="E:\git\ChenDev-final\app\libs\aiCharts_1x.1.7.132.88714.jar"
+        jumboMode="false"
+        revision="23.0.0 rc3"
+        sha1="175d32234755692c84379262192d37b0eb9011db">
+        <dex dex="E:\git\ChenDev-final\app\build\intermediates\pre-dexed\debug\aiCharts_1x.1.7.132.88714-1787ff1879cb6fdda88d3875a64688d928455a4d.jar" />
+    </item>
+
+</items>
