@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/linearLayoutContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/linearLayoutMemberList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:background="#A9A9A9"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/rlToolbar01"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#106184" >
+
+                <RelativeLayout
+                    android:id="@+id/rlContactTool"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true" >
+
+                    <TextView
+                        android:id="@+id/txtContactTool"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:paddingRight="20dip"
+                        android:text="全部患者"
+                        android:textColor="#ffffff"
+                        android:textSize="20sp" />
+
+                    <ImageButton
+                        android:id="@+id/imbDownContact"
+                        android:layout_width="13dip"
+                        android:layout_height="15dip"
+                        android:layout_alignBottom="@id/txtContactTool"
+                        android:layout_alignRight="@id/txtContactTool"
+                        android:layout_alignTop="@id/txtContactTool"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="5dip"
+                        android:layout_marginTop="15dip"
+                        android:background="@drawable/contact_spinner_undown"
+                        android:clickable="false"
+                        android:focusable="false" />
+                </RelativeLayout>
+
+                <ImageButton
+                    android:id="@+id/imbNewContact"
+                    android:layout_width="32dip"
+                    android:layout_height="32dip"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:background="@drawable/contact_btn_new_contact" />
+
+                <ImageView
+                    android:id="@+id/imgLine01"
+                    android:layout_width="1dip"
+                    android:layout_height="45dip"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/imbNewContact"
+                    android:background="@drawable/contact_top_bar_diviver" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlFindContact"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rlToolbar01" >
+
+                <LinearLayout
+                    android:layout_width="0px"
+                    android:layout_height="0px"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true" />
+
+                <EditText
+                    android:id="@+id/edtFindContact"
+                    android:layout_width="fill_parent"
+                    android:layout_height="55dip"
+                    android:layout_marginTop="4dip"
+                    android:background="@drawable/contact_bg_contact_search_edttext1"
+                    android:hint="联系人搜索 | 共10人"
+                    android:textColor="@drawable/contact_black"
+                    android:paddingLeft="58dip"
+                    android:textSize="17dip" />
+
+                <ImageView
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:layout_alignBottom="@id/edtFindContact"
+                    android:layout_alignLeft="@id/edtFindContact"
+                    android:layout_alignTop="@id/edtFindContact"
+                    android:layout_marginBottom="8dip"
+                    android:layout_marginLeft="23dip"
+                    android:src="@drawable/contact_search_bar_icon_normal" />
+            </RelativeLayout>
+
+            <ListView
+                android:id="@+id/Lsv_contacts"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@id/rlFindContact"
+                android:background="#fff1f1f1" >
+            </ListView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutMemberDetail"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="#808080"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/relativeLayoutDetail"
+                android:layout_width="match_parent"
+                android:layout_height="104dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:background="#808080" >
+
+                <ImageButton
+                    android:id="@+id/imageButtonMember"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/ic_launcher" />
+
+                <TextView
+                    android:id="@+id/patientName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@+id/imageButtonMember"
+                    android:text="@string/patient1"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/textViewLastDiag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/patientName"
+                    android:layout_below="@id/patientName"
+                    android:gravity="center"
+                    android:text="@string/lastDiag"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/textViewResult"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/textViewLastDiag"
+                    android:layout_marginLeft="25dp"
+                    android:layout_toRightOf="@+id/textViewLastDiag"
+                    android:gravity="center"
+                    android:text="@string/xinlvbuqi"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/textViewHospital"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/textViewLastDiag"
+                    android:layout_below="@id/textViewLastDiag"
+                    android:text="@string/hospital"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/textViewYibao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/yibao"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/textViewFile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="21dp"
+                    android:layout_toRightOf="@+id/textViewYibao"
+                    android:text="@string/fileNum"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/textViewFileNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="23dp"
+                    android:layout_toRightOf="@+id/textViewFile"
+                    android:text="@string/testFilenum"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/textViewGender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/textViewResult"
+                    android:layout_alignBottom="@+id/textViewResult"
+                    android:layout_alignLeft="@+id/textViewFile"
+                    android:text="@string/gender"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/textViewMaleFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/textViewGender"
+                    android:layout_alignLeft="@+id/textViewFileNum"
+                    android:text="@string/male"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/textViewAge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/textViewHospital"
+                    android:layout_alignBottom="@+id/textViewHospital"
+                    android:layout_alignLeft="@+id/textViewGender"
+                    android:text="@string/age"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/textViewAgeNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/textViewAge"
+                    android:layout_alignLeft="@+id/textViewMaleFemale"
+                    android:text="@string/testAge"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </RelativeLayout>
+
+            <ScrollView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="20dp" >
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutMemberDetailInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#808080"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/textViewPatientInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/patientInfo"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <ListView
+                        android:id="@+id/listViewPatientInfo"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="80dp"
+                        android:layout_marginRight="80dp"
+                        android:cacheColorHint="#00000000" />
+
+                    <TextView
+                        android:id="@+id/textViewPatientContactInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/patientContactInfo"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <ListView
+                        android:id="@+id/listViewPatientContactInfo"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="80dp"
+                        android:layout_marginRight="80dp"
+                        android:cacheColorHint="#00000000"
+                        android:clickable="false" />
+
+                    <TextView
+                        android:id="@+id/textViewSignsMeasInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/signsMeas"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <ListView
+                        android:id="@+id/listViewSignsMeas"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="80dp"
+                        android:layout_marginRight="80dp"
+                        android:cacheColorHint="#00000000" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/textViewHistoryInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="@string/history"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <ImageView
+                            android:id="@+id/showlist"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
+                            android:src="@drawable/contact_dialog_list" />
+                    </LinearLayout>
+
+                    <ListView
+                        android:id="@+id/listViewHistory"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="80dp"
+                        android:layout_marginRight="80dp"
+                        android:cacheColorHint="#00000000" />
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

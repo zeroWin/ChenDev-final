@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/border"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" 
+        android:layout_marginLeft="20dp"
+           android:layout_marginRight="20dp"
+        >
+
+        <TextView
+            android:id="@+id/titleItem"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.3"
+            android:gravity="center"
+            android:text="姓名"
+            android:textColor="#FFFFFFFF"
+            android:textSize="25px" />
+
+        <TextView
+            android:id="@+id/infoItem"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.3"
+            android:gravity="center"
+            android:text="小明"
+            android:textColor="#FFFFFFFF"
+            android:textSize="25px" />
+        
+         <TextView
+            android:id="@+id/timeItem"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="2012-12-12"
+            android:textColor="#FFFFFFFF"
+            android:textSize="25px" />
+         
+           <TextView
+            android:id="@+id/doctor"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.3"
+            android:gravity="center"
+            android:text="doctor"
+            android:textColor="#FFFFFFFF"
+            android:textSize="25px" />
+           
+             <TextView
+            android:id="@+id/doctorId"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.3"
+            android:gravity="center"
+            android:text="doctorId"
+            android:textColor="#FFFFFFFF"
+            android:textSize="25px" />
+    </LinearLayout>
+
+</LinearLayout>

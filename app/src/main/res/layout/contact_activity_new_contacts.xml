@@ -1,0 +1,983 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#fff1f1f1" >
+
+    <!-- 顶部工具条 -->
+
+    <RelativeLayout
+        android:id="@+id/tool_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#106184" >
+
+        <ImageButton
+            android:id="@+id/imb_new_back"
+            android:layout_width="45dip"
+            android:layout_height="40dip"
+            android:layout_centerVertical="true"
+            android:background="#106184"
+            android:src="@drawable/contact_tool_bar_style" />
+
+        <ImageView
+            android:id="@+id/img_divider"
+            android:layout_width="1dip"
+            android:layout_height="40dip"
+            android:layout_toRightOf="@id/imb_new_back"
+            android:background="@drawable/contact_top_bar_diviver" />
+
+        <TextView
+            android:id="@+id/txtNewContactTitle"
+            android:layout_width="fill_parent"
+            android:layout_height="40dip"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/img_divider"
+            android:background="#106184"
+            android:gravity="center"
+            android:text="新建联系人"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <!-- 中间编辑栏 -->
+
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/tool_bar" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#fff1f1f1"
+            android:paddingBottom="50dip" >
+
+            <!-- 头像选择 -->
+
+            <RelativeLayout
+                android:id="@+id/llPhotoTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <FrameLayout
+                    android:id="@+id/widget_call_layout"
+                    android:layout_width="86.0dip"
+                    android:layout_height="86.0dip"
+                    android:layout_gravity="center"
+                    android:background="@drawable/contact_bg_photo_default_mask3_1" >
+
+                    <ImageView
+                        android:id="@+id/contact_facepic"
+                        android:layout_width="78.0dip"
+                        android:layout_height="78.0dip"
+                        android:layout_gravity="center"
+                        android:background="#ffffffff"
+                        android:src="@drawable/contact_bg_photo_default" />
+
+                    <FrameLayout
+                        android:id="@+id/PhotoView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <ImageView
+                            android:id="@+id/edit_photo"
+                            android:layout_width="86.0dip"
+                            android:layout_height="86.0dip" />
+
+                        <ImageView
+                            android:id="@+id/face_photo_edit"
+                            android:layout_width="27dip"
+                            android:layout_height="27dip"
+                            android:layout_gravity="bottom|right|center"
+                            android:src="@drawable/contact_edit_photo_icon" />
+                    </FrameLayout>
+                </FrameLayout>
+
+                <EditText
+                    android:id="@+id/edt_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="45dip"
+                    android:layout_marginLeft="110dip"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="25dip"
+                    android:background="@drawable/contact_info_bg"
+                    android:hint="请输入姓名"
+                    android:textColor="#000000"
+                    android:textCursorDrawable="@null"
+                    android:textSize="22dip" />
+            </RelativeLayout>
+
+            <!-- phone -->
+
+            <RelativeLayout
+                android:id="@+id/rlPhoneTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/llPhotoTitle"
+                android:layout_marginTop="10dip" >
+
+                <ImageView
+                    android:id="@+id/img_phone"
+                    android:layout_width="26dip"
+                    android:layout_height="26dip"
+                    android:layout_marginLeft="20dip"
+                    android:src="@drawable/contact_title_call_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/img_phone"
+                    android:layout_marginLeft="15dip"
+                    android:layout_toRightOf="@id/img_phone"
+                    android:gravity="center_vertical"
+                    android:text="电话"
+                    android:textColor="#398ece"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:id="@+id/img_line01"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.5dip"
+                    android:layout_below="@id/img_phone"
+                    android:layout_marginLeft="12dip"
+                    android:layout_marginRight="12dip"
+                    android:background="#398ece" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_rlPhone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rlPhoneTitle"
+                android:layout_marginTop="8dip"
+                android:background="#fff1f1f1"
+                android:divider="@null"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <!-- email -->
+
+            <RelativeLayout
+                android:id="@+id/rlEmailTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_rlPhone"
+                android:layout_marginTop="15dip" >
+
+                <ImageView
+                    android:id="@+id/img_email"
+                    android:layout_width="26dip"
+                    android:layout_height="26dip"
+                    android:layout_marginLeft="20dip"
+                    android:src="@drawable/contact_title_email_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/img_email"
+                    android:layout_marginLeft="15dip"
+                    android:layout_toRightOf="@id/img_email"
+                    android:gravity="center_vertical"
+                    android:text="邮件"
+                    android:textColor="#398ece"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:id="@+id/img_line02"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.5dip"
+                    android:layout_below="@id/img_email"
+                    android:layout_marginLeft="12dip"
+                    android:layout_marginRight="12dip"
+                    android:background="#398ece" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_rlEmail"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rlEmailTitle"
+                android:layout_marginTop="8dip"
+                android:background="#fff1f1f1"
+                android:divider="@null"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <!-- im -->
+
+            <RelativeLayout
+                android:id="@+id/rlIMTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_rlEmail"
+                android:layout_marginTop="15dip" >
+
+                <ImageView
+                    android:id="@+id/img_im"
+                    android:layout_width="26dip"
+                    android:layout_height="26dip"
+                    android:layout_marginLeft="20dip"
+                    android:src="@drawable/contact_title_im_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/img_im"
+                    android:layout_marginLeft="15dip"
+                    android:layout_toRightOf="@id/img_im"
+                    android:gravity="center_vertical"
+                    android:text="IM"
+                    android:textColor="#398ece"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.5dip"
+                    android:layout_below="@id/img_im"
+                    android:layout_marginLeft="12dip"
+                    android:layout_marginRight="12dip"
+                    android:background="#398ece" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_rlIM"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@id/rlIMTitle"
+                android:layout_marginTop="8dip"
+                android:background="#fff1f1f1"
+                android:divider="@null"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <!-- other -->
+
+            <RelativeLayout
+                android:id="@+id/rlOtherTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_rlIM"
+                android:layout_marginBottom="15dip"
+                android:layout_marginTop="15dip" >
+
+                <ImageView
+                    android:id="@+id/img_other"
+                    android:layout_width="26dip"
+                    android:layout_height="26dip"
+                    android:layout_marginLeft="20dip"
+                    android:src="@drawable/contact_title_other_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/img_other"
+                    android:layout_marginLeft="15dip"
+                    android:layout_toRightOf="@id/img_other"
+                    android:gravity="center_vertical"
+                    android:text="其它"
+                    android:textColor="#398ece"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.5dip"
+                    android:layout_below="@id/img_other"
+                    android:layout_marginLeft="12dip"
+                    android:layout_marginRight="12dip"
+                    android:background="#398ece" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlAddress"
+                android:layout_width="fill_parent"
+                android:layout_height="45dip"
+                android:layout_below="@id/rlOtherTitle"
+                android:layout_marginBottom="10dip"
+                android:background="#fff1f1f1"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/txt_address"
+                    style="@style/contact_textstyle01"
+                    android:text="住       址" />
+
+                <EditText
+                    android:id="@+id/edt_inputaddress"
+                    android:layout_width="400dip"
+                    android:layout_height="33dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/txt_address"
+                    android:background="@drawable/contact_info_bg"
+                    android:hint="请输入住址"
+                    android:textColor="#000000"
+                    android:textCursorDrawable="@null"
+                    android:textSize="17sp" />
+
+                <ImageButton
+                    android:id="@+id/imb_del_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/edt_inputaddress"
+                    android:background="#fff1f1f1"
+                    android:src="@drawable/contact_edit_del" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlCompany"
+                android:layout_width="fill_parent"
+                android:layout_height="45dip"
+                android:layout_below="@id/rlAddress"
+                android:layout_marginBottom="10dip"
+                android:background="#fff1f1f1"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/txt_company"
+                    style="@style/contact_textstyle01"
+                    android:text="公       司" />
+
+                <EditText
+                    android:id="@+id/edt_inputcompany"
+                    android:layout_width="150dip"
+                    android:layout_height="33dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/txt_company"
+                    android:background="@drawable/contact_info_bg"
+                    android:hint="请输入公司名称"
+                    android:textColor="#000000"
+                    android:textCursorDrawable="@null"
+                    android:textSize="17sp" />
+
+                <ImageButton
+                    android:id="@+id/imb_del_company"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/edt_inputcompany"
+                    android:background="#fff1f1f1"
+                    android:src="@drawable/contact_edit_del" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlNickname"
+                android:layout_width="fill_parent"
+                android:layout_height="45dip"
+                android:layout_below="@id/rlCompany"
+                android:layout_marginBottom="10dip"
+                android:background="#fff1f1f1"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/txt_nickname"
+                    style="@style/contact_textstyle01"
+                    android:text="昵       称" />
+
+                <EditText
+                    android:id="@+id/edt_inputnickname"
+                    android:layout_width="150dip"
+                    android:layout_height="33dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/txt_nickname"
+                    android:background="@drawable/contact_info_bg"
+                    android:hint="请输入昵称"
+                    android:textColor="#000000"
+                    android:textCursorDrawable="@null"
+                    android:textSize="17sp" />
+
+                <ImageButton
+                    android:id="@+id/imb_del_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/edt_inputnickname"
+                    android:background="#fff1f1f1"
+                    android:src="@drawable/contact_edit_del" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlIdNo"
+                android:layout_width="fill_parent"
+                android:layout_height="45dip"
+                android:layout_below="@id/rlNickname"
+                android:layout_marginBottom="10dip"
+                android:background="#fff1f1f1"
+                >
+
+                <TextView
+                    android:id="@+id/txt_idno"
+                    style="@style/contact_textstyle01"
+                    android:text="身份证" />
+
+                <EditText
+                    android:id="@+id/edt_inputidno"
+                    android:layout_width="150dip"
+                    android:layout_height="33dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/txt_idno"
+                    android:background="@drawable/contact_info_bg"
+                    android:hint="请输入身份证号"
+                    android:textColor="#000000"
+                    android:textCursorDrawable="@null"
+                    android:textSize="17sp" />
+
+                <ImageButton
+                    android:id="@+id/imb_del_idno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/edt_inputidno"
+                    android:background="#fff1f1f1"
+                    android:src="@drawable/contact_edit_del" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlDescribe"
+                android:layout_width="fill_parent"
+                android:layout_height="45dip"
+                android:layout_below="@id/rlIdNo"
+                android:layout_marginBottom="10dip"
+                android:background="#fff1f1f1"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/txt_describe"
+                    style="@style/contact_textstyle01"
+                    android:text="就诊描述" />
+
+                <EditText
+                    android:id="@+id/edt_inputdescribe"
+                    android:layout_width="150dip"
+                    android:layout_height="33dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/txt_describe"
+                    android:background="@drawable/contact_info_bg"
+                    android:hint="请输入就诊描述"
+                    android:textColor="#000000"
+                    android:textCursorDrawable="@null"
+                    android:textSize="17sp" />
+
+                <ImageButton
+                    android:id="@+id/imb_del_describe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/edt_inputdescribe"
+                    android:background="#fff1f1f1"
+                    android:src="@drawable/contact_edit_del" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlGender"
+                android:layout_width="fill_parent"
+                android:layout_height="45dip"
+                android:layout_below="@id/rlDescribe"
+                android:layout_marginBottom="10dip"
+                android:background="#fff1f1f1"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/txt_gender"
+                    style="@style/contact_textstyle01"
+                    android:text="性别" />
+
+                <TextView
+                    android:id="@+id/edt_inputgender"
+                    android:layout_width="150dip"
+                    android:layout_height="33dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/txt_gender"
+                    android:background="@drawable/contact_info_bg"
+                    android:hint="请输入性别"
+                    android:textColor="#000000"
+                    android:textCursorDrawable="@null"
+                    android:textSize="17sp" />
+
+                <ImageButton
+                    android:id="@+id/imb_del_gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/edt_inputgender"
+                    android:background="#fff1f1f1"
+                    android:src="@drawable/contact_edit_del" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlType"
+                android:layout_width="fill_parent"
+                android:layout_height="45dip"
+                android:layout_below="@id/rlGender"
+                android:layout_marginBottom="10dip"
+                android:background="#fff1f1f1"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/txt_type"
+                    style="@style/contact_textstyle01"
+                    android:text="医保类型" />
+
+                <TextView
+                    android:id="@+id/edt_inputtype"
+                    android:layout_width="150dip"
+                    android:layout_height="33dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/txt_type"
+                    android:background="@drawable/contact_info_bg"
+                    android:hint="请输入医保类型"
+                    android:textColor="#000000"
+                    android:textCursorDrawable="@null"
+                    android:textSize="17sp" />
+
+                <ImageButton
+                    android:id="@+id/imb_del_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/edt_inputtype"
+                    android:background="#fff1f1f1"
+                    android:src="@drawable/contact_edit_del" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlFileNo"
+                android:layout_width="fill_parent"
+                android:layout_height="45dip"
+                android:layout_below="@id/rlType"
+                android:layout_marginBottom="10dip"
+                android:background="#fff1f1f1"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/txt_fileno"
+                    style="@style/contact_textstyle01"
+                    android:text="档案编号" />
+
+                <EditText
+                    android:id="@+id/edt_inputfileno"
+                    android:layout_width="150dip"
+                    android:layout_height="33dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/txt_fileno"
+                    android:background="@drawable/contact_info_bg"
+                    android:hint="请输入档案编号"
+                    android:textColor="#000000"
+                    android:textCursorDrawable="@null"
+                    android:textSize="17sp" />
+
+                <ImageButton
+                    android:id="@+id/imb_del_fileno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/edt_inputfileno"
+                    android:background="#fff1f1f1"
+                    android:src="@drawable/contact_edit_del" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlHospital"
+                android:layout_width="fill_parent"
+                android:layout_height="45dip"
+                android:layout_below="@id/rlFileNo"
+                android:layout_marginBottom="10dip"
+                android:background="#fff1f1f1"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/txt_hospital"
+                    style="@style/contact_textstyle01"
+                    android:text="就诊医院" />
+
+                <EditText
+                    android:id="@+id/edt_inputhospital"
+                    android:layout_width="150dip"
+                    android:layout_height="33dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/txt_hospital"
+                    android:background="@drawable/contact_info_bg"
+                    android:hint="请输入就诊医院"
+                    android:textColor="#000000"
+                    android:textCursorDrawable="@null"
+                    android:textSize="17sp" />
+
+                <ImageButton
+                    android:id="@+id/imb_del_hospital"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/edt_inputhospital"
+                    android:background="#fff1f1f1"
+                    android:src="@drawable/contact_edit_del" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlRelationName"
+                android:layout_width="fill_parent"
+                android:layout_height="45dip"
+                android:layout_below="@id/rlHospital"
+                android:layout_marginBottom="10dip"
+                android:background="#fff1f1f1"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/txt_relationname"
+                    style="@style/contact_textstyle01"
+                    android:text="联系人姓名" />
+
+                <EditText
+                    android:id="@+id/edt_inputrelationname"
+                    android:layout_width="150dip"
+                    android:layout_height="33dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/txt_relationname"
+                    android:background="@drawable/contact_info_bg"
+                    android:hint="请输入联系人姓名"
+                    android:textColor="#000000"
+                    android:textCursorDrawable="@null"
+                    android:textSize="17sp" />
+
+                <ImageButton
+                    android:id="@+id/imb_del_relationname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/edt_inputrelationname"
+                    android:background="#fff1f1f1"
+                    android:src="@drawable/contact_edit_del" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlRelation"
+                android:layout_width="fill_parent"
+                android:layout_height="45dip"
+                android:layout_below="@id/rlRelationName"
+                android:layout_marginBottom="10dip"
+                android:background="#fff1f1f1"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/txt_relation"
+                    style="@style/contact_textstyle01"
+                    android:text="关系" />
+
+                <EditText
+                    android:id="@+id/edt_inputrelation"
+                    android:layout_width="150dip"
+                    android:layout_height="33dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/txt_relation"
+                    android:background="@drawable/contact_info_bg"
+                    android:hint="请输入关系"
+                    android:textColor="#000000"
+                    android:textCursorDrawable="@null"
+                    android:textSize="17sp" />
+
+                <ImageButton
+                    android:id="@+id/imb_del_relation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/edt_inputrelation"
+                    android:background="#fff1f1f1"
+                    android:src="@drawable/contact_edit_del" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlRelationTele"
+                android:layout_width="fill_parent"
+                android:layout_height="45dip"
+                android:layout_below="@id/rlRelation"
+                android:layout_marginBottom="10dip"
+                android:background="#fff1f1f1"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/txt_relationtele"
+                    style="@style/contact_textstyle01"
+                    android:text="联系人电话" />
+
+                <EditText
+                    android:id="@+id/edt_inputrelationtele"
+                    android:layout_width="150dip"
+                    android:layout_height="33dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/txt_relationtele"
+                    android:background="@drawable/contact_info_bg"
+                    android:hint="请输入联系人电话"
+                    android:inputType="number"
+                    android:textColor="#000000"
+                    android:textCursorDrawable="@null"
+                    android:textSize="17sp" />
+
+                <ImageButton
+                    android:id="@+id/imb_del_relationtele"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/edt_inputrelationtele"
+                    android:background="#fff1f1f1"
+                    android:src="@drawable/contact_edit_del" />
+
+                <ImageButton
+                    android:id="@+id/imb_dial_relationtele"
+                    android:layout_width="20dp"
+                    android:layout_height="20dip"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="40dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/imb_del_relationtele"
+                    android:background="#fff1f1f1"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/telephone" />
+
+                <ImageButton
+                    android:id="@+id/imb_send_relationtele"
+                    android:layout_width="20dp"
+                    android:layout_height="20dip"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="40dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/imb_dial_relationtele"
+                    android:background="#fff1f1f1"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/send" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlRelationEmail"
+                android:layout_width="fill_parent"
+                android:layout_height="45dip"
+                android:layout_below="@id/rlRelationTele"
+                android:layout_marginBottom="10dip"
+                android:background="#fff1f1f1"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/txt_relationemail"
+                    style="@style/contact_textstyle01"
+                    android:text="联系人邮箱" />
+
+                <EditText
+                    android:id="@+id/edt_inputrelationemail"
+                    android:layout_width="400dip"
+                    android:layout_height="33dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/txt_relationemail"
+                    android:background="@drawable/contact_info_bg"
+                    android:hint="请输入联系人邮箱"
+                    android:textColor="#000000"
+                    android:textCursorDrawable="@null"
+                    android:textSize="17sp" />
+
+                <ImageButton
+                    android:id="@+id/imb_del_relationemail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/edt_inputrelationemail"
+                    android:background="#fff1f1f1"
+                    android:src="@drawable/contact_edit_del" />
+
+                <ImageButton
+                    android:id="@+id/imb_send_relationemail"
+                    android:layout_width="23dp"
+                    android:layout_height="23dip"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="40dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/imb_del_relationemail"
+                    android:background="#fff1f1f1"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/send" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlBirthday"
+                android:layout_width="fill_parent"
+                android:layout_height="45dip"
+                android:layout_below="@id/rlRelationEmail"
+                android:layout_marginBottom="10dip"
+                android:background="#fff1f1f1"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/txt_birthday"
+                    style="@style/contact_textstyle01"
+                    android:text="生 日" />
+
+                <TextView
+                    android:id="@+id/edit_inputbirthday"
+                    android:layout_width="150dip"
+                    android:layout_height="33dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/txt_birthday"
+                    android:background="@drawable/contact_info_bg"
+                    android:text="无"
+                    android:textColor="#000000"
+                    android:textSize="17sp" />
+
+                <ImageButton
+                    android:id="@+id/imb_del_birthday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/edit_inputbirthday"
+                    android:background="#fff1f1f1"
+                    android:src="@drawable/contact_edit_del" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlNote"
+                android:layout_width="fill_parent"
+                android:layout_height="45dip"
+                android:layout_below="@id/rlBirthday"
+                android:layout_marginBottom="10dip"
+                android:background="#fff1f1f1"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/txt_note"
+                    style="@style/contact_textstyle01"
+                    android:text="备       注" />
+
+                <EditText
+                    android:id="@+id/edt_inputnote"
+                    android:layout_width="150dip"
+                    android:layout_height="33dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/txt_note"
+                    android:background="@drawable/contact_info_bg"
+                    android:hint="请输入备注"
+                    android:textColor="#000000"
+                    android:textCursorDrawable="@null"
+                    android:textSize="17sp" />
+
+                <ImageButton
+                    android:id="@+id/imb_del_note"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@id/edt_inputnote"
+                    android:background="#fff1f1f1"
+                    android:src="@drawable/contact_edit_del" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/llgroup"
+                android:layout_width="fill_parent"
+                android:layout_height="45dip"
+                android:layout_below="@id/rlNote"
+                android:layout_marginBottom="10dip"
+                android:background="@drawable/contact_btn_style2"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/contact_textstyle02"
+                    android:text="分       组" />
+
+                <TextView
+                    android:id="@+id/txt_groupname"
+                    style="@style/contact_textstyle02"
+                    android:gravity="center"
+                    android:text="无" />
+
+                <ImageButton
+                    android:id="@+id/imb_groupmore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/contact_other_more" />
+            </LinearLayout>
+
+            <!--
+            <LinearLayout
+                android:id="@+id/lllisten"
+                android:layout_width="fill_parent"
+                android:layout_height="45dip"
+                android:layout_below="@id/llgroup"
+                android:layout_marginBottom="10dip"
+                android:background="@drawable/btn_style2"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/textstyle02"
+                    android:text="铃       声" />
+
+                <TextView
+                    android:id="@+id/txt_listenname"
+                    style="@style/textstyle02"
+                    android:gravity="center"
+                    android:text="默认铃声" />
+
+                <ImageButton
+                    android:id="@+id/imb_listenmore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/other_more" />
+            </LinearLayout>            -->
+
+            <Button
+                android:id="@+id/btn_addmore"
+                android:layout_width="fill_parent"
+                android:layout_height="45dip"
+                android:layout_below="@id/llgroup"
+                android:layout_marginBottom="30dip"
+                android:layout_marginLeft="25dip"
+                android:layout_marginRight="25dip"
+                android:layout_marginTop="30dip"
+                android:text="添加更多属性"
+                android:textColor="#000000"
+                android:textSize="17sp" />
+        </RelativeLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_new_save"
+        android:layout_width="fill_parent"
+        android:layout_height="40dip"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/contact_btn_style"
+        android:gravity="center"
+        android:text="保  存"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
+
+</RelativeLayout>

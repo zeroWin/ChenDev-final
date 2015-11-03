@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+
+
+    	<TextView
+    	    android:id="@+id/parmAAName"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="match_parent"
+    	    android:layout_gravity="center_vertical"
+    	    android:text="@string/bodyTempCalCoeffA"
+    	    android:layout_weight="1"
+    	    android:layout_marginTop="8dp"
+    	    android:textAppearance="?android:attr/textAppearanceMedium"
+    	    android:textColor="#fff" />
+    	<requestFocus />
+    	
+    <EditText
+        android:id="@+id/coeffA"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:ems="5"
+        android:imeOptions="actionNext"
+        android:inputType="numberDecimal"
+        android:text="@string/zeroValue" >
+
+        <requestFocus />
+    </EditText>
+    
+    	<TextView
+    	    android:id="@+id/parmBBName"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="match_parent"
+    	    android:layout_gravity="center_vertical"
+    	    android:layout_weight="1"
+    	    android:layout_marginTop="8dp"
+    	    android:text="@string/bodyTempCalCoeffB"
+    	    android:textAppearance="?android:attr/textAppearanceMedium"
+    	    android:textColor="#fff" />
+    	
+    <EditText
+        android:id="@+id/coeffB"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:ems="5"
+        android:imeOptions="actionNext"
+        android:inputType="numberDecimal"
+        android:text="@string/zeroValue" >
+
+        <requestFocus />
+    </EditText>
+    
+    	<TextView
+    	    android:id="@+id/parmCCName"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="match_parent"
+    	    android:layout_gravity="center_vertical"
+    	    android:layout_weight="1"
+    	    android:layout_marginTop="8dp"
+    	    android:text="@string/bodyTempCalCoeffC"
+    	    android:textAppearance="?android:attr/textAppearanceMedium"
+    	    android:textColor="#fff" />
+    	
+    <EditText
+        android:id="@+id/coeffC"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:ems="5"
+        android:imeOptions="actionDone"
+        android:inputType="numberDecimal"
+        android:text="@string/zeroValue" >
+
+        <requestFocus />
+    </EditText>
+
+</LinearLayout>

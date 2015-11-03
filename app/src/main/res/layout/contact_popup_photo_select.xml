@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/txtAddImageFromPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginTop="5dip"
+            android:text="拍照"
+            android:textSize="20dip" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="1dip"
+            android:layout_marginLeft="10dip"
+            android:background="@drawable/contact_bg_tab_2"
+            android:textSize="20dip" />
+
+        <TextView
+            android:id="@+id/txtAddImageFromSystem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="系统图片"
+            android:textSize="20dip" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="1dip"
+            android:layout_marginLeft="10dip"
+            android:background="@drawable/contact_bg_tab_2"
+            android:textSize="20dip" />
+
+        <TextView
+            android:id="@+id/txtAddImageFromFile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="3dip"
+            android:text="从文件选择"
+            android:textSize="20dip" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="1dip"
+            android:layout_marginBottom="5dip"
+            android:layout_marginLeft="10dip"
+            android:background="@drawable/contact_bg_tab_2"
+            android:textSize="20dip" />
+    </LinearLayout>
+
+</LinearLayout>

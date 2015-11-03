@@ -1,0 +1,22 @@
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+android:title="@string/router_details_title">
+<PreferenceCategory xmlns:android="http://schemas.android.com/apk/res/android"  
+		android:title="已连接网关"  >
+  
+    <PreferenceScreen
+    		android:fragment="mobileMedical.namespace.RouterDetailsPreferenceFragmentActivity">
+			android:key="router_id"
+			android:title="网关ID"
+			android:layout = "@layout/device_preference"
+        <Preference
+            android:key="router_details_id"
+			android:title="网关ID" />
+  
+    </PreferenceScreen>
+
+</PreferenceCategory>
+
+
+
+</PreferenceScreen>

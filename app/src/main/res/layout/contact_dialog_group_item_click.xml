@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff1f1f1"
+    android:orientation="vertical"
+    android:paddingBottom="10dip" >
+
+    <TextView
+        android:id="@+id/txtDialogTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="55dip"
+        android:background="#106184"
+        android:gravity="center"
+        android:text="分组名"
+        android:textColor="#ffffff"
+        android:textSize="24dip" />
+
+    <TextView
+        android:id="@+id/txtAddContacts"
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:gravity="center"
+        android:text="添加成员"
+        android:textColor="#000000"
+        android:textSize="22dip" />
+
+    <TextView
+        android:id="@+id/txtRemoveContacts"
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:gravity="center"
+        android:text="移除成员"
+        android:textColor="#000000"
+        android:textSize="22dip" />
+
+    <TextView
+        android:id="@+id/txtEditGroupName"
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:gravity="center"
+        android:text="修改名称"
+        android:textColor="#000000"
+        android:textSize="22dip" />
+
+</LinearLayout>

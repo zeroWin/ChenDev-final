@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/txt_group_item"
+    android:layout_width="150dip"
+    android:layout_height="35dip"
+    android:gravity="center"
+    android:text="分组"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:textSize="20dip" />

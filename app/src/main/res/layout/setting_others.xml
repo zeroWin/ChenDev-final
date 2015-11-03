@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="horizontal" >
+
+    <Button
+        android:id="@+id/buttonReadMeasData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="50dp"
+        android:text="@string/readMeasDataFile" />
+
+    <CheckBox
+        android:id="@+id/checkBoxFromSDCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="50dp"
+        android:text="@string/measDataFileSource" />
+    
+    <ProgressBar
+        android:id="@+id/progressBarReadMeasData"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+         android:layout_width="160dp"
+         android:layout_height="wrap_content"
+         android:layout_weight="1"
+        android:layout_marginRight="5dp"
+        android:max="100" />
+
+    <TextView
+        android:id="@+id/progressBarReadMeasDataPercent"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:text="0 %" />
+
+</LinearLayout>

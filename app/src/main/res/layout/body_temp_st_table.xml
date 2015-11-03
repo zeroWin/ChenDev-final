@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+    
+<LinearLayout
+        android:id="@+id/linearLayoutBodtTempTableStTimebtn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="10"
+        android:orientation="horizontal" >
+
+         <Button
+            android:id="@+id/bldHourBodtTempTable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/oneHour" />
+
+         <Button
+            android:id="@+id/bldDayBodtTempTable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/oneDay" />
+
+         <Button
+            android:id="@+id/bldWeekBodtTempTable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/oneWeek" />
+
+         <Button
+            android:id="@+id/bldMonthBodtTempTable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/oneMonth" />
+         
+
+
+    </LinearLayout>
+
+     <LinearLayout
+         android:id="@+id/linearLayoutBodyStTable"
+         android:layout_width="wrap_content"
+         android:layout_height="match_parent"
+         android:layout_weight="5"
+         android:gravity="center_horizontal"
+         android:orientation="horizontal" >
+
+        <ListView
+            android:id="@+id/listViewBodyTempTable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center|center_horizontal"
+            
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+</LinearLayout>

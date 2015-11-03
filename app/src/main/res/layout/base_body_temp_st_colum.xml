@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top"
+    android:orientation="vertical" >
+    
+
+    <LinearLayout
+        android:id="@+id/linearLayoutBodyTempStTimebtn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.1"
+        android:orientation="horizontal" >
+
+         <Button
+            android:id="@+id/bldHour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/oneHour" />
+
+         <Button
+            android:id="@+id/bldDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/oneDay" />
+
+         <Button
+            android:id="@+id/bldWeek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/oneWeek" />
+
+         <Button
+            android:id="@+id/bldMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/oneMonth" />
+         
+
+
+    </LinearLayout>
+ 
+     <LinearLayout
+        android:id="@+id/linearLayoutBsBdTpStChart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.05"
+        
+ 
+        android:orientation="horizontal" >
+
+ 
+
+    </LinearLayout>
+    
+
+</LinearLayout>

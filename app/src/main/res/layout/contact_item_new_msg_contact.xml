@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/txt_new_msg_contact"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/contact_bubble1"
+    android:gravity="center"
+    android:paddingRight="22dip"
+    android:text="姓名地的"
+    android:textSize="15dip" />

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlphone"
+    android:layout_width="fill_parent"
+    android:layout_height="45dip"
+    android:background="#fff1f1f1" >
+
+    <RelativeLayout
+        android:id="@+id/phoneTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/txt_phone"
+            style="@style/contact_textstyle01"
+            android:text="手机" />
+
+        <ImageButton
+            android:id="@+id/imb_dialog_phone"
+            android:layout_width="15dip"
+            android:layout_height="15dip"
+            android:layout_alignBottom="@id/txt_phone"
+            android:layout_alignRight="@id/txt_phone"
+            android:layout_alignTop="@id/txt_phone"
+            android:background="@drawable/contact_new_in_bg"
+            android:src="@drawable/contact_dialog_list" />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/edt_inputphone"
+        android:layout_width="150dip"
+        android:layout_height="33dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginTop="5dip"
+        android:layout_toRightOf="@id/phoneTitle"
+        android:background="@drawable/contact_info_bg"
+         android:textCursorDrawable="@null"
+        android:hint="请输入电话"
+        android:inputType="phone"
+        android:textColor="#000000"
+        android:textSize="17sp" />
+
+    <ImageButton
+        android:id="@+id/imb_del_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="30dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginTop="5dip"
+        android:layout_toRightOf="@id/edt_inputphone"
+        android:background="#fff1f1f1"
+        android:src="@drawable/contact_edit_del" />
+    
+     <ImageButton
+                     android:id="@+id/imb_dial_tele"
+                     android:layout_width="20dp"
+                     android:layout_height="20dip"
+                     android:layout_marginLeft="40dip"
+                     android:layout_marginTop="5dip"
+                     android:layout_toRightOf="@id/imb_del_phone"
+                     android:background="#fff1f1f1"
+                     android:layout_centerVertical="true"
+                     android:scaleType="fitXY"
+                     android:src="@drawable/telephone" />
+     
+       <ImageButton
+                     android:id="@+id/imb_send_tele"
+                     android:layout_width="20dp"
+                     android:layout_height="20dip"
+                     android:layout_marginLeft="40dip"
+                     android:layout_marginTop="5dip"
+                     android:layout_toRightOf="@id/imb_dial_tele"
+                     android:background="#fff1f1f1"
+                     android:layout_centerVertical="true"
+                     android:scaleType="fitXY"
+                     android:src="@drawable/send" />
+
+</RelativeLayout>

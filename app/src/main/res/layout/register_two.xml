@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/register_bg"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="姓名："
+                android:textColor="@drawable/contact_white"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/register_two_editText1"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/login_edit_bg"
+                android:ems="10"
+                android:paddingLeft="10dp"
+                android:textColor="@drawable/contact_black"
+                android:textCursorDrawable="@null" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp" >
+
+            <TextView
+                android:id="@+id/password"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="密码："
+                android:textColor="@drawable/contact_white"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/register_two_password"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/login_edit_bg"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:paddingLeft="10dp"
+                android:textColor="@drawable/contact_black"
+                android:textCursorDrawable="@null" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp" >
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="编号："
+                android:textColor="@drawable/contact_white"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/register_two_editText2"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/login_edit_bg"
+                android:ems="10"
+                android:inputType="number"
+                android:paddingLeft="10dp"
+                android:textColor="@drawable/contact_black"
+                android:textCursorDrawable="@null" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp" >
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="单位："
+                android:textColor="@drawable/contact_white"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/register_two_editText3"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/login_edit_bg"
+                android:ems="10"
+                android:paddingLeft="10dp"
+                android:textColor="@drawable/contact_black"
+                android:textCursorDrawable="@null" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp" >
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="科室："
+                android:textColor="@drawable/contact_white"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/register_two_editText4"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/login_edit_bg"
+                android:ems="10"
+                android:paddingLeft="10dp"
+                android:textColor="@drawable/contact_black"
+                android:textCursorDrawable="@null" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp" >
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="级别："
+                android:textColor="@drawable/contact_white"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/register_two_editText5"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/login_edit_bg"
+                android:ems="10"
+                android:paddingLeft="10dp"
+                android:textColor="@drawable/contact_black"
+                android:textCursorDrawable="@null" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp" >
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="电话："
+                android:textColor="@drawable/contact_white"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/register_two_editText6"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/login_edit_bg"
+                android:ems="10"
+                android:paddingLeft="10dp"
+                android:textColor="@drawable/contact_black"
+                android:textCursorDrawable="@null" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp" >
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="EMAIL邮箱："
+                android:textColor="@drawable/contact_white"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/register_two_editText7"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/login_edit_bg"
+                android:ems="10"
+                android:paddingLeft="10dp"
+                android:textColor="@drawable/contact_black"
+                android:textCursorDrawable="@null" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/register_two_back"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="60dp"
+                android:text="上一步" />
+
+            <Button
+                android:id="@+id/register_two_submit"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="提交" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

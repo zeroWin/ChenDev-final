@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlIM"
+    android:layout_width="fill_parent"
+    android:layout_height="45dip"
+    android:background="#fff1f1f1" >
+
+    <RelativeLayout
+        android:id="@+id/imTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/txt_im"
+            style="@style/contact_textstyle01"
+            android:text="QQ" />
+
+        <ImageButton
+            android:id="@+id/imb_dialog_im"
+            android:layout_width="15dip"
+            android:layout_height="15dip"
+            android:layout_alignBottom="@id/txt_im"
+            android:layout_alignRight="@id/txt_im"
+            android:layout_alignTop="@id/txt_im"
+            android:background="@drawable/contact_new_in_bg"
+            android:src="@drawable/contact_dialog_list" />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/edt_inputIm"
+        android:layout_width="150dip"
+        android:layout_height="33dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginTop="5dip"
+        android:layout_toRightOf="@id/imTitle"
+        android:background="@drawable/contact_info_bg"
+        android:hint="请输入IM"
+        android:textColor="#000000"
+        android:textCursorDrawable="@null"
+        android:textSize="17sp" />
+
+    <ImageButton
+        android:id="@+id/imb_del_im"
+        android:layout_width="wrap_content"
+        android:layout_height="30dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginTop="5dip"
+        android:layout_toRightOf="@id/edt_inputIm"
+        android:background="#fff1f1f1"
+        android:src="@drawable/contact_edit_del" />
+
+</RelativeLayout>

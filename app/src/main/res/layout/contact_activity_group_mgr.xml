@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlGroupMgr"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <RelativeLayout
+        android:id="@+id/toolbar_groupmgr"
+        android:layout_width="fill_parent"
+        android:layout_height="45dip"
+        android:background="#106184" >
+
+        <ImageButton
+            android:id="@+id/imb_groupmgr_back"
+            android:layout_width="45dip"
+            android:layout_height="40dip"
+            android:layout_centerVertical="true"
+            android:background="#106184"
+            android:src="@drawable/contact_tool_bar_style" />
+
+        <ImageView
+            android:id="@+id/img_divider1"
+            android:layout_width="0.5dip"
+            android:layout_height="45dip"
+            android:layout_toRightOf="@id/imb_groupmgr_back"
+            android:background="@drawable/contact_top_bar_diviver" />
+
+        <ImageView
+            android:id="@+id/img_divider2"
+            android:layout_width="0.5dip"
+            android:layout_height="45dip"
+            android:layout_toLeftOf="@+id/imbAddGroup"
+           android:background="@drawable/contact_top_bar_diviver" />
+
+        <ImageButton
+            android:id="@+id/imbAddGroup"
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/contact_add_group" >
+        </ImageButton>
+
+        <TextView
+            android:id="@+id/txtGroupMgrTitle"
+            android:layout_width="fill_parent"
+            android:layout_height="40dip"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/img_divider2"
+            android:layout_toRightOf="@id/img_divider1"
+            android:background="#106184"
+            android:gravity="center"
+            android:text="分组管理"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lsvGroupMgr"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/toolbar_groupmgr"
+        android:background="#fff1f1f1" >
+    </ListView>
+
+</RelativeLayout>

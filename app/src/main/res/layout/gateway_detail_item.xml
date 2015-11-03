@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>     
+<LinearLayout       
+    android:id="@+id/LinearLayoutNotesName"       
+    android:layout_width="fill_parent"       
+    xmlns:android="http://schemas.android.com/apk/res/android"       
+    android:layout_height="50dp"    >   
+
+     
+<ImageView        
+    android:layout_width="fill_parent"       
+    android:layout_height="fill_parent" 
+    android:layout_weight="1" 
+    android:visibility="gone"     
+    android:id="@+id/ItemImage"     
+    />       
+            
+<TextView           
+    android:layout_height="fill_parent"       
+    android:textSize="20dip"       
+    android:layout_width="fill_parent"
+    android:gravity="center_vertical"
+    android:paddingLeft="15dp"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:textColor="#fff" 
+    android:layout_weight="3"      
+    android:id="@+id/noteName"     
+    /> 
+<TextView           
+    android:layout_height="fill_parent"       
+    android:textSize="20dip"       
+    android:layout_width="fill_parent"
+    android:gravity="center_vertical"
+    android:paddingLeft="15dp"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:textColor="#fff" 
+    android:layout_weight="1"      
+    android:id="@+id/noteID"     
+    />   
+<ImageView        
+    android:layout_width="fill_parent"       
+    android:layout_height="fill_parent"
+    android:gravity="right"
+    android:paddingRight="15dp"
+    android:layout_weight="2" 
+    android:visibility="gone"      
+    android:id="@+id/ItemImage2"     
+    />    
+</LinearLayout>    

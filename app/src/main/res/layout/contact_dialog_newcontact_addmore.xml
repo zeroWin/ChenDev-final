@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff1f1f1"
+    android:orientation="vertical"
+    android:paddingBottom="10dip" >
+
+    <TextView
+        android:id="@+id/txtDialogTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="55dip"
+        android:background="#106184"
+        android:gravity="center"
+        android:text="请选择类型"
+        android:textColor="#ffffff"
+        android:textSize="24dip" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/txtAddTel"
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:background="@drawable/contact_btn_style2"
+                android:gravity="center"
+                android:text="电   话"
+                android:textColor="#000000"
+                android:textSize="22dip" />
+
+            <TextView
+                android:id="@+id/txtAddEmail"
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:background="@drawable/contact_btn_style2"
+                android:gravity="center"
+                android:text="邮   箱"
+                android:textColor="#000000"
+                android:textSize="22dip" />
+
+            <TextView
+                android:id="@+id/txtAddAdress"
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:background="@drawable/contact_btn_style2"
+                android:gravity="center"
+                android:text="住   址"
+                android:textColor="#000000"
+                android:textSize="22dip" />
+            
+             <TextView
+                android:id="@+id/txtAddIdNo"
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:background="@drawable/contact_btn_style2"
+                android:gravity="center"
+                android:text="身份证"
+                android:textColor="#000000"
+                android:textSize="22dip" />
+             
+               <TextView
+                android:id="@+id/txtAddDescribe"
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:background="@drawable/contact_btn_style2"
+                android:gravity="center"
+                android:text="就诊描述"
+                android:textColor="#000000"
+                android:textSize="22dip" />
+               
+                 <TextView
+                android:id="@+id/txtAddGender"
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:background="@drawable/contact_btn_style2"
+                android:gravity="center"
+                android:text="性别"
+                android:textColor="#000000"
+                android:textSize="22dip" />
+                 
+                   <TextView
+                android:id="@+id/txtAddType"
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:background="@drawable/contact_btn_style2"
+                android:gravity="center"
+                android:text="医保类型"
+                android:textColor="#000000"
+                android:textSize="22dip" />
+                     <TextView
+                android:id="@+id/txtAddFileNo"
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:background="@drawable/contact_btn_style2"
+                android:gravity="center"
+                android:text="档案编号"
+                android:textColor="#000000"
+                android:textSize="22dip" />
+                     
+                       <TextView
+                android:id="@+id/txtAddHospital"
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:background="@drawable/contact_btn_style2"
+                android:gravity="center"
+                android:text="就诊医院"
+                android:textColor="#000000"
+                android:textSize="22dip" />
+             
+              <TextView
+                android:id="@+id/txtAddRelationName"
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:background="@drawable/contact_btn_style2"
+                android:gravity="center"
+                android:text="联系人姓名"
+                android:textColor="#000000"
+                android:textSize="22dip" />
+              
+               <TextView
+                android:id="@+id/txtAddRelation"
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:background="@drawable/contact_btn_style2"
+                android:gravity="center"
+                android:text="与联系人关系"
+                android:textColor="#000000"
+                android:textSize="22dip" />
+               
+                <TextView
+                android:id="@+id/txtAddRelationTele"
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:background="@drawable/contact_btn_style2"
+                android:gravity="center"
+                android:text="联系人电话"
+                android:textColor="#000000"
+                android:textSize="22dip" />
+                
+                 <TextView
+                android:id="@+id/txtAddRelationEmail"
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:background="@drawable/contact_btn_style2"
+                android:gravity="center"
+                android:text="联系人邮箱"
+                android:textColor="#000000"
+                android:textSize="22dip" />
+
+            <TextView
+                android:id="@+id/txtAddBirthday"
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:background="@drawable/contact_btn_style2"
+                android:gravity="center"
+                android:text="生   日"
+                android:textColor="#000000"
+                android:textSize="22dip" />
+
+            <TextView
+                android:id="@+id/txtAddNote"
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:background="@drawable/contact_btn_style2"
+                android:gravity="center"
+                android:text="备   注"
+                android:textColor="#000000"
+                android:textSize="22dip" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top"
+    android:orientation="vertical" >
+    
+    <RelativeLayout
+         android:id="@+id/relativeLayout1"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:layout_alignParentLeft="true"
+         android:layout_alignParentTop="true"
+         android:layout_weight="40"  >
+
+         <ImageButton
+            android:id="@+id/static_imagehead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="20dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:src="@drawable/ic_launcher" />
+         <TextView
+            android:id="@+id/textViewLastDiag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/patientName"
+            android:layout_below="@id/patientName"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/lastDiag" />
+
+        <TextView
+            android:id="@+id/textViewHospital"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textViewLastDiag"
+            android:layout_below="@id/textViewLastDiag"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/hospital" />
+
+        <TextView
+            android:id="@+id/textViewYibao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/textViewFile"
+            android:layout_marginRight="31dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/yibao" />
+
+
+
+
+        <TextView
+            android:id="@+id/textViewFile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="31dp"
+            android:layout_toLeftOf="@+id/textViewFileNum"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/fileNum" />
+
+
+
+
+        <TextView
+            android:id="@+id/textViewFileNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="23dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/testFilenum" />
+
+
+
+
+        <TextView
+            android:id="@+id/textViewGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textViewResult"
+            android:layout_alignBottom="@+id/textViewResult"
+            android:layout_alignLeft="@+id/textViewFile"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/gender" />
+
+
+
+
+        <TextView
+            android:id="@+id/textViewMaleFemale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textViewGender"
+            android:layout_alignLeft="@+id/textViewFileNum"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/male" />
+
+
+
+
+        <TextView
+            android:id="@+id/textViewAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textViewHospital"
+            android:layout_alignBottom="@+id/textViewHospital"
+            android:layout_alignLeft="@+id/textViewGender"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/age" />
+
+
+
+
+        <TextView
+            android:id="@+id/textViewAgeNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textViewAge"
+            android:layout_alignLeft="@+id/textViewMaleFemale"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/testAge" />
+
+        <TextView
+            android:id="@+id/patientName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="54dp"
+            android:layout_toRightOf="@+id/static_imagehead"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/patient1" />
+
+        <TextView
+            android:id="@+id/textViewResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textViewHospital"
+            android:layout_marginLeft="81dp"
+            android:layout_toRightOf="@+id/textViewLastDiag"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/xinlvbuqi" />
+
+    </RelativeLayout> 
+
+    <LinearLayout
+        android:id="@+id/linearLayoutBloodOxStTimebtn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="40"
+        android:orientation="horizontal" >
+
+         <Button
+             android:id="@+id/bldHour"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center"
+             android:text="@string/oneHour"
+             android:textAppearance="?android:attr/textAppearanceLarge" />
+
+         <Button
+             android:id="@+id/bldDay"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center"
+             android:text="@string/oneDay"
+             android:textAppearance="?android:attr/textAppearanceLarge" />
+
+         <Button
+             android:id="@+id/bldWeek"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center"
+             android:text="@string/oneWeek"
+             android:textAppearance="?android:attr/textAppearanceLarge" />
+
+         <Button
+             android:id="@+id/bldMonth"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center"
+             android:text="@string/oneMonth"
+             android:textAppearance="?android:attr/textAppearanceLarge" />
+         
+         <ImageView
+             android:id="@+id/imageViewPulseMax"
+             android:layout_width="wrap_content"
+             android:layout_height="49dp"
+             android:layout_gravity="center"
+             android:layout_weight="0.3"
+             android:src="@drawable/diamonds_4" />
+
+         <TextView
+             android:id="@+id/textViewPulseMax"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center_vertical|left"
+             android:layout_weight="0.30"
+             android:text="@string/max"
+             android:textAppearance="?android:attr/textAppearanceLarge"
+             android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/imageViewPulseMin"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:layout_gravity="center"
+            android:layout_weight="0.3"
+            android:src="@drawable/sport_golf_practice" />
+
+         <TextView
+             android:id="@+id/textViewPulseMin"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center_vertical|left"
+             android:layout_weight="0.30"
+             android:text="@string/min"
+             android:textAppearance="?android:attr/textAppearanceLarge"
+             android:textSize="15sp" />
+
+         <ImageView
+             android:id="@+id/imageViewPulseAve"
+             android:layout_width="wrap_content"
+             android:layout_height="49dp"
+             android:layout_gravity="center"
+             android:layout_weight="0.30"
+             android:src="@drawable/stop_blue" />
+
+         <TextView
+             android:id="@+id/textViewPulseAve"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center_vertical|left"
+             android:layout_weight="0.30"
+             android:text="@string/average"
+             android:textAppearance="?android:attr/textAppearanceLarge"
+             android:textSize="15sp" />
+
+    </LinearLayout>
+     <LinearLayout
+        android:id="@+id/linearLayoutBloodOxStChartPulse"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="15"
+        
+ 
+        android:orientation="vertical" >
+
+ 
+
+    </LinearLayout>
+ 
+
+</LinearLayout>

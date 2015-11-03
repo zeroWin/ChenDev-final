@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bodyTempLinearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/bodyTempTextLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="7" >
+
+        <LinearLayout
+            android:id="@+id/bodyTempValueLinearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/textViewBodyTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|right"
+                android:layout_weight="5"
+                android:gravity="right"
+                android:text="@string/currentBodyTemp"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/textViewBodyTempValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="5"
+                android:gravity="center"
+                android:text="@string/nullValue"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/textViewBodyTempUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="5"
+                android:text="@string/bodyTempUnit"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/checkBoxBaseBodyTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="5"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/baseBodyTemp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bodyTempChartLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="3" >
+
+        <com.artfulbits.aiCharts.ChartView
+              android:id="@+id/chartViewBodyTemp"
+              chart="@xml/colum_chart_normal"
+              android:background="@drawable/lineborder"
+              android:layout_weight="5"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent" />
+        <com.artfulbits.aiCharts.ChartView
+              android:id="@+id/chartViewBaseBodyTemp"
+              chart="@xml/colum_chart"
+              android:background="@drawable/lineborder"
+              android:layout_weight="5"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent" />      
+
+    </LinearLayout>
+
+</LinearLayout>

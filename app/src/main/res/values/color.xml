@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <drawable name="contact_white">#FFFFFFFF</drawable>
+  <drawable name="contact_black">#000000</drawable>
+  <drawable name="contact_blue">#0000FF</drawable>
+</resources>

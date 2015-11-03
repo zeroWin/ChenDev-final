@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#808080"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="20dp" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="3"
+        android:background="@drawable/contact_white"
+        android:gravity="center_horizontal"
+        android:text="用户协议"
+        android:textColor="@drawable/contact_black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:background="@drawable/contact_white"
+        android:paddingLeft="150dp"
+        android:paddingRight="50dp"
+        android:text="1 不经发布者同意不得散发该程序。
+\n2 不经同意不的使用该程序的相关数据，信息，图标等。
+\n3 不得非法破解，修改该应用程序。
+\n4 程序的发布者不对用户的所有数据损失负责。
+\n5 该程序仅为参考程序，程序的发布者不对所有测量以及数据和相关信息负责。
+\n6 程序的发布者不对用户由于使用该程序的损失负责。
+\n7 其他未注明事项解释权归程序发布者等等。"
+        android:textColor="@drawable/contact_black"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_weight="3"
+        android:gravity="center" >
+
+        <CheckBox
+            android:id="@+id/agree_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="同意服务条款" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_weight="3"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/register_one_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:text="上一步" />
+
+        <Button
+            android:id="@+id/register_one_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="下一步" />
+    </LinearLayout>
+
+</LinearLayout>

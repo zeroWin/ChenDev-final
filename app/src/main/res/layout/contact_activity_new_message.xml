@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/contact_bg"
+    android:padding="0.0dip" >
+
+    <LinearLayout
+        android:id="@+id/llNewMsgTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/contact_all_title_bg"
+        android:orientation="horizontal" >
+
+        <FrameLayout
+            android:layout_width="270.0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5.0dip"
+            android:layout_marginLeft="5.0dip"
+            android:layout_marginTop="8.0dip" >
+
+            <LinearLayout
+                android:id="@+id/ll_display_textview_contact"
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:background="@drawable/contact_new_message_likebox"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="收信人:"
+                    android:textColor="#ff8c8c8c"
+                    android:textSize="16.0sp" />
+
+                <TextView
+                    android:id="@+id/display_style_receiver_list"
+                    android:layout_width="140.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3.0dip"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="#ff000000"
+                    android:textSize="16.0sp" />
+
+                <TextView
+                    android:id="@+id/display_stylereceiver_count"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3.0dip"
+                    android:singleLine="true"
+                    android:text="共0人"
+                    android:textColor="#ff8c8c8c"
+                    android:textSize="16.0sp" />
+            </LinearLayout>
+
+            <GridView
+                android:id="@+id/gridViewDisplayBtnContact"
+                android:layout_width="fill_parent"
+                android:layout_height="100dip"
+                android:background="@drawable/contact_new_message_likebox"
+                android:gravity="center"
+                android:minHeight="50dip"
+                android:numColumns="3"
+                android:verticalSpacing="10dip"
+                android:visibility="gone" >
+            </GridView>
+        </FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageButton
+                android:id="@+id/imbAddMoreContact"
+                android:layout_width="28.0dip"
+                android:layout_height="28.0dip"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="11.0dip"
+                android:background="@drawable/contact_new_message_add_contacts_button"
+                android:scaleType="fitXY" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <GridView
+        android:id="@+id/gridViewRecentContact"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/llNewMsgTitle"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:background="#f1f1f1"
+        android:gravity="center"
+        android:numColumns="4"
+        android:verticalSpacing="20dip" >
+    </GridView>
+
+    <RelativeLayout
+        android:id="@+id/rllMsgBottomBar03"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#106184" >
+
+        <ImageButton
+            android:id="@+id/imbAddPicture"
+            android:layout_width="35dip"
+            android:layout_height="35dip"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dip"
+            android:src="@drawable/contact_jiahao" />
+
+        <Button
+            android:id="@+id/btnSendMsg"
+            android:layout_width="50dip"
+            android:layout_height="35dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dip"
+            android:background="@drawable/contact_btn_sen_msg_style"
+            android:text="发送"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp" />
+
+        <EditText
+            android:id="@+id/edtInputMsg"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="10dip"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="5dip"
+            android:layout_marginTop="15dip"
+            android:layout_toLeftOf="@id/btnSendMsg"
+            android:layout_toRightOf="@id/imbAddPicture"
+            android:background="@drawable/contact_info_bg"
+            android:hint="请输入信息"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

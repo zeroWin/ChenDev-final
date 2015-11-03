@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF" >
+
+    <RelativeLayout
+        android:id="@+id/rlMsgTitleBar02"
+        android:layout_width="fill_parent"
+        android:layout_height="45dip"
+        android:background="#106184" >
+
+        <ImageView
+            android:id="@+id/imgMsgPhoto"
+            android:layout_width="35dip"
+            android:layout_height="35dip"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dip"
+            android:src="@drawable/contact_no_contact_photo" />
+
+        <TextView
+            android:id="@+id/txtMsgName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginTop="2dip"
+            android:layout_toRightOf="@id/imgMsgPhoto"
+            android:text="姓名"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/phone_choice_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginTop="30dip"
+            android:layout_toRightOf="@+id/imgMsgPhoto"
+            android:background="@drawable/contact_arrow_left" />
+
+        <ViewFlipper
+            android:id="@+id/compose_title_phonenumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="@dimen/title_number_right"
+            android:layout_marginTop="25dip"
+            android:layout_toRightOf="@+id/phone_choice_left" >
+
+            <TextView
+                android:id="@+id/compose_title_current_phonenumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxWidth="145.0dip"
+                android:singleLine="true"
+                android:textColor="#ffffffff"
+                android:textSize="@dimen/title_number_size" 
+                android:text="123456"/>
+
+            <TextView
+                android:id="@+id/compose_title_temp_phonenumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxWidth="145.0dip"
+                android:singleLine="true"
+                android:textColor="#ffffffff"
+                android:textSize="@dimen/title_number_size" />
+        </ViewFlipper>
+
+        <ImageView
+            android:id="@+id/phone_choice_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dip"
+            android:layout_toRightOf="@+id/compose_title_phonenumber"
+            android:background="@drawable/contact_arrow_right" />
+
+        <ImageButton
+            android:id="@+id/imbMsgCall"
+            android:layout_width="35dip"
+            android:layout_height="35dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/contact_imb_msg_call_style" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lsvItemsMsg"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/rlMsgTitleBar02"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:divider="@null"
+        android:paddingBottom="60dip"
+        android:stackFromBottom="true" >
+    </ListView>
+
+    <RelativeLayout
+        android:id="@+id/rllMsgBottomBar03"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#106184" >
+
+        <ImageButton
+            android:id="@+id/imbAddPicture"
+            android:layout_width="35dip"
+            android:layout_height="35dip"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dip"
+            android:src="@drawable/contact_jiahao" />
+
+        <Button
+            android:id="@+id/btnSendMsg"
+            android:layout_width="50dip"
+            android:layout_height="35dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dip"
+            android:background="@drawable/contact_btn_sen_msg_style"
+            android:text="发送"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp" />
+
+        <EditText
+            android:id="@+id/edtInputMsg"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="10dip"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="5dip"
+            android:layout_marginTop="15dip"
+            android:layout_toLeftOf="@id/btnSendMsg"
+            android:layout_toRightOf="@id/imbAddPicture"
+            android:background="@drawable/contact_info_bg"
+            android:hint="请输入信息"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

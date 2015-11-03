@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlContact"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#fff1f1f1" >
+    
+    <LinearLayout
+        android:id="@+id/rlToolbar01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#106184" >
+
+        <ImageButton
+            android:id="@+id/imbAddContactToGroup_Back"
+            android:layout_width="32dip"
+            android:layout_height="32dip"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/contact_tool_bar_style" />
+
+        <ImageView
+            android:id="@+id/imgLine08"
+            android:layout_width="0.5dip"
+            android:layout_height="45dip"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/contact_widget_divider_line" />
+
+        <TextView
+            android:id="@+id/txtAddContactToGroup_Title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:paddingRight="20dip"
+            android:text="向分组添加或移除成员"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlFindContact"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rlToolbar01" >
+
+        <EditText
+            android:id="@+id/edtAddContactToGroup_Search"
+            android:layout_width="fill_parent"
+            android:layout_height="55dip"
+            android:layout_marginTop="4dip"
+            android:background="@drawable/contact_bg_contact_search_edttext1"
+            android:hint="联系人搜索 | 共10人"
+            android:paddingLeft="58dip"
+            android:textSize="17dip" />
+
+        <ImageView
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            android:layout_alignBottom="@id/edtAddContactToGroup_Search"
+            android:layout_alignLeft="@id/edtAddContactToGroup_Search"
+            android:layout_alignTop="@id/edtAddContactToGroup_Search"
+            android:layout_marginBottom="8dip"
+            android:layout_marginLeft="23dip"
+            android:src="@drawable/contact_search_bar_icon_normal" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/Lsv_contacts_group"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/rlFindContact"
+        android:background="#fff1f1f1" 
+        android:paddingBottom="50dip">
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:layout_alignParentBottom="true"
+        android:background="#101418"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnSure_group"
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:layout_weight="1"
+            android:background="@drawable/contact_btn_style"
+            android:text="确定(0)"
+            android:textColor="#ADAAAD"
+            android:textSize="22sp" />
+
+        <ImageView
+            android:layout_width="1dip"
+            android:layout_height="50dip"
+            android:background="@drawable/contact_list_item_divide_line2" />
+
+        <Button
+            android:id="@+id/btnSelectAllOrUnselectAll"
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:layout_weight="1"
+            android:background="@drawable/contact_btn_style"
+            android:text="选择全部"
+            android:textColor="#ADAAAD"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string-array name="commands">
+  <item>网关状态查询</item>
+  <item>节点配置</item>
+</string-array>
+<string-array name="commands_value">
+  <item>000</item>
+  <item>001</item>
+</string-array>
+<string-array name="timerperiod">
+  <item>每年</item>
+  <item>每月</item>
+  <item>每天</item>
+  <item>无周期</item>
+</string-array>
+<string-array name="timerperiod_value">
+  <item>000</item>
+  <item>001</item>
+  <item>002</item>
+  <item>003</item>
+</string-array>
+</resources>

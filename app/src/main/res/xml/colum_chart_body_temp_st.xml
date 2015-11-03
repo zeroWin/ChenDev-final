@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright ArtfulBits Inc. 2005 - 2011. All rights reserved.
+  
+  Use of this code is subject to the terms of our license.
+  A copy of the current license can be obtained at any time by e-mailing
+  info@artfulbits.com. Re-distribution in any form is strictly
+  prohibited. Any infringement will be prosecuted under applicable laws.
+-->
+<ai:chart xmlns:ai="http://www.artfulbits.com/android/aiCharts">
+	<ai:area>
+	 
+	 
+	</ai:area>
+	
+	<ai:series type="Column"/>	
+	<ai:title text="整体体温" dock="Top"/>
+</ai:chart>
