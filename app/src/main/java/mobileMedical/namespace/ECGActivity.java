@@ -189,7 +189,7 @@ private static final String TAG = "EGCActivity";
            	    m_TransID = ((IntParameter) MessageData.parmsDataHashMap
     						.get(ParameterDataKeys.TRANSID)).GetValue();
            	    // Should increase TransId by 1 to keep it is monotonic increasing.
-           	    m_TransID +=1;
+//           	    m_TransID +=1;
   				   ((IntParameter)MessageData.parmsDataHashMap.get(ParameterDataKeys.TRANSID)).SetValue(m_TransID);			 
     				m_SensorType = MessageInfo.SENSORTYPE_ELECTROCARDIOGRAMMETER;
     				m_MeasItem = MessageInfo.MM_MI_ELECTRO_CARDIOGRAM;
