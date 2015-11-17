@@ -104,8 +104,8 @@ private static final String TAG = "EGCActivity";
     	
        m_ChartView = (ChartView)findViewById(R.id.chartViewECG);
        
-       m_DataBaseSQL = boDbHelper.getWritableDb();
-       m_TotalDataPackage = new StringBuilder();
+       m_DataBaseSQL = boDbHelper.getWritableDb();		//打开一个可以读写的数据库
+       m_TotalDataPackage = new StringBuilder();		//容量为16
 		m_ContentValues = new ContentValues();
 
 		
