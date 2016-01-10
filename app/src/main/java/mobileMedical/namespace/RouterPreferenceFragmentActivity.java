@@ -91,7 +91,7 @@ public final class RouterPreferenceFragmentActivity extends PreferenceFragment {
 		mActivity = getActivity();
 
 		// Load the preferences from an XML resource
-		addPreferencesFromResource(R.xml.router_preference);
+		addPreferencesFromResource(R.xml.router_preference);		//？？？？？
 		final PreferenceScreen preferenceScreen = getPreferenceScreen();
 		SharedPreferences settings = mActivity.getSharedPreferences(
 				ConstDef.SHAREPRE_SETTING_INFOS, 0); // 获取一个 SharedPreferences
@@ -102,10 +102,11 @@ public final class RouterPreferenceFragmentActivity extends PreferenceFragment {
 		if (BuildConfig.DEBUG) {
 			Log.i(TAG, "Connected:" + GW_Connected + "");
 		}
+		//为PreferenceScreen添加选项
 		mConnectedDevicesCategory = new PreferenceCategory(mActivity);
 		mConnectedDevicesCategory.setTitle("已连接的网关");
 		preferenceScreen.addPreference(mConnectedDevicesCategory);
-		mConnectedDevicesCategory.setEnabled(true);
+		mConnectedDevicesCategory.setEnabled(true);		//使其可点击
 
 		mNoteDevicesCategory = new PreferenceCategory(mActivity);
 		mNoteDevicesCategory.setTitle("已连接的节点");
@@ -116,10 +117,10 @@ public final class RouterPreferenceFragmentActivity extends PreferenceFragment {
 		mAvailableDevicesCategory.setTitle("可用的设备");
 		preferenceScreen.addPreference(mAvailableDevicesCategory);
 		mAvailableDevicesCategory.setEnabled(true);
-
+		//添加蓝牙搜索页面
 		View mCustomView = mActivity.getLayoutInflater().inflate(
 				R.layout.bluetooth_scan, null);
-
+		//添加动作栏
 		mActivity.getActionBar().setDisplayOptions(
 				ActionBar.DISPLAY_SHOW_CUSTOM, ActionBar.DISPLAY_SHOW_CUSTOM);
 		mActivity.getActionBar().setCustomView(
@@ -130,20 +131,23 @@ public final class RouterPreferenceFragmentActivity extends PreferenceFragment {
 		setHasOptionsMenu(true);
 
 		// Register for broadcasts when a device is discovered
+		// 发现新蓝牙设备后注册一个intentfliter
 		IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
 		mActivity.registerReceiver(mReceiver, filter);
 
 		// Register for broadcasts when discovery has finished
+		// 蓝牙设备发现完成后注册一个intentfilter
 		filter = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
 		mActivity.registerReceiver(mReceiver, filter);
 
 		// Register for broadcasts when discovery has finished
+		// 低水平断开蓝牙后注册一个intentfilter
 		filter = new IntentFilter(BluetoothDevice.ACTION_ACL_DISCONNECTED);
 		mActivity.registerReceiver(mReceiver, filter);
-
+		// android.intent.action.btconnect注册一个intentfilter
 		filter = new IntentFilter(ConstDef.BT_CONNECT_BROADCAST_MESSAGE);
 		mActivity.registerReceiver(mReceiver, filter);
-
+		//android.intent.action.gwStateQueryResults注册一个if
 		filter = new IntentFilter(
 				ConstDef.GW_STATE_QUERY_RESULTS_BROADCAST_MESSAGE);
 		mActivity.registerReceiver(mReceiver, filter);
@@ -153,7 +157,7 @@ public final class RouterPreferenceFragmentActivity extends PreferenceFragment {
 
 		// If the adapter is null, then Bluetooth is not supported
 		if (mBluetoothAdapter == null) {
-			Toast.makeText(mActivity, "Bluetooth is not available",
+			Toast.makeText(mActivity, "蓝牙不可用",
 					Toast.LENGTH_LONG).show();
 			// mActivity.finish();
 			// return;
@@ -178,8 +182,8 @@ public final class RouterPreferenceFragmentActivity extends PreferenceFragment {
 		// 取出保存的NAME，取出改字段名的值，不存在则创建默认为空
 		GW_Connected = settings.getBoolean(ConstDef.SHAREPRE_ROUTER, false); // 取出保存的
 																				// NAME
-		mConnectedDevicesCategory.removeAll();
-		mNoteDevicesCategory.removeAll();
+		mConnectedDevicesCategory.removeAll();		//清空已连接的蓝牙设备列表
+		mNoteDevicesCategory.removeAll();			//清空已连接的节点列表
 
 		if (GW_Connected) {
 

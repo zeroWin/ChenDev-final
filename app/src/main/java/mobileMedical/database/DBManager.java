@@ -18,6 +18,16 @@ public class DBManager {
 		// mFactory);
 		// 所以要确保context已初始化,我们可以把实例化DBManager的步骤放在Activity的onCreate里
 		db = helper.getWritableDatabase();
+		//创建新数据库doctorInfo，格式为
+		// username-varchar，
+		// password-varchar，
+		// id-varchar,
+		// work-varchar,
+		// room-varchar,
+		// level-varchar,
+		// tel-varchar,
+		// email-text,
+		// image-int
 		db.execSQL("CREATE TABLE IF NOT EXISTS doctorInfo" + "("
 				+ ConstDef.DATABASE_FIELD_USERNAME + " varchar(20),"
 				+ ConstDef.DATABASE_FIELD_PASSWORD + " varchar(20),"
@@ -28,6 +38,10 @@ public class DBManager {
 				+ ConstDef.DATABASE_FIELD_TEL + " varchar(20),"
 				+ ConstDef.DATABASE_FIELD_EMAIL + " TEXT,"
 				+ ConstDef.DATABASE_FIELD_IMAGE + " integer)");
+		// 创建新数据库doctorSetting，格式为
+		// remember-int，
+		// username-varchar，
+		// password-varchar
 		db.execSQL("CREATE TABLE IF NOT EXISTS doctorSetting"
 				+ "(remember integer," + ConstDef.DATABASE_FIELD_USERNAME
 				+ " varchar(20)," + ConstDef.DATABASE_FIELD_PASSWORD
@@ -122,6 +136,12 @@ public class DBManager {
 		db.close();
 	}
 
+	/**
+	 * 向doctorSetting中添加新数据
+	 * @param remember
+	 * @param username
+	 * @param passwrod
+	 */
 	public void addSetting(int remember, String username, String passwrod) {// 插入一条数据
 		db = helper.getWritableDatabase();
 		db.beginTransaction(); // 开始事务
@@ -135,6 +155,12 @@ public class DBManager {
 		}
 	}
 
+	/**
+	 * 向doctorSetting中更新数据
+	 * @param remember
+	 * @param username
+	 * @param passwrod
+	 */
 	public void updateSetting(int remember, String username, String passwrod) {
 		db = helper.getWritableDatabase();
 		ContentValues cv = new ContentValues();
@@ -145,12 +171,22 @@ public class DBManager {
 		db.close();
 	}
 
+	/**
+	 * 返回SELECT * FROM doctorSetting的游标
+	 * @return
+	 */
 	public Cursor querySetting() {
 		db = helper.getWritableDatabase();
 		Cursor c = db.rawQuery("SELECT * FROM doctorSetting  ", null);
 		return c;
 	}
 
+	/**
+	 * 执行SELECT * FROM doctorInfo where id = @param:id
+	 * 返回游标
+	 * @param id
+	 * @return
+	 */
 	public Cursor queryDoctorInfo(int id) {
 		db = helper.getWritableDatabase();
 		Cursor c = db.rawQuery("SELECT * FROM doctorInfo where "
@@ -174,6 +210,12 @@ public class DBManager {
 		return result;
 	}
 
+	/**
+	 * 返回SELECT * FROM doctorInfo WHERE username =? and password =?时的id值
+	 * @param username
+	 * @param pw
+	 * @return id
+	 */
 	public int query(String username, String pw) {
 		db = helper.getWritableDatabase();
 		Cursor c = db.rawQuery("SELECT * FROM doctorInfo WHERE "

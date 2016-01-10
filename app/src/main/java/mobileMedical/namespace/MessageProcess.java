@@ -183,12 +183,19 @@ public class MessageProcess {
 	private Handler mHandler;
 	private Context mContext;
 
+	/**
+	 * 获取context和handler，令TransID_Parm=TRANSID的值
+	 * @param context
+	 * @param handler
+	 */
 	public MessageProcess(Context context, Handler handler) {
 		mContext = context;
 		mHandler = handler;
 		TransID_Parm = ((IntParameter) MessageData.parmsDataHashMap
 				.get(ParameterDataKeys.TRANSID)).GetValue();
 	}
+
+	//只看到这里-------------------------------------------------------------------------------------------------------------
 
 	// Setter and Getter
 	public int GetSendMsgSize() {
@@ -242,6 +249,10 @@ public class MessageProcess {
 		}
 	}
 
+	/**
+	 * 根据measID创建命令信息
+	 * @param measID
+	 */
 	public void CreateMeasureCommandMessage(int measID) {
 		// Set common parameters value
 		TransID_Parm = ((IntParameter) MessageData.parmsDataHashMap
@@ -250,37 +261,37 @@ public class MessageProcess {
 		TransID_Parm += 1;
 
 		((ShortParameter) MessageData.parmsDataHashMap
-				.get(ParameterDataKeys.MSGHEADER))
+				.get(ParameterDataKeys.MSGHEADER))		//头
 				.SetValue(MessageInfo.MSG_HEADER_SYNC_WORD);
 		((ShortParameter) MessageData.parmsDataHashMap
-				.get(ParameterDataKeys.MSGEND))
+				.get(ParameterDataKeys.MSGEND))			//尾
 				.SetValue(MessageInfo.MSG_TAIL_SYNC_WORD);
 		((ShortParameter) MessageData.parmsDataHashMap
-				.get(ParameterDataKeys.MSGBUFFERSIZE))
+				.get(ParameterDataKeys.MSGBUFFERSIZE))	//大小
 				.SetValue(MessageInfo.SINGLE_MEAS_REQ_PARMS_SIZE);
 		((IntParameter) MessageData.parmsDataHashMap
-				.get(ParameterDataKeys.MSGTYPE))
+				.get(ParameterDataKeys.MSGTYPE))		//类型
 				.SetValue(MessageInfo.MSGTYPE_ST_MEAS_START_REQ);
 		((IntParameter) MessageData.parmsDataHashMap
-				.get(ParameterDataKeys.TRANSID)).SetValue(TransID_Parm);
+				.get(ParameterDataKeys.TRANSID)).SetValue(TransID_Parm);	//transID
 		((IntParameter) MessageData.parmsDataHashMap
-				.get(ParameterDataKeys.SENSORNUM)).SetValue(1);
+				.get(ParameterDataKeys.SENSORNUM)).SetValue(1);			//传感器代号
 		((IntParameter) MessageData.parmsDataHashMap
-				.get(ParameterDataKeys.RESERVEDPARM1)).SetValue(1);
+				.get(ParameterDataKeys.RESERVEDPARM1)).SetValue(1);		//RESERVEDPARM1
 
 		((FloatParameter) MessageData.parmsDataHashMap
-				.get(ParameterDataKeys.TIMEOUT)).SetValue(2);
+				.get(ParameterDataKeys.TIMEOUT)).SetValue(2);		//timeout
 		((IntParameter) MessageData.parmsDataHashMap
-				.get(ParameterDataKeys.RESERVEDPARM2)).SetValue(0);
+				.get(ParameterDataKeys.RESERVEDPARM2)).SetValue(0);		//RESERVEDPARM2
 
 		((IntParameter) MessageData.parmsDataHashMap
 				.get(ParameterDataKeys.DOCTORID))
-				.SetValue(MemberManage.doctorID);
+				.SetValue(MemberManage.doctorID);			//医生id
 		((IntParameter) MessageData.parmsDataHashMap
 				.get(ParameterDataKeys.PATIENTID))
-				.SetValue(MemberManage.patientID);
+				.SetValue(MemberManage.patientID);			//病人id
 		((IntParameter) MessageData.parmsDataHashMap
-				.get(ParameterDataKeys.RESERVEDPARM3)).SetValue(0);
+				.get(ParameterDataKeys.RESERVEDPARM3)).SetValue(0);		//RESERVEDPARM3
 
 		switch (measID) {
 		case ConstDef.BodyTempTabIndex: // BodyTemp
@@ -288,21 +299,21 @@ public class MessageProcess {
 			if (BodyTmpActivity.baseTempBool) {
 				((IntParameter) MessageData.parmsDataHashMap
 						.get(ParameterDataKeys.SENSORTYPE))
-						.SetValue(MessageInfo.SENSORTYPE_THERMOMETER);
+						.SetValue(MessageInfo.SENSORTYPE_THERMOMETER);		//传感器类型为体温
 				((StringParameter) MessageData.parmsDataHashMap
-						.get(ParameterDataKeys.SENSORID)).SetValue("THERMOME");
+						.get(ParameterDataKeys.SENSORID)).SetValue("THERMOME");		//传感器id为THERMOME
 				((IntParameter) MessageData.parmsDataHashMap
 						.get(ParameterDataKeys.MEASMODE))
-						.SetValue(MessageInfo.SINGLE_MEAS_MODE);
+						.SetValue(MessageInfo.SINGLE_MEAS_MODE);		//测量类型
 				((IntParameter) MessageData.parmsDataHashMap
-						.get(ParameterDataKeys.MEASITEMNUM)).SetValue(1);
+						.get(ParameterDataKeys.MEASITEMNUM)).SetValue(1);		//meas-item-num为1
 				((IntParameter) MessageData.parmsDataHashMap
 						.get(ParameterDataKeys.MEASITEM))
-						.SetValue(MessageInfo.MM_MI_BODY_BASE_TEMPERATURE);
+						.SetValue(MessageInfo.MM_MI_BODY_BASE_TEMPERATURE);		//measitem设定为4096（基本体温的代号）
 				((IntParameter) MessageData.parmsDataHashMap
-						.get(ParameterDataKeys.MEASCOUNT)).SetValue(1);
+						.get(ParameterDataKeys.MEASCOUNT)).SetValue(1);			//Measure Count设为1
 				((IntParameter) MessageData.parmsDataHashMap
-						.get(ParameterDataKeys.MEASINTERVAL)).SetValue(5);
+						.get(ParameterDataKeys.MEASINTERVAL)).SetValue(5);		//测量间隔为5
 			} else {
 				((IntParameter) MessageData.parmsDataHashMap
 						.get(ParameterDataKeys.SENSORTYPE))
@@ -316,7 +327,7 @@ public class MessageProcess {
 						.get(ParameterDataKeys.MEASITEMNUM)).SetValue(1);
 				((IntParameter) MessageData.parmsDataHashMap
 						.get(ParameterDataKeys.MEASITEM))
-						.SetValue(MessageInfo.MM_MI_BODY_TEMPERATURE);
+						.SetValue(MessageInfo.MM_MI_BODY_TEMPERATURE);			//measitem设定为64（体温的代号）
 				((IntParameter) MessageData.parmsDataHashMap
 						.get(ParameterDataKeys.MEASCOUNT)).SetValue(1);
 				((IntParameter) MessageData.parmsDataHashMap

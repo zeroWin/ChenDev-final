@@ -7,13 +7,13 @@ public class MessageInfo {
 	 * 
 	 sensor type definition, from 0x0000 to 0xFFFF.
 	 */
-	public static final short SENSORTYPE_THERMOMETER = 0xA1;
-	public static final short SENSORTYPE_ELECTROCARDIOGRAMMETER = 0xA2;
-	public static final short SENSORTYPE_BLOODPRESSUREMETER = 0xA3;
-	public static final short SENSORTYPE_BLOODSUGARMETER = 0xA4;
+	public static final short SENSORTYPE_THERMOMETER = 0xA1;	//体温
+	public static final short SENSORTYPE_ELECTROCARDIOGRAMMETER = 0xA2;		//心电图
+	public static final short SENSORTYPE_BLOODPRESSUREMETER = 0xA3;		//血压
+	public static final short SENSORTYPE_BLOODSUGARMETER = 0xA4;		//血糖
 	public static final short SENSORTYPE_STETHOSCOPE = 0xA5;
-	public static final short SENSORTYPE_BLOODOXYGENMETER = 0xA6;
-	public static final short SENSORTYPE_PULMONARYVENTILATION = 0xA7;
+	public static final short SENSORTYPE_BLOODOXYGENMETER = 0xA6;		//血氧
+	public static final short SENSORTYPE_PULMONARYVENTILATION = 0xA7;		//肺通
 
 	public static final int SINGLE_MEAS_MODE = 0;
 	public static final int CONT_MEAS_MODE = 1;

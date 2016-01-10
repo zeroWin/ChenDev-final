@@ -112,6 +112,7 @@ public class MobileMedicalActivity extends TabActivity {
 
 		final Context currentContext = this;
 		// Initialize the button to perform sensor connection
+		// 初始化网关按钮
 		Button sensorConnect = (Button) findViewById(R.id.buttonRouter);
 		sensorConnect.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -159,6 +160,7 @@ public class MobileMedicalActivity extends TabActivity {
 		});
 
 		// Initialize the button to perform Ox measure
+		//初始化开始按钮
 		Button vitalSigMeasStart = (Button) findViewById(R.id.buttonStart);
 		vitalSigMeasStart.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -182,6 +184,7 @@ public class MobileMedicalActivity extends TabActivity {
 		});
 
 		// Initialize the button to stop Ox measure
+		//初始化停止按钮
 		Button vitalSigMeasStop = (Button) findViewById(R.id.buttonStop);
 		vitalSigMeasStop.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -202,6 +205,7 @@ public class MobileMedicalActivity extends TabActivity {
 		});
 
 		// Initialize the button to stop Ox measure
+		//初始化数据按钮
 		Button buttonStatistics = (Button) findViewById(R.id.buttonStatistics);
 		buttonStatistics.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -240,7 +244,7 @@ public class MobileMedicalActivity extends TabActivity {
 				startActivityForResult(statisticsIntent, 0);
 			}
 		});
-
+		//监听选项卡切换操作
 		tabHost.setOnTabChangedListener(new OnTabChangeListener() {
 			public void onTabChanged(String tabId) {
 				mCurrentTabIndex = tabHost.getCurrentTab();
@@ -261,6 +265,9 @@ public class MobileMedicalActivity extends TabActivity {
 
 	}
 
+	/**
+	 * 获取病人信息
+	 */
 	private void initPatientInfo() {
 		// TODO Auto-generated method stub
 		
@@ -278,6 +285,9 @@ public class MobileMedicalActivity extends TabActivity {
 		memberImage.setImageBitmap(ImageTools.getBitmapFromByte(image));
 	}
 
+	/**
+	 * 初始化关联
+	 */
 	private void initView() {
 		patientName = (TextView) this.findViewById(R.id.patientName);
 		textViewResult = (TextView) this.findViewById(R.id.textViewResult);

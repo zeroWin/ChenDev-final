@@ -9,7 +9,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
-
+//注册第一步（用户须知）用户须知直接写在了xml里面
 public class RegisterOne extends Activity {
 
 	private Button backButton;

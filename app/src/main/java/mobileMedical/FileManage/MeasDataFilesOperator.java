@@ -1,5 +1,8 @@
 package mobileMedical.FileManage;
 
+import android.content.Context;
+import android.os.Environment;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -7,11 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import mobileMedical.namespace.R;
-
 import devFiles.FileManager.FileOperator;
-import android.content.Context;
-import android.os.Environment;
 
 public class MeasDataFilesOperator extends FileOperator {
 
@@ -29,6 +28,11 @@ public class MeasDataFilesOperator extends FileOperator {
 		this.context = context;
 	}
 
+	/**
+	 * 将文件复制到SD卡中或机身存储中
+	 * @param sdCard
+	 * @return
+	 */
 	public boolean CopyFilesToSDCardOrApp(boolean sdCard) {
 
 		String[] files;
@@ -155,6 +159,12 @@ public class MeasDataFilesOperator extends FileOperator {
 	//
 	// }
 
+	/**
+	 * 将content写入filename中，模式为追加
+	 * @param filename
+	 * @param sdCardFile
+	 * @param content
+	 */
 	public void WriteMeasDataToFile(String filename, Boolean sdCardFile,
 			String content) {
 		String filePathString = null;

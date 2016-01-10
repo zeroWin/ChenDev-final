@@ -17,19 +17,15 @@
 package mobileMedical.namespace;
 
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import mobileMedical.namespace.R;
 
 
 /**
@@ -74,20 +70,23 @@ public final class BluetoothDevicePreference extends Preference implements
         mOnSettingsClickListener = listener;
     }
 
-
+    /**
+     * 初始化关联layout
+     * @param view
+     */
     @Override
     protected void onBindView(View view) {
-    	
+    	    //初始化蓝牙设备的图标
 	    	deviceIcon = (ImageView) view.findViewById(R.id.routerIcon);
 	        
-
+            //初始化蓝牙设备后面的连接按钮
             deviceDetail = (ImageView) view.findViewById(R.id.deviceDetails);
             if (deviceDetail != null) {
                 deviceDetail.setOnClickListener(this);
                 
 
             }
-            
+            //初始化蓝牙设备名称
             deviceName = (TextView) view.findViewById(R.id.routerNameValue);
             if (deviceName != null) {
             	deviceName.setText(mDeviceName);
@@ -105,6 +104,9 @@ public final class BluetoothDevicePreference extends Preference implements
         super.onBindView(view);
     }
 
+    /**
+     * 设为不可见
+     */
     public void setInvisible()
     {
     	if (deviceIcon != null) {
@@ -129,7 +131,11 @@ public final class BluetoothDevicePreference extends Preference implements
 
         }
     }
-    
+
+    /**
+     * 设置蓝牙名称
+     * @param str
+     */
     public void setName(String str)
     {
     	if (deviceIcon != null) {
@@ -155,8 +161,11 @@ public final class BluetoothDevicePreference extends Preference implements
 
         }
     }
-    
 
+    /**
+     * v的点击事件
+     * @param v
+     */
     public void onClick(View v) {
         // Should never be null by construction
         if (mOnSettingsClickListener != null) {
@@ -168,21 +177,21 @@ public final class BluetoothDevicePreference extends Preference implements
         	arg.putInt("DEVICE_ID", mDeviceID);
         	switch(mDeviceID)
         	{
-        	case ConstDef.DEVICE_ROUTER:
+        	case ConstDef.DEVICE_ROUTER:    //获取网关信息
         		((PreferenceActivity) this.getContext()).startPreferencePanel(RouterDetailsPreferenceFragmentActivity.class.getName(),arg, 0, getContext().getResources().getString(R.string.gw_info), null, 0);
         	    break;
-        	case ConstDef.DEVICE_SENSOR:
+        	case ConstDef.DEVICE_SENSOR:        //获取节点信息
         		((PreferenceActivity) this.getContext()).startPreferencePanel(BodyTempDetailsPreferenceFragmentActivity.class.getName(),arg, 0, getContext().getResources().getString(R.string.sensor_info), null, 0);
         	    break;
-        	case ConstDef.DEVICE_BLUETOOTH:
+        	case ConstDef.DEVICE_BLUETOOTH:     //获取蓝牙信息
                 String[] infos = deviceName.getText().toString().split(new String("\\n"));
 
                 String macAddress = infos[1];   
                 String deviceName = infos[0];
                 Intent intent = new Intent(this.getContext(),BluetoothServer.class); 
                 Bundle bundle = new Bundle();
-                bundle.putString(ConstDef.DEVICE_MAC_ADDRESS, macAddress);
-                bundle.putString(ConstDef.DEVICE_NAME, deviceName);
+                bundle.putString(ConstDef.DEVICE_MAC_ADDRESS, macAddress);  //蓝牙地址
+                bundle.putString(ConstDef.DEVICE_NAME, deviceName);         //蓝牙名称
                 
                 intent.putExtras(bundle);
                 this.getContext().startService(intent);

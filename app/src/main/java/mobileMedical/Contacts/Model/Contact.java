@@ -1,7 +1,7 @@
 package mobileMedical.Contacts.Model;
 
 import java.util.Arrays;
-
+//联系人相关信息
 public class Contact implements Comparable<Contact> {
 	private int id; // 联系人ID（主键）
 	private String name;// 联系人姓名
@@ -124,7 +124,7 @@ public class Contact implements Comparable<Contact> {
 	 *            yibao type
 	 * @param gender
 	 *            gender
-	 * @param fileno
+	 * @param fileNo
 	 *            file number
 	 * @param relationName
 	 *            联系人信息

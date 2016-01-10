@@ -79,6 +79,9 @@ import mobileMedical.adapter.ListViewThreeItemAdapter;
 import mobileMedical.database.DBManager;
 import mobileMedical.util.Utility;
 
+//屏蔽java编译中的一些警告信息。
+// unused这个参数是屏蔽：定义的变量在代码中并未使用且无法访问。
+// java在编译的时候会出现这样的警告，加上这个注解之后就是告诉编译器，忽略这些警告，编译的过程中将不会出现这种类型的警告
 @SuppressWarnings("unused")
 public class MemberManage extends Activity {
 
@@ -147,7 +150,7 @@ public class MemberManage extends Activity {
 	private List<Map<String, Object>> patientHistoryInfoList;
 	private ListViewThreeItemAdapter patientSignsMeasInfotableAdapter;
 	private ListViewThreeItemAdapter patientHistoryInfotableAdapter;
-	private ListView patientSignsMeasInfolv;
+	private ListView patientSignsMeasInfolv;		//患者信息listview
 	private ListView patientHistoryInfolv;
 
 	private static final boolean D = true;
@@ -214,7 +217,7 @@ public class MemberManage extends Activity {
 		init();// 初始化数据
 		initDefaultPerson();
 
-		patientSignsMeasInfolv.setOnItemClickListener(new ItemClickEvent());
+		patientSignsMeasInfolv.setOnItemClickListener(new ItemClickEvent());	//体征测量点击事件监听
 
 		// initDataFile();
 		initTransIDParm();
@@ -226,6 +229,7 @@ public class MemberManage extends Activity {
 
 		memberImage.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
+				//？？干啥的？？？？？？？？？？？？？？？，对应代码没有执行什么操作
 				BodyTmpActivity.transTimeTmpData = "measure";
 				Intent startMeasIntent = new Intent();
 				startMeasIntent.setClass(MemberManage.this,
@@ -237,14 +241,14 @@ public class MemberManage extends Activity {
 		initTimeSetting();
 		initSetting();
 
-		registerForContextMenu(lsvContact);// 注册上下文菜单
+		registerForContextMenu(lsvContact);	//在lsvContact中注册一个菜单
 
 		// 选择分组
 		rlContactTool.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				check();// 初始化PopupWindow
-				refleshLsvGroup();
+				refleshLsvGroup();//不知道有没有作用，加个断点看看
 
 				imbDownContact
 						.setBackgroundResource(R.drawable.contact_spinner_down);
@@ -368,11 +372,16 @@ public class MemberManage extends Activity {
 
 	}
 
+	/**
+	 * 初始化默认人物信息
+	 */
 	private void initDefaultPerson() {
 		byte[] image;
+		//设置头像
 		Bitmap bitmap = ImageTools.getBitmapFromDrawable(getResources()
 				.getDrawable(R.drawable.contact_bg_photo_default));
 		image = ImageTools.getByteFromBitmap(bitmap);
+		//如果联系人中没有信息，则添加默认联系人信息
 		if (contactMgr.getAllContacts().isEmpty()) {
 			contactMgr.addContact("小明", "x", "", "北京市朝阳区三号楼305", "",
 					"2000-1-1", "", image, 0, "6328279485789", "心律不齐", "海淀医院",
@@ -384,8 +393,10 @@ public class MemberManage extends Activity {
 			// CommonUtil.Toast(context, "添加联系人失败!");
 			// return;
 			// }
+			//添加电话
 			telMgr.addTel(contactMgr.getContactsByName("小明").get(0).getId(),
 					"", "13661111111");
+			//添加email
 			emailMgr.addEmail(
 					contactMgr.getContactsByName("小明").get(0).getId(), "",
 					"xiaoming@163.com");
@@ -406,23 +417,27 @@ public class MemberManage extends Activity {
 		initPatientHistoryInfoTable();
 
 		// set up the patient basic info list
+		// 建立患者信息页面部分
 		patientInfoListAdapter = new ListViewAdapter(this, patientInfoList); // 创建适配器
 		patientInfolv.setAdapter(patientInfoListAdapter);
 		Utility.setListViewHeightBasedOnChildren(patientInfolv);
 
 		// set up the patient contact info list
+		// 建立联系人信息页面部分
 		patientContactInfoListAdapter = new ListViewAdapter(this,
 				patientContactInfoList); // 创建适配器
 		patientContactInfolv.setAdapter(patientContactInfoListAdapter);
 		Utility.setListViewHeightBasedOnChildren(patientContactInfolv);
 
 		// set up the measure info list
+		// 建立体征测量页面部分
 		patientSignsMeasInfotableAdapter = new ListViewThreeItemAdapter(this,
 				patientSignsMeasInfoList); // 创建适配器
 		patientSignsMeasInfolv.setAdapter(patientSignsMeasInfotableAdapter);
 		Utility.setListViewHeightBasedOnChildren(patientSignsMeasInfolv);
 
 		// set up the history info list
+		// 建立历史测量部分
 		patientHistoryInfotableAdapter = new ListViewThreeItemAdapter(this,
 				patientHistoryInfoList); // 创建适配器
 		patientHistoryInfolv.setAdapter(patientHistoryInfotableAdapter);
@@ -430,7 +445,7 @@ public class MemberManage extends Activity {
 
 		refleshLsvContact();
 		// refleshLsvGroup();
-
+		// 收起历史测量数据的按钮
 		showlistIcon.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
@@ -485,6 +500,7 @@ public class MemberManage extends Activity {
 
 	/**
 	 * clear information
+	 * 清空MemberManage右半部分的内容
 	 */
 	private void clearListView() {
 		patientInfoList.get(0).put("info", "");
@@ -539,6 +555,7 @@ public class MemberManage extends Activity {
 
 	/**
 	 * refresh patients' info
+	 * 刷新病人的信息
 	 */
 	private void refreshPatientInfo(int id) {
 		patientID = id;
@@ -584,6 +601,7 @@ public class MemberManage extends Activity {
 		Utility.setListViewHeightBasedOnChildren(patientSignsMeasInfolv);
 
 		patientHistoryInfoList.clear();
+		//向patientHistoryInfoList中填充信息
 		Cursor cursor = boDbHelper.getAllItems();
 		for (int i = 0; i < cursor.getCount(); i++) {
 			cursor.moveToNext();
@@ -634,6 +652,7 @@ public class MemberManage extends Activity {
 
 	/**
 	 * initial the time setting
+	 * 初始化时间设置
 	 */
 	private void initTimeSetting() {
 		Cursor timeSettingcursor = boDbHelper.getTimeSetting();
@@ -647,6 +666,9 @@ public class MemberManage extends Activity {
 		// boDbHelper.initTimeSetting();
 	}
 
+	/**
+	 * 初始化TransID，如果db里没有，设定为0，否则从TransIDParm表中得到
+	 */
 	private void initTransIDParm() {
 		Cursor cursor = boDbHelper.getTransIDParm();
 		int transID = 0;
@@ -670,6 +692,7 @@ public class MemberManage extends Activity {
 	/**
 	 * deal with the data file Copy the MeasData.file to SDCard and the
 	 * application data files
+	 * 将数据文件复制到机身存储和SD卡中
 	 */
 	private void initDataFile() {
 		Cursor cursor = boDbHelper.getCopyDataFile();
@@ -724,6 +747,9 @@ public class MemberManage extends Activity {
 		dbManager.closeDB();
 	}
 
+	/**
+	 * 获取检测位置并返回相应的选项卡值
+	 */
 	class ItemClickEvent implements AdapterView.OnItemClickListener {
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
@@ -767,6 +793,7 @@ public class MemberManage extends Activity {
 
 	/**
 	 * initialize the sharedpreference for setting
+	 * 初始化一个名为SETTING_INFOS的SharedPreferences格式的数据库
 	 */
 	private void initSetting() {
 		SharedPreferences settings = getSharedPreferences(SETTING_INFOS, 0); // 首先获取一个SharedPreferences对象
@@ -828,7 +855,6 @@ public class MemberManage extends Activity {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-
 	}
 
 	@Override
@@ -861,6 +887,7 @@ public class MemberManage extends Activity {
 
 	/**
 	 * set up the patient basic info table
+	 * 为建立患者信息和上面的相关信息页面填充信息
 	 */
 	private void initPatientBasicInfoList(Contact contact,
 			TelManager telManager, EmailManager emailMgr) {
@@ -944,6 +971,7 @@ public class MemberManage extends Activity {
 
 	/**
 	 * set up the patient contact info list
+	 * 为建立联系人信息页面填充信息
 	 */
 	private void initPatientContactInfoList(Contact contact) {
 		patientContactInfolv = (ListView) this
@@ -974,6 +1002,7 @@ public class MemberManage extends Activity {
 
 	/**
 	 * set up the patient measure info table
+	 * 为建立体征测量页面填充信息
 	 */
 	private void initPatientMeasInfoTable() {
 		// Get the latest BodyTempValue display the last body temp
@@ -1153,6 +1182,7 @@ public class MemberManage extends Activity {
 
 	/**
 	 * set up the patient measure info table
+	 * 为建立历史测量页面填充信息
 	 */
 	private void initPatientHistoryInfoTable() {
 		// Get the latest BodyTempValue display the last body temp
@@ -1203,6 +1233,11 @@ public class MemberManage extends Activity {
 		boDbHelper.close();
 	}
 
+	/**
+	 * 将日期改成"yyyy-MM-dd HH:mm:ss"格式，加上了xxx
+	 * @param dateString
+	 * @return
+	 */
 	public static String turnTimeToCNTime(String dateString) {
 		Date date = null;
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -1217,6 +1252,11 @@ public class MemberManage extends Activity {
 		return dateString;
 	}
 
+	/**
+	 * 将日期改成"yyyy-MM-dd HH:mm:ss"格式，减去了xxx
+	 * @param dateString
+	 * @return
+	 */
 	public static String turnCNTimeToDBTime(String dateString) {
 		Date date = null;
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -1231,6 +1271,11 @@ public class MemberManage extends Activity {
 		return dateString;
 	}
 
+	/**
+	 * 将sensorType转化为对应的检测类型汉字
+	 * @param sensorType
+	 * @return
+	 */
 	public static String turnSensorTypeFromNum(String sensorType) {
 
 		if (sensorType
@@ -1351,7 +1396,7 @@ public class MemberManage extends Activity {
 		initGroup();
 		// nowGroupPosition=0;
 		// groupPosition=0;
-		System.out.println("===>" + groupNames.size());
+		System.out.println("===>" + groupNames.size());		//然而并没有找到相关输出
 		System.out.println("===>" + groupPosition);
 		System.out.println("===>" + nowGroupPosition);
 		txtContactTool.setText(mItems[nowGroupPosition]);
@@ -1359,9 +1404,11 @@ public class MemberManage extends Activity {
 				R.layout.contact_vlist_group, mItems);
 		lsvGroup.setAdapter(adapter);
 	}
-
-	/*
-	 * 创建上下文菜单
+	/**
+	 * 不知道啥玩意
+	 * @param menu
+	 * @param v
+	 * @param menuInfo
 	 */
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
@@ -1670,6 +1717,9 @@ public class MemberManage extends Activity {
 		}.start();
 	}
 
+	/**
+	 * 将数据存储
+	 */
 	private void saveToFile() {
 		String splitString = System.getProperty("line.separator");
 		String splitNoteString = ",";

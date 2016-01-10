@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import mobileMedical.database.DBManager;
-
+//注册第二步，必须要填写用户名密码和id,savetoDB中用到了事务。
 public class RegisterTwo extends Activity {
 	private Button backButton;
 	private Button submitButton;

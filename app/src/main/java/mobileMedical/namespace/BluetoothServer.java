@@ -83,9 +83,9 @@ public class BluetoothServer extends Service{
     @Override  
     public int onStartCommand(Intent intent, int flags, int startId) {  
     	Bundle bunde = intent.getExtras();
-    	deviceName = bunde.getString(ConstDef.DEVICE_NAME);
+    	deviceName = bunde.getString(ConstDef.DEVICE_NAME);	//获取蓝牙设备名
     	
-    	address = bunde.getString(ConstDef.DEVICE_MAC_ADDRESS);
+    	address = bunde.getString(ConstDef.DEVICE_MAC_ADDRESS);		//获取蓝牙mac地址
         // TODO Auto-generated method stub  
     	mMessageProcess = new MessageProcess(getApplicationContext(),mHandler);
     	 
@@ -451,8 +451,13 @@ public class BluetoothServer extends Service{
                 } //绑定写接口  
               
         }  
-    }    
-      
+    }
+
+	/**
+	 * 串口发送数据
+	 * @param messageBuff
+	 * @param messageSize
+	 */
     public synchronized void sendCmd(byte[] messageBuff, int messageSize)//串口发送数据  
     {     
        /* if(!bluetoothFlag){  
@@ -522,15 +527,17 @@ public class BluetoothServer extends Service{
     
     public void DisplayToast(String str)  
     {  
-    }  
-      
-     //接收Activity传送过来的命令  
+    }
+
+	/**
+	 *接收Activity传送过来的命令
+	 */
     private class CommandReceiver extends BroadcastReceiver{  
         @Override  
         public void onReceive(Context context, Intent intent) {  ;
-            if(intent.getAction().equals(ConstDef.CMD_BROADCAST_MESSAGE)){  
+            if(intent.getAction().equals(ConstDef.CMD_BROADCAST_MESSAGE)){  //获取命令信息
             	 Bundle bundle = intent.getExtras();  
-            	 int cmd = bundle.getInt(ConstDef.CMD);  //获取Extra信息        
+            	 int cmd = bundle.getInt(ConstDef.CMD);  //获取command信息
 
             	/* if  (cmd == ConstDef.CMD_SET_READBYTE_FLAG){  
             
@@ -538,7 +545,7 @@ public class BluetoothServer extends Service{
             		 setReadByteFlag(readByteFlag);
             	 }*/
                       
-                  if(cmd == ConstDef.CMD_STOP_SERVICE){  
+                  if(cmd == ConstDef.CMD_STOP_SERVICE){  	//收到停止命令则停止服务
                 	  stopService();  
                   }    
                     
@@ -550,25 +557,25 @@ public class BluetoothServer extends Service{
                   }  */
                           
             } 
-            else if (intent.getAction().equals(ConstDef.MEAS_REQ_BROADCAST_MESSAGE))
+            else if (intent.getAction().equals(ConstDef.MEAS_REQ_BROADCAST_MESSAGE))//获取MEAS_REQ信息（测量请求信息？）
             {
             
             	Bundle bundle = intent.getExtras();  
-            	int measType = bundle.getInt(ConstDef.MeasType);  //获取Extra信息        
+            	int measType = bundle.getInt(ConstDef.MeasType);  //获取测量类型信息
             	mMessageProcess.CreateMeasureCommandMessage(measType);
             	int dataBuffSize= mMessageProcess.GetSendMsgSize();
             	byte[] dataBuff = mMessageProcess.GetSendMsgBuffer();
                 sendCmd(dataBuff, dataBuffSize);  
                 
             }
-            else if (intent.getAction().equals(ConstDef.GW_STATE_QUERY_REQ_BROADCAST_MESSAGE))
+            else if (intent.getAction().equals(ConstDef.GW_STATE_QUERY_REQ_BROADCAST_MESSAGE))		//获取GW_STATE_QUERY_REQ信息
             {
             	mMessageProcess.CreateGWStateQueryCommandMessage(1);// 1 is no meaningful
             	int dataBuffSize= mMessageProcess.GetSendMsgSize();
             	byte[] dataBuff = mMessageProcess.GetSendMsgBuffer();
                 sendCmd(dataBuff, dataBuffSize);    
             }
-            else if (intent.getAction().equals(ConstDef.BODYTEMP_CAL_REQ_BROADCAST_MESSAGE))
+            else if (intent.getAction().equals(ConstDef.BODYTEMP_CAL_REQ_BROADCAST_MESSAGE))		//获取BODYTEMP_CAL_REQ信息
             {
             	
             	mMessageProcess.CreateBodyTempCalCommandMessage(1);// 1 is no meaningful
@@ -576,7 +583,7 @@ public class BluetoothServer extends Service{
             	byte[] dataBuff = mMessageProcess.GetSendMsgBuffer();
                 sendCmd(dataBuff, dataBuffSize);    
             }
-            else if (intent.getAction().equals(ConstDef.BODYTEMP_CAL_COEFF_CONFIG_REQ_BROADCAST_MESSAGE))
+            else if (intent.getAction().equals(ConstDef.BODYTEMP_CAL_COEFF_CONFIG_REQ_BROADCAST_MESSAGE))//获取BODYTEMP_CAL_COEFF_CONFIG_REQ信息
             {
             	Bundle bundle = intent.getExtras();   
             	float[] coeffs = bundle.getFloatArray(ConstDef.BODYTEMP_CAL_COEFFS);
@@ -585,7 +592,7 @@ public class BluetoothServer extends Service{
             	byte[] dataBuff = mMessageProcess.GetSendMsgBuffer();
                 sendCmd(dataBuff, dataBuffSize);    
             }
-            else if (intent.getAction().equals(ConstDef.ALARM_TIME_REQ_BROADCAST_MESSAGE))
+            else if (intent.getAction().equals(ConstDef.ALARM_TIME_REQ_BROADCAST_MESSAGE))//获取ALARM_TIME_REQ信息
             {
             	Bundle bundle = intent.getExtras();   
             	float[] coeffs = bundle.getFloatArray(ConstDef.ALARM_TIME_COEFFS);
@@ -594,7 +601,7 @@ public class BluetoothServer extends Service{
             	byte[] dataBuff = mMessageProcess.GetSendMsgBuffer();
                 sendCmd(dataBuff, dataBuffSize);    
             }
-            else if (intent.getAction().equals(ConstDef.SN_CONFIG_REQ_BROADCAST_MESSAGE))
+            else if (intent.getAction().equals(ConstDef.SN_CONFIG_REQ_BROADCAST_MESSAGE))//SN_CONFIG_REQ
             {
             	mMessageProcess.CreateSNConfigCommandMessage(1);// 1 is no meaningful
             	int dataBuffSize= mMessageProcess.GetSendMsgSize();

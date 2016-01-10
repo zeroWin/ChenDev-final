@@ -33,6 +33,7 @@ public class Login extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		// this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		//这句啥意思？window和flag是啥。？？？？？？？？？？？？？？？？？？？？
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
 				WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		setContentView(R.layout.login);
@@ -53,7 +54,7 @@ public class Login extends Activity {
 		}
 		cursor.close();
 		dbManager.closeDB();
-
+		//用能否找到对应id来判断用户名和密码是否正确。
 		loginButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -61,6 +62,7 @@ public class Login extends Activity {
 				int id = dbManager.query(usernameEditText.getText().toString(),
 						passwordEditText.getText().toString());
 				if (id != -1) {
+					//本if-else是为了更新记住密码相关设置。
 					if (rememberCheckBox.isChecked()) {
 						Cursor cursor = dbManager.querySetting();
 						if (cursor.getCount() == 0) {
@@ -117,18 +119,18 @@ public class Login extends Activity {
 				new AlertDialog.Builder(Login.this)
 						.setIcon(R.drawable.diamonds_4)
 						.setTitle(R.string.app_name)
-						.setMessage("want to quit?")
-						.setNegativeButton("Cancle",
+						.setMessage(R.string.hint_quit)
+						.setNegativeButton(R.string.cancel,
 								new DialogInterface.OnClickListener() {
 									@Override
 									public void onClick(DialogInterface dialog,
 											int which) {
 									}
 								})
-						.setPositiveButton("OK",
+						.setPositiveButton(R.string.sure,
 								new DialogInterface.OnClickListener() {
 									public void onClick(DialogInterface dialog,
-											int whichButton) {
+														int whichButton) {
 										finish();
 										System.exit(0); // exitApp
 									}

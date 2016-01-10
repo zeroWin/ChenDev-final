@@ -8,7 +8,7 @@ import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
-
+//注册第三步，恭喜注册成功~
 public class RegisterThree extends Activity {
 	private Button finishButton;
 	private TextView nameTextView;

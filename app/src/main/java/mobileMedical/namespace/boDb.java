@@ -27,11 +27,28 @@ public class boDb extends SQLiteOpenHelper {
 	 * */
 	@Override
 	public void onCreate(SQLiteDatabase db) {
+		//创建表bodb，结构为
+		// userid integer，
+		// testid integer，
+		// measItemResultsid integer
+		// resultsid integer
+		// heartrate short
+		// pulse short
+		// bld short
+		// timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
 		db.execSQL("create table if not exists bodb(" + "userid integer,"
 				+ "testid integer," + "measItemResultsid integer,"
 				+ "resultsid integer," + "heartrate short," + "pulse short,"
 				+ "bld short,"
 				+ "timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)");
+		//创建表data，结构为id integer
+		// sensorType integer
+		// measItem integer
+		// doctorID integer
+		// patientID integer
+		// timestamp DATETIME DEFAULT (CURRENT_TIMESTAMP)
+		// measResults text
+		// measResultsIdx integer
 		db.execSQL("create table if not exists "
 				+ ConstDef.DATABASE_TABLE_NAME_DATA + "(" + "id integer,"
 				+ "sensorType integer," + "measItem integer,"
@@ -43,6 +60,7 @@ public class boDb extends SQLiteOpenHelper {
 		// db.execSQL("create table if not exists bodyTempBase("
 		// + "userid integer," + "bt float,"
 		// + "timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)");
+		//创建表timeSetting，结构为下面
 		db.execSQL("create table if not exists timeSetting("
 				+ "morningFromHour integer," + "morningFromMin integer,"
 				+ "morningToHour integer," + "morningToMin integer,"
@@ -54,10 +72,13 @@ public class boDb extends SQLiteOpenHelper {
 				+ "nightToHour integer," + "nightToMin integer,"
 				+ "analyFromHour integer," + "analyFromMin integer,"
 				+ "analyToHour integer," + "analyToMin integer)");
+		//创建表readDataFromFile，结构为下面
 		db.execSQL("create table if not exists readDataFromFile("
 				+ "readDataFile integer DEFAULT 0)");
+		//创建表copyDataFileToSDOrAppData
 		db.execSQL("create table if not exists copyDataFileToSDOrAppData("
 				+ "copyDataFile integer DEFAULT 0)");
+		//创建表TransIDParm
 		db.execSQL("create table if not exists TransIDParm("
 				+ "TransID integer DEFAULT 0)");
 		// db.execSQL("create table if not exists bodyTempLast("
@@ -253,6 +274,11 @@ public class boDb extends SQLiteOpenHelper {
 		return cursor;
 	}
 
+	/**
+	 * 执行select * from data where patientID=XXX group by id
+	 * order by timestamp desc，返回游标
+	 * @return
+	 */
 	public Cursor getAllItems() {
 
 		SQLiteDatabase db = this.getReadableDatabase();
@@ -289,6 +315,11 @@ public class boDb extends SQLiteOpenHelper {
 	}
 
 	// time setting
+
+	/**
+	 * 初始化timeSetting表内容为如下所示。
+	 * @return
+	 */
 	public long initTimeSetting() {
 		SQLiteDatabase db = this.getWritableDatabase();
 		/* ContentValues */
@@ -323,6 +354,10 @@ public class boDb extends SQLiteOpenHelper {
 		return row;
 	}
 
+	/**
+	 * 执行select * from timeSetting，返回游标
+	 * @return
+	 */
 	public Cursor getTimeSetting() {
 
 		SQLiteDatabase db = this.getReadableDatabase();
@@ -374,6 +409,10 @@ public class boDb extends SQLiteOpenHelper {
 		return row;
 	}
 
+	/**
+	 * 执行select * from copyDataFileToSDOrAppData，返回游标
+	 * @return
+	 */
 	public Cursor getCopyDataFile() {
 
 		SQLiteDatabase db = this.getReadableDatabase();
@@ -404,6 +443,10 @@ public class boDb extends SQLiteOpenHelper {
 		return row;
 	}
 
+	/**
+	 * 执行select * from TransIDParm，返回游标
+	 * @return
+	 */
 	public Cursor getTransIDParm() {
 
 		SQLiteDatabase db = this.getReadableDatabase();
@@ -582,6 +625,11 @@ public class boDb extends SQLiteOpenHelper {
 		return cursor;
 	}
 
+	/**
+	 * 执行select * from data where (sensorType = 体温)and (patientID = xx)
+	 *  order by timestamp desc limit 0,1,并返回游标
+	 * @return
+	 */
 	public Cursor getLatestBodyOrBaseTem() {
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor cursor = db.rawQuery("select * from "
