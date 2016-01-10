@@ -45,6 +45,7 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -106,6 +107,7 @@ public class MemberManage extends Activity {
 	private int groupPosition = 0;// 记录当前选中的分组位置
 	private EditText edtSearchContact;
 	private ImageView showlistIcon;
+	private Button saveData;//存储数据按钮
 	private int nowGroupPosition = 0;// 当前分组位置
 	// 删除联系人的相关字段
 	private boolean isContactMgr = false;// true:联系人管理界面,false:联系人列表界面
@@ -235,6 +237,39 @@ public class MemberManage extends Activity {
 				startMeasIntent.setClass(MemberManage.this,
 						MobileMedicalActivity.class);
 				startActivity(startMeasIntent);
+
+			}
+		});
+		//储存数据
+		saveData.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				querySaveToFile(MemberManage.this,
+						new Runnable() {
+							@Override
+							public void run() {
+								// TODO Auto-generated
+								// method stub
+								stopService(new Intent(
+										getApplication(),
+										BluetoothServer.class));
+								// Save the TransID_Parma;
+								int transID = ((IntParameter) MessageData.parmsDataHashMap
+										.get(ParameterDataKeys.TRANSID))
+										.GetValue();
+								if (BuildConfig.DEBUG) {
+									Log.d("initTransIDParm",
+											"Exit transid is  "
+													+ transID
+													+ "");
+								}
+								boDbHelper.close();
+								boDbHelper
+										.UpdateTransIDParm(transID);
+								boDbHelper.close();
+								Toast.makeText(MemberManage.this,"存储完成",Toast.LENGTH_LONG).show();
+							}
+						});
 
 			}
 		});
@@ -1329,6 +1364,7 @@ public class MemberManage extends Activity {
 		rlContactTool = (RelativeLayout) findViewById(R.id.rlContactTool);
 		edtSearchContact = (EditText) findViewById(R.id.edtFindContact);
 		showlistIcon = (ImageView) findViewById(R.id.showlist);
+		saveData = (Button)findViewById(R.id.saveData);
 		isChecked = new HashMap<Integer, Boolean>();
 
 		MyAdapter adapter = new MyAdapter(context);
@@ -1664,40 +1700,40 @@ public class MemberManage extends Activity {
 							new DialogInterface.OnClickListener() {
 								@Override
 								public void onClick(DialogInterface dialog,
-										int which) {
+													int which) {
 								}
 							})
 					.setPositiveButton(R.string.sure,
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
-										int whichButton) {
-									showWaitingDialog();
-									querySaveToFile(MemberManage.this,
-											new Runnable() {
-												@Override
-												public void run() {
-													// TODO Auto-generated
-													// method stub
-													stopService(new Intent(
-															getApplication(),
-															BluetoothServer.class));
-													// Save the TransID_Parma;
-													int transID = ((IntParameter) MessageData.parmsDataHashMap
-															.get(ParameterDataKeys.TRANSID))
-															.GetValue();
-													if (BuildConfig.DEBUG) {
-														Log.d("initTransIDParm",
-																"Exit transid is  "
-																		+ transID
-																		+ "");
-													}
-													boDbHelper.close();
-													boDbHelper
-															.UpdateTransIDParm(transID);
-													boDbHelper.close();
+													int whichButton) {
+//									showWaitingDialog();
+//									querySaveToFile(MemberManage.this,
+//											new Runnable() {
+//												@Override
+//												public void run() {
+//													// TODO Auto-generated
+//													// method stub
+//													stopService(new Intent(
+//															getApplication(),
+//															BluetoothServer.class));
+//													// Save the TransID_Parma;
+//													int transID = ((IntParameter) MessageData.parmsDataHashMap
+//															.get(ParameterDataKeys.TRANSID))
+//															.GetValue();
+//													if (BuildConfig.DEBUG) {
+//														Log.d("initTransIDParm",
+//																"Exit transid is  "
+//																		+ transID
+//																		+ "");
+//													}
+//													boDbHelper.close();
+//													boDbHelper
+//															.UpdateTransIDParm(transID);
+//													boDbHelper.close();
 													System.exit(0); // exitApp
-												}
-											});
+//												}
+//											});
 								}
 							}).show();
 			return true;
@@ -1851,19 +1887,19 @@ public class MemberManage extends Activity {
 									+ (alreadyLinesInMeasDataFile + 1)
 									+ splitNoteString + linesNum + splitString);
 				}
-				waitingDialog.setProgress((xh_count++) * 100
-						/ dataCursor.getCount());
+//				waitingDialog.setProgress((xh_count++) * 100
+//						/ dataCursor.getCount());
 			}
 			dataCursor.close();
-			waitingDialog.setProgress(100);
-			// try {
+//			waitingDialog.setProgress(100);
+			// try {								//这些双斜杠靠里的不是我注释掉的
 			// Thread.sleep(1500);
 			// } catch (InterruptedException e) {
 			// // TODO Auto-generated catch block
 			// e.printStackTrace();
 			// }
-			if (waitingDialog != null && waitingDialog.isShowing())
-				waitingDialog.cancel();
+//			if (waitingDialog != null && waitingDialog.isShowing())
+//				waitingDialog.cancel();
 		}
 	}
 

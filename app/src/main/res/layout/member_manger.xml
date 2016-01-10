@@ -143,6 +143,13 @@
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/ic_launcher" />
 
+                <Button
+                    android:id="@+id/saveData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imageButtonMember"
+                    android:text="存储数据"/>
+
                 <TextView
                     android:id="@+id/patientName"
                     android:layout_width="wrap_content"
