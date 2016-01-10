@@ -108,6 +108,7 @@ public class MemberManage extends Activity {
 	private EditText edtSearchContact;
 	private ImageView showlistIcon;
 	private Button saveData;//存储数据按钮
+	private Button fileTrans; //跳转到上传页面按钮
 	private int nowGroupPosition = 0;// 当前分组位置
 	// 删除联系人的相关字段
 	private boolean isContactMgr = false;// true:联系人管理界面,false:联系人列表界面
@@ -271,6 +272,15 @@ public class MemberManage extends Activity {
 							}
 						});
 
+			}
+		});
+
+		fileTrans.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Intent intent = new Intent();
+				intent.setClass(MemberManage.this,fileTransmission.class);
+				startActivity(intent);
 			}
 		});
 		initTimeSetting();
@@ -1365,6 +1375,7 @@ public class MemberManage extends Activity {
 		edtSearchContact = (EditText) findViewById(R.id.edtFindContact);
 		showlistIcon = (ImageView) findViewById(R.id.showlist);
 		saveData = (Button)findViewById(R.id.saveData);
+		fileTrans = (Button)findViewById(R.id.fileTrans);
 		isChecked = new HashMap<Integer, Boolean>();
 
 		MyAdapter adapter = new MyAdapter(context);

@@ -6,6 +6,10 @@
 
     <uses-sdk android:minSdkVersion="11" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="ANDROID.PERMISSION.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -16,6 +20,9 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_SMS" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:icon="@drawable/ic_launcher"
@@ -37,68 +44,54 @@
             android:name=".MemberManage"
             android:launchMode="singleTask"
             android:screenOrientation="landscape" >
-
         </activity>
-         <activity
+        <activity
             android:name="mobileMedical.Contacts.UI.FileSelectActivity"
             android:launchMode="singleTask"
             android:screenOrientation="landscape" >
-
         </activity>
         <activity
             android:name=".DoctorInfo"
             android:icon="@drawable/lineborder"
             android:screenOrientation="landscape" >
-
         </activity>
         <activity
             android:name=".RegisterOne"
             android:screenOrientation="landscape" >
-
         </activity>
         <activity
             android:name=".RegisterTwo"
             android:screenOrientation="landscape" >
-
         </activity>
         <activity
             android:name=".RegisterThree"
             android:screenOrientation="landscape" >
-
         </activity>
         <activity
             android:name=".MobileMedicalActivity"
             android:screenOrientation="landscape" >
-
         </activity>
         <activity
             android:name=".BloodOxActivity"
             android:screenOrientation="landscape" >
-
         </activity>
         <activity android:name=".BloodPressureActivity" >
-
         </activity>
         <activity android:name=".BodyTmpActivity" >
-
         </activity>
         <activity android:name=".ECGActivity" >
-
         </activity>
         <activity android:name=".PulmonaryVentilationActivity" >
-
         </activity>
         <activity
             android:name=".BluetoothConfig"
             android:screenOrientation="landscape" >
-
         </activity>
 
         <service android:name=".BluetoothServer" >
         </service>
 
         <activity android:name=".BloodoxStatistics" >
-
         </activity>
         <activity
             android:name=".BodyTempStatistics"
@@ -131,70 +124,56 @@
         <activity android:name=".PulVentHistory" >
         </activity>
         <activity android:name=".BodyTempStTable" >
-
         </activity>
         <activity android:name=".BodyTempStLine" >
-
         </activity>
         <activity android:name=".BloodPressureStLine" >
-
         </activity>
         <activity android:name=".ElectrocardiogramStLine" >
-
         </activity>
         <activity android:name=".BloodOxygenStLine" >
-
         </activity>
         <activity android:name=".PulVentStLine" >
-
         </activity>
         <activity android:name=".BodyTempStColum" >
-
         </activity>
         <activity android:name=".BaseBodyTempStColum" >
-
         </activity>
         <activity android:name=".BodyTempStTrendLine" >
-
         </activity>
         <activity android:name=".settingActivity" >
-
         </activity>
         <activity android:name=".setTimingActivity" >
-
         </activity>
         <activity android:name=".SetOthersActivity" >
-
         </activity>
         <activity android:name=".GatewayDetail" >
-
         </activity>
         <activity android:name=".NotesDetail" >
-
         </activity>
         <activity android:name="mobileMedical.Contacts.UI.NewContactActivity" >
-
         </activity>
         <activity android:name=".SettingPreferenceActivity" >
-
         </activity>
         <activity android:name=".RouterPreferenceFragmentActivity" >
-
         </activity>
         <activity android:name=".RouterDetailsPreferenceFragmentActivity" >
-
         </activity>
         <activity android:name=".BodyTempDetailsPreferenceFragmentActivity" >
-
         </activity>
         <activity android:name=".DateTimeSettings" >
-
         </activity>
         <activity android:name=".OtherPreferenceFragmentActivity" >
-
         </activity>
         <activity android:name=".BodyTempCalPreferenceFragmentActivity" >
-
+        </activity>
+        <activity
+            android:name=".fileTransmission"
+            android:label="@string/title_activity_file_transmission" >
+        </activity>
+        <activity
+            android:name=".aiChartsDisplay"
+            android:label="@string/title_activity_ai_charts_display" >
         </activity>
     </application>
 

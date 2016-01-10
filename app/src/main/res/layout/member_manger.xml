@@ -150,6 +150,13 @@
                     android:layout_below="@+id/imageButtonMember"
                     android:text="存储数据"/>
 
+                <Button
+                    android:id="@+id/fileTrans"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/textViewFileNum"
+                    android:text="上传数据"/>
+
                 <TextView
                     android:id="@+id/patientName"
                     android:layout_width="wrap_content"

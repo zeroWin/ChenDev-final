@@ -237,4 +237,7 @@
     <dimen name="private_message_activity_gap_between_divider_text">13.0dip</dimen>
     <dimen name="private_message_activity_text_margin_left">11.0dip</dimen>
     <dimen name="private_message_activity_text_size">15.0dip</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
 </resources>
