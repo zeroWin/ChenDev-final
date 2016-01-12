@@ -2,6 +2,7 @@ package mobileMedical.namespace;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -11,6 +12,8 @@ import com.artfulbits.aiCharts.Base.ChartSeries;
 import com.artfulbits.aiCharts.ChartView;
 import com.artfulbits.aiCharts.Types.ChartTypes;
 
+import mobileMedical.util.readData;
+
 public class aiChartsDisplay extends Activity {
 
     @Override
@@ -18,17 +21,24 @@ public class aiChartsDisplay extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ai_charts_display);
         setTitle("分析结果");
-        //        double[] data1 = readData.readFileByChars("data/data/com.example.practice.aichart/y0.txt");
-//        double[] data2 = readData.readFileByChars("data/data/com.example.practice.aichart/y1.txt");
-//        double[] data3 = readData.readFileByChars("data/data/com.example.practice.aichart/y2.txt");
-//        double[] data4 = readData.readFileByChars("data/data/com.example.practice.aichart/y3.txt");
-//        double[] data = readData.readFileByChars("data/data/com.example.android.apis/data.txt");
+
+        double[] data1 = readData.readFileByChars(Environment.getExternalStorageDirectory()
+                .getAbsolutePath() + "/mobileMedical.namespace/files/y0.txt");
+        double[] data2 = readData.readFileByChars(Environment.getExternalStorageDirectory()
+                .getAbsolutePath() + "/mobileMedical.namespace/files/y1.txt");
+        double[] data3 = readData.readFileByChars(Environment.getExternalStorageDirectory()
+                .getAbsolutePath() + "/mobileMedical.namespace/files/y2.txt");
+        double[] data4 = readData.readFileByChars(Environment.getExternalStorageDirectory()
+                .getAbsolutePath() + "/mobileMedical.namespace/files/y3.txt");
+        double[] data = readData.readFileByChars(Environment.getExternalStorageDirectory()
+                .getAbsolutePath() + "/mobileMedical.namespace/files/data.txt");
         //图1
         ChartView chartView1 = (ChartView)findViewById(R.id.chart1);
         ChartSeries series1 = new ChartSeries(ChartTypes.FastLine);
         ChartArea area = new ChartArea();
 
-        series1.getPoints().setData(new double[]{30,30,10,10,60,8,8,6,6,15,81,156,13});
+        series1.getPoints().setData(data1);
+//        area.getDefaultXAxis().getScale().setMargin(ChartAxisScale.MARGIN_NONE);
 
         chartView1.getSeries().add(series1);
         chartView1.getAreas().add(area);
@@ -37,7 +47,7 @@ public class aiChartsDisplay extends Activity {
         ChartSeries series2 = new ChartSeries(ChartTypes.FastLine);
         ChartArea area2 = new ChartArea();
 
-        series2.getPoints().setData(new double[]{30,30,10,10,60});
+        series2.getPoints().setData(data2);
 
         chartView2.getSeries().add(series2);
         chartView2.getAreas().add(area2);
@@ -47,7 +57,7 @@ public class aiChartsDisplay extends Activity {
         ChartSeries series3 = new ChartSeries(ChartTypes.Column);
         ChartArea area3 = new ChartArea();
 
-        series3.getPoints().setData(new double[]{30,30,10,10,60});
+        series3.getPoints().setData(data3);
 
         chartView3.getSeries().add(series3);
         chartView3.getAreas().add(area3);
@@ -57,7 +67,7 @@ public class aiChartsDisplay extends Activity {
         ChartSeries series4 = new ChartSeries(ChartTypes.FastLine);
         ChartArea area4 = new ChartArea();
 
-        series4.getPoints().setData(new double[]{30,30,10,10,60});
+        series4.getPoints().setData(data4);
 
         chartView4.getSeries().add(series4);
         chartView4.getAreas().add(area4);
@@ -65,8 +75,16 @@ public class aiChartsDisplay extends Activity {
         //数据
         TextView tv1 = (TextView)findViewById(R.id.tv1);
         TextView tv2 = (TextView)findViewById(R.id.tv2);
-//        tv1.setText(data[0]+"    "+data[1]+"     "+data[2]);
-//        tv2.setText(data[3]+"    "+data[4]+"     "+data[5]);
+        TextView tv3 = (TextView)findViewById(R.id.tv3);
+        TextView tv4 = (TextView)findViewById(R.id.tv4);
+        TextView tv5 = (TextView)findViewById(R.id.tv5);
+        TextView tv6 = (TextView)findViewById(R.id.tv6);
+        tv1.setText("SDNN\n" + data[0]+"|");
+        tv2.setText("MSSD\n" + data[1]+"|");
+        tv3.setText("HR\n" + data[2]);
+        tv4.setText("LF\n" + data[3]+"|");
+        tv5.setText("HF\n" + data[4]+"|");
+        tv6.setText("TP\n" + data[5]);
     }
 
     @Override

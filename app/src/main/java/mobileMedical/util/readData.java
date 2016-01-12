@@ -11,6 +11,7 @@ import java.io.Reader;
  */
 public class readData {
     public static double[] readFileByChars(String fileName) {
+        StringBuilder tempB = new StringBuilder();
         String temp = "";
         double [] res ;
         double r;
@@ -27,8 +28,9 @@ public class readData {
                 // 因此，屏蔽掉\r，或者屏蔽\n。否则，将会多出很多空行。
                 if (((char) tempchar) != '\r') {
                 }
-                temp+=(char)tempchar;
+                tempB.append((char)tempchar);
             }
+            temp = tempB.toString();
             reader.close();
         } catch (Exception e) {
             e.printStackTrace();
