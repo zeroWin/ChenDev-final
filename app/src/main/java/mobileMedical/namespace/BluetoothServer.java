@@ -306,7 +306,15 @@ public class BluetoothServer extends Service{
 			
 			}
 		}
-		
+
+		/**
+		 * 返回targetarray数组在array数组中的位置
+		 * @param array
+		 * @param counter
+		 * @param targetarray
+		 * @param fromStart
+		 * @return
+		 */
 	  private int ArrayFind(byte[] array, int counter, byte[] targetarray, boolean fromStart)
 	  {
 		  int index = -1;
@@ -748,8 +756,8 @@ public class BluetoothServer extends Service{
 
                		 intent.putParcelableArrayListExtra(ConstDef.RESULTS, measItemResultList);
 
-                        intent.setAction(ConstDef.ECG_MEAS_RESULTS_BROADCAST_MESSAGE);  
-                        sendBroadcast(intent);    
+                        intent.setAction(ConstDef.ECG_MEAS_RESULTS_BROADCAST_MESSAGE);
+                        sendBroadcast(intent);    //心电数据发送
             		break;
             	}
             	case MessageInfo.SENSORTYPE_STETHOSCOPE:

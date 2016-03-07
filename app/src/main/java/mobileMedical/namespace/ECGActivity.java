@@ -203,7 +203,7 @@ private static final String TAG = "EGCActivity";
            	 }
             	
             	m_MeasItemResultsList = new ArrayList<MeasItemResult>();
-           	  
+           	  //从蓝牙读取数据
             	m_MeasItemResultsList =   intent.getParcelableArrayListExtra(ConstDef.RESULTS);
          	 
          	   if(m_MeasItemResultsList != null && !m_MeasItemResultsList.isEmpty())

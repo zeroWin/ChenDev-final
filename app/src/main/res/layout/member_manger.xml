@@ -147,15 +147,18 @@
                     android:id="@+id/saveData"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/imageButtonMember"
-                    android:text="存储数据"/>
+                    android:text="存储数据"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="39dp" />
 
                 <Button
                     android:id="@+id/fileTrans"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/textViewFileNum"
-                    android:text="上传数据"/>
+                    android:text="上传数据"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignLeft="@+id/saveData" />
 
                 <TextView
                     android:id="@+id/patientName"

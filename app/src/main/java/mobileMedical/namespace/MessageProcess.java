@@ -219,6 +219,11 @@ public class MessageProcess {
 		}
 	}
 
+	/**
+	 *
+	 * @param srcBuffer
+	 * @param size
+	 */
 	public void CopyReceviedMessageBuffer(byte[] srcBuffer, int size) {
 		if (mMessageParserThread == null) {
 

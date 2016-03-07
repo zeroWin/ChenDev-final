@@ -79,12 +79,12 @@ public class aiChartsDisplay extends Activity {
         TextView tv4 = (TextView)findViewById(R.id.tv4);
         TextView tv5 = (TextView)findViewById(R.id.tv5);
         TextView tv6 = (TextView)findViewById(R.id.tv6);
-        tv1.setText("SDNN\n" + data[0]+"|");
-        tv2.setText("MSSD\n" + data[1]+"|");
-        tv3.setText("HR\n" + data[2]);
-        tv4.setText("LF\n" + data[3]+"|");
-        tv5.setText("HF\n" + data[4]+"|");
-        tv6.setText("TP\n" + data[5]);
+        tv1.setText("SDNN:" + data[0]);
+        tv2.setText("MSSD:" + data[1]);
+        tv3.setText("HR:" + data[2]);
+        tv4.setText("LF:" + data[3]);
+        tv5.setText("HF:" + data[4]);
+        tv6.setText("TP:" + data[5]);
     }
 
     @Override

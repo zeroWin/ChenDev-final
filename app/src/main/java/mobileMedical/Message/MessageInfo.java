@@ -233,6 +233,7 @@ public class MessageInfo {
 
     public static int SPO2_WAVEFORM_SAMPLES_NUM_PER_PACKET =10;
     public static int ECG_WAVEFORM_SAMPLES_NUM_PER_PACKET =10;
+	//尚未定义血压包长度
 
     public static int PULSERATE_RESULT_IDX = 8; // From 0
     public static int SPO2_VALUE_RESULT_IDX = 9;
