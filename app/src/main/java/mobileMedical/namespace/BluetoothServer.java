@@ -478,8 +478,13 @@ public class BluetoothServer extends Service{
           } catch (IOException e) {  
               e.printStackTrace();  
           }           
-    }    
-      
+    }
+
+	/**
+	 * 返回buff中的数据长度
+	 * @param buff
+	 * @return
+	 */
     public int readByte(byte[] buff){//return -1 if no data  
         int ret = -1;     
         if(!bluetoothFlag){  
@@ -519,8 +524,13 @@ public class BluetoothServer extends Service{
         intent.putExtra(ConstDef.STRING_INFO, str);  
         intent.setAction(ConstDef.BT_CONNECT_BROADCAST_MESSAGE);  
         sendBroadcast(intent);    
-    } 
-    
+    }
+
+	/**
+	 *
+	 * @param datasize
+	 * @param buff
+	 */
     public void returnData(int datasize, byte[] buff){//显示提示信息  
       /*  Intent intent = new Intent();  
         intent.putExtra("cmd", ConstDef.CMD_RECEIVED_DATA);  
@@ -708,7 +718,7 @@ public class BluetoothServer extends Service{
         		            		            	 
         		switch (mMsgSensorType)
             	{
-            	case MessageInfo.SENSORTYPE_BLOODOXYGENMETER:
+            	case MessageInfo.SENSORTYPE_BLOODOXYGENMETER://血氧
             	{    
             		/*// 
                      intent.putExtra(ConstDef.CMD, ConstDef.BLOODOX_RESULTS);  
@@ -730,7 +740,7 @@ public class BluetoothServer extends Service{
                       sendBroadcast(intent);    
             	}
             		break;
-            	case MessageInfo.SENSORTYPE_BLOODPRESSUREMETER:
+            	case MessageInfo.SENSORTYPE_BLOODPRESSUREMETER://血压
             	{
             		ArrayList<MeasItemResult> measItemResultList = new ArrayList<MeasItemResult>();
             		
@@ -744,9 +754,9 @@ public class BluetoothServer extends Service{
                      sendBroadcast(intent);  
             	}
             		break;
-            	case MessageInfo.SENSORTYPE_BLOODSUGARMETER:
+            	case MessageInfo.SENSORTYPE_BLOODSUGARMETER://血糖
             		break;
-            	case MessageInfo.SENSORTYPE_ELECTROCARDIOGRAMMETER:
+            	case MessageInfo.SENSORTYPE_ELECTROCARDIOGRAMMETER://心电
             	{
             		  ArrayList<MeasItemResult> measItemResultList = new ArrayList<MeasItemResult>();
                		
@@ -763,7 +773,7 @@ public class BluetoothServer extends Service{
             	case MessageInfo.SENSORTYPE_STETHOSCOPE:
             		break;
             	
-            	case MessageInfo.SENSORTYPE_THERMOMETER:
+            	case MessageInfo.SENSORTYPE_THERMOMETER://体温
 
             	{
             		ArrayList<MeasItemResult> measItemResultList = new ArrayList<MeasItemResult>();
@@ -778,7 +788,7 @@ public class BluetoothServer extends Service{
                      sendBroadcast(intent);  
             	}
             		break;
-            	case MessageInfo.SENSORTYPE_PULMONARYVENTILATION:
+            	case MessageInfo.SENSORTYPE_PULMONARYVENTILATION://肺通
             	{    
             		/*// 
                      intent.putExtra(ConstDef.CMD, ConstDef.BLOODOX_RESULTS);  

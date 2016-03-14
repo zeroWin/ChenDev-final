@@ -53,6 +53,13 @@ public final class BluetoothDevicePreference extends Preference implements
     private String mDeviceName;
     private int mDeviceID;
 
+    /**
+     * 返回蓝牙设备的设置，默认可见
+     * @param context
+     * @param DeviceName
+     * @param visiable
+     * @param deviceID
+     */
     public BluetoothDevicePreference(Context context, String DeviceName,boolean visiable,int deviceID) {
         super(context);
 

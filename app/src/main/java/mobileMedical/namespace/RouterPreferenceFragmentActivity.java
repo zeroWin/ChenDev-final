@@ -297,7 +297,7 @@ public final class RouterPreferenceFragmentActivity extends PreferenceFragment {
 
 			Intent intent = new Intent();// 创建Intent对象
 			intent.setAction(ConstDef.CMD_BROADCAST_MESSAGE);
-			intent.putExtra(ConstDef.CMD, ConstDef.CMD_STOP_SERVICE);
+			intent.putExtra(ConstDef.CMD, ConstDef.CMD_STOP_SERVICE);	//发送停止服务的广播
 
 			mActivity.sendBroadcast(intent);
 
@@ -327,7 +327,7 @@ public final class RouterPreferenceFragmentActivity extends PreferenceFragment {
 			String action = intent.getAction();
 
 			// When discovery finds a device
-			if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+			if (BluetoothDevice.ACTION_FOUND.equals(action)) {//Remote device discovered
 
 				// Get the BluetoothDevice object from the Intent
 				BluetoothDevice device = intent
@@ -339,7 +339,7 @@ public final class RouterPreferenceFragmentActivity extends PreferenceFragment {
 				Found_GW_NAME_MAC = device.getName() + "\n"
 						+ device.getAddress();
 				if (lstDevices.indexOf(Found_GW_NAME_MAC) == -1)// 防止重复添加
-				{
+				{//本括号里面完成的是将发现的设备显示出来。
 					BluetoothDevicePreference mAvailableDevicePreference = new BluetoothDevicePreference(
 							mActivity, Found_GW_NAME_MAC, true,
 							ConstDef.DEVICE_BLUETOOTH);
@@ -357,10 +357,10 @@ public final class RouterPreferenceFragmentActivity extends PreferenceFragment {
 				}
 				// }
 				// When discovery is finished, change the Activity title
-			} else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED
-					.equals(action)) {
+			} else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED		//The local Bluetooth adapter has finished the device discovery process.
+					.equals(action)) {									//已经发现了所有可发现的设备。
 
-			} else if (BluetoothDevice.ACTION_ACL_DISCONNECTED.equals(action)) {
+			} else if (BluetoothDevice.ACTION_ACL_DISCONNECTED.equals(action)) {		//断开操作
 
 				GW_Connected = false;
 				SharedPreferences settings = mActivity.getSharedPreferences(
@@ -641,7 +641,7 @@ public final class RouterPreferenceFragmentActivity extends PreferenceFragment {
 											"null"));
 				}
 
-			} else if (action.equals(ConstDef.BT_CONNECT_BROADCAST_MESSAGE)) {
+			} else if (action.equals(ConstDef.BT_CONNECT_BROADCAST_MESSAGE)) {//
 				Bundle bundle = intent.getExtras();
 				int cmd = bundle.getInt(ConstDef.CMD);
 

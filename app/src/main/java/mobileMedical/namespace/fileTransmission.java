@@ -3,6 +3,7 @@ package mobileMedical.namespace;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,6 +39,7 @@ public class fileTransmission extends Activity {
         //设置ipet与edittext相关联
         ipet=(EditText)findViewById(R.id.ipet);
         //此处为服务器ip
+//        ipet.setText("10.108.170.195");
         ipet.setText("10.108.168.155");
         //--------------文件接收到手机-------------------//
         FReceiveButton=(Button)findViewById(R.id.FReceive);
@@ -55,11 +57,12 @@ public class fileTransmission extends Activity {
                         try{
                             socketChannel=SocketChannel.open();
                             //建立socket连接，服务器地址为ipstr，端口为1991
-                            SocketAddress socketAddress = new InetSocketAddress(ipstr, 1991);
+                            SocketAddress socketAddress = new InetSocketAddress(ipstr, 1990);
                             socketChannel.connect(socketAddress);
                             //手机接收文件，存储位置为data/data/com.example.practice.filetransferbetweenphonepc，
                             //文件名为123.txt
-                            receiveFile(socketChannel, new File("data/data/com.example.practice.filetransferbetweenphonepc/456.txt"));
+                            receiveFile(socketChannel, new File(Environment.getExternalStorageDirectory()
+                                    .getAbsolutePath() + "/mobileMedical.namespace/files/y0.txt"));
                         }catch (Exception ex){
                             Log.i("FReceiveERROR", null, ex);
                         }
@@ -86,7 +89,8 @@ public class fileTransmission extends Activity {
                             socketChannel.connect(socketAddress);
                             //手机发送文件，文件位置为data/data/com.example.practice.filetransferbetweenphonepc，
                             //文件名为123.txt
-                            sendFile(socketChannel, new File("data/data/com.example.practice.filetransferbetweenphonepc/measdata.txt"));
+                            sendFile(socketChannel, new File(Environment.getExternalStorageDirectory()
+                                    .getAbsolutePath() + "/mobileMedical.namespace/files/data.txt"));
                         }catch (Exception ex){
                             Log.i("FSendERROR",null,ex);
                         }

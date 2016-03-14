@@ -212,7 +212,7 @@ private static final String TAG = "EGCActivity";
          		   m_MeasItemResults =  (MeasItemResult[])m_MeasItemResultsList.toArray(new MeasItemResult[m_ListSize] );
          	   }
 
-         	  if(m_MeasItemResults!= null)
+         	  if(m_MeasItemResults!= null)//查看m_MeasItemResults
          	  {
          		 mResultsItemNum = m_MeasItemResults.length;       	  
          	  }
@@ -256,7 +256,7 @@ private static final String TAG = "EGCActivity";
 						mResultsItemNum -= 1;
 						mMeasItemCharResults =  m_MeasItemResults[m_MeasItemIdex].GetCharResults();
 						System.arraycopy(mMeasItemCharResults, 0, mResults, 0, MessageInfo.ECG_HYBRID_MEASITEM_RESULT_LEN);	
-						m_Idx += MessageInfo.ECG_HYBRID_MEASITEM_RESULT_LEN;
+						m_Idx += MessageInfo.ECG_HYBRID_MEASITEM_RESULT_LEN;//查看上面的m_MeasItemResults数值
 		
 						m_HeartRateResult = mMeasItemCharResults[MessageInfo.ECG_HEARTRATE_RESULT_IDX];
 						m_HeartRate.setText(String.valueOf(m_HeartRateResult));
