@@ -31,7 +31,7 @@ public class aiChartsDisplay extends Activity {
         double[] data4 = readData.readFileByChars(Environment.getExternalStorageDirectory()
                 .getAbsolutePath() + "/mobileMedical.namespace/files/y3.txt");
         double[] data = readData.readFileByChars(Environment.getExternalStorageDirectory()
-                .getAbsolutePath() + "/mobileMedical.namespace/files/data.txt");
+                .getAbsolutePath() + "/mobileMedical.namespace/files/measdata.txt");
         //图1
         ChartView chartView1 = (ChartView)findViewById(R.id.chart1);
         ChartSeries series1 = new ChartSeries(ChartTypes.FastLine);

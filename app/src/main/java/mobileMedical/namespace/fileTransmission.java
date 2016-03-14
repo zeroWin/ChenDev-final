@@ -57,12 +57,72 @@ public class fileTransmission extends Activity {
                         try{
                             socketChannel=SocketChannel.open();
                             //建立socket连接，服务器地址为ipstr，端口为1991
-                            SocketAddress socketAddress = new InetSocketAddress(ipstr, 1990);
+                            SocketAddress socketAddress = new InetSocketAddress(ipstr, 1900);
                             socketChannel.connect(socketAddress);
                             //手机接收文件，存储位置为data/data/com.example.practice.filetransferbetweenphonepc，
                             //文件名为123.txt
                             receiveFile(socketChannel, new File(Environment.getExternalStorageDirectory()
                                     .getAbsolutePath() + "/mobileMedical.namespace/files/y0.txt"));
+                        }catch (Exception ex){
+                            Log.i("FReceiveERROR", null, ex);
+                        }
+                    }
+                }).start();
+
+                //新线程
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        SocketChannel socketChannel=null;
+                        try{
+                            socketChannel=SocketChannel.open();
+                            //建立socket连接，服务器地址为ipstr，端口为1991
+                            SocketAddress socketAddress = new InetSocketAddress(ipstr, 1901);
+                            socketChannel.connect(socketAddress);
+                            //手机接收文件，存储位置为data/data/com.example.practice.filetransferbetweenphonepc，
+                            //文件名为123.txt
+                            receiveFile(socketChannel, new File(Environment.getExternalStorageDirectory()
+                                    .getAbsolutePath() + "/mobileMedical.namespace/files/y1.txt"));
+                        }catch (Exception ex){
+                            Log.i("FReceiveERROR", null, ex);
+                        }
+                    }
+                }).start();
+
+                //新线程
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        SocketChannel socketChannel=null;
+                        try{
+                            socketChannel=SocketChannel.open();
+                            //建立socket连接，服务器地址为ipstr，端口为1991
+                            SocketAddress socketAddress = new InetSocketAddress(ipstr, 1902);
+                            socketChannel.connect(socketAddress);
+                            //手机接收文件，存储位置为data/data/com.example.practice.filetransferbetweenphonepc，
+                            //文件名为123.txt
+                            receiveFile(socketChannel, new File(Environment.getExternalStorageDirectory()
+                                    .getAbsolutePath() + "/mobileMedical.namespace/files/y2.txt"));
+                        }catch (Exception ex){
+                            Log.i("FReceiveERROR", null, ex);
+                        }
+                    }
+                }).start();
+
+                //新线程
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        SocketChannel socketChannel=null;
+                        try{
+                            socketChannel=SocketChannel.open();
+                            //建立socket连接，服务器地址为ipstr，端口为1991
+                            SocketAddress socketAddress = new InetSocketAddress(ipstr, 1903);
+                            socketChannel.connect(socketAddress);
+                            //手机接收文件，存储位置为data/data/com.example.practice.filetransferbetweenphonepc，
+                            //文件名为123.txt
+                            receiveFile(socketChannel, new File(Environment.getExternalStorageDirectory()
+                                    .getAbsolutePath() + "/mobileMedical.namespace/files/y3.txt"));
                         }catch (Exception ex){
                             Log.i("FReceiveERROR", null, ex);
                         }
@@ -90,7 +150,7 @@ public class fileTransmission extends Activity {
                             //手机发送文件，文件位置为data/data/com.example.practice.filetransferbetweenphonepc，
                             //文件名为123.txt
                             sendFile(socketChannel, new File(Environment.getExternalStorageDirectory()
-                                    .getAbsolutePath() + "/mobileMedical.namespace/files/data.txt"));
+                                    .getAbsolutePath() + "/mobileMedical.namespace/files/measdata.txt"));
                         }catch (Exception ex){
                             Log.i("FSendERROR",null,ex);
                         }
