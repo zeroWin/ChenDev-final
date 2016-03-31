@@ -29,7 +29,8 @@ public class fileTransmission extends Activity {
     private Button FReceiveButton;
     private String ipstr;
     private Button FSendButton;
-    private Button resuleDisplay;
+    private Button resuleDisplay4ECG;
+    private Button resultDisplay4bloodPressure;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +40,8 @@ public class fileTransmission extends Activity {
         //设置ipet与edittext相关联
         ipet=(EditText)findViewById(R.id.ipet);
         //此处为服务器ip
-//        ipet.setText("10.108.170.195");
-        ipet.setText("10.108.168.155");
+        ipet.setText("10.108.170.195");
+//        ipet.setText("10.108.168.155");
         //--------------文件接收到手机-------------------//
         FReceiveButton=(Button)findViewById(R.id.FReceive);
         //添加receiveButton单击监听
@@ -159,15 +160,27 @@ public class fileTransmission extends Activity {
             }
         });
 
-        resuleDisplay =(Button)findViewById(R.id.resuleDisplay);
-        resuleDisplay.setOnClickListener(new View.OnClickListener() {
+        resuleDisplay4ECG =(Button)findViewById(R.id.resuleDisplay4ecg);
+        resuleDisplay4ECG.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(fileTransmission.this,aiChartsDisplay.class);
+                intent.setClass(fileTransmission.this,aiChartsDisplay4ECG.class);
                 startActivity(intent);
             }
         });
+
+        resultDisplay4bloodPressure = (Button)findViewById(R.id.resuleDisplay4bloodPressure);
+        resultDisplay4bloodPressure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(fileTransmission.this,aiChartsDisplay4bloodPressure.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     private static void sendFile(SocketChannel socketChannel, File file) throws IOException {

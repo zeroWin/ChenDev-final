@@ -195,12 +195,12 @@ public class MobileMedicalActivity extends TabActivity {
 						.setAction(ConstDef.MEAS_STOP_REQ_BROADCAST_MESSAGE);
 				sendBroadcast(stopMeasIntent);
 
-				Intent intent = new Intent();// 创建Intent对象
-				intent.setAction(ConstDef.CMD_BROADCAST_MESSAGE);
-				intent.putExtra(ConstDef.CMD, ConstDef.CMD_STOP_SERVICE);
+//				Intent intent = new Intent();// 创建Intent对象
+//				intent.setAction(ConstDef.CMD_BROADCAST_MESSAGE);
+//				intent.putExtra(ConstDef.CMD, ConstDef.CMD_STOP_SERVICE);
 
-				currentContext.sendBroadcast(intent);
-
+//				currentContext.sendBroadcast(intent);
+//以上删除掉了“点击停止按钮，则停止蓝牙服务”的功能
 			}
 		});
 

@@ -171,7 +171,7 @@ public class BluetoothServer extends Service{
 			String TAGString= "HeaderEndError";
 			while (threadFlag) {
 				if (readByteFlag) {
-					int value = readByte(buff);
+					int value = readByte(buff);		//value为buff的长度
 					if (value != -1) {
 						/*if (tempBuffCount ==0)
 						{
@@ -237,7 +237,7 @@ public class BluetoothServer extends Service{
 								// has one frame result
 								outbuffCount = endIdx-headerIdx+1;
 								System.arraycopy(tempbuff, headerIdx+2, resultsSizeBuff, 0, resultsSizeBuff.length);
-								resultsBuffSize = MessageBase.InvBytesToShort(resultsSizeBuff);
+								resultsBuffSize = MessageBase.InvBytesToShort(resultsSizeBuff);		//查看resultsBuffSize的内容，并和resultsSizeBuff对比
 								
 								if((outbuffCount  % (resultsBuffSize + 6))== 0)
 								{
@@ -447,7 +447,7 @@ public class BluetoothServer extends Service{
           
         if(bluetoothFlag){  
             try {  
-                inStream = btSocket.getInputStream();  
+                inStream = btSocket.getInputStream();  //蓝牙输入流
               } catch (IOException e) {  
                   e.printStackTrace();  
               } //绑定读接口  
@@ -491,7 +491,7 @@ public class BluetoothServer extends Service{
             return ret;  
         }  
         try {  
-              ret = inStream.read(buff);  
+              ret = inStream.read(buff);  //将输入流写入buff数组
             } catch (IOException e) {  
               e.printStackTrace();  
             }              
@@ -582,7 +582,7 @@ public class BluetoothServer extends Service{
             	int measType = bundle.getInt(ConstDef.MeasType);  //获取测量类型信息
             	mMessageProcess.CreateMeasureCommandMessage(measType);
             	int dataBuffSize= mMessageProcess.GetSendMsgSize();
-            	byte[] dataBuff = mMessageProcess.GetSendMsgBuffer();
+            	byte[] dataBuff = mMessageProcess.GetSendMsgBuffer();		//点击开始按钮后会发送的指令
                 sendCmd(dataBuff, dataBuffSize);  
                 
             }
@@ -709,7 +709,7 @@ public class BluetoothServer extends Service{
       	    Intent intent = new Intent();  
       	    
       		mMsgType = msg.arg1;
-      		mResultsObject = msg.obj; 
+      		mResultsObject = msg.obj; 		//查看数据结果
       		switch (mMsgType)
         	{
         	case MessageInfo.MSGTYPE_ST_MEAS_RESULT_IND:

@@ -76,7 +76,7 @@ public class MessageInfo {
 	public static final int MSGTYPE_ST_SENSOR_ATTACH_REQ = 0x80000015;
 	public static final int MSGTYPE_ST_MEAS_CONFIG_REQ = 0x80000016;
 	public static final int MSGTYPE_ST_MEAS_RESULT_REQ = 0x80000017;
-	public static final int MSGTYPE_ST_MEAS_INTERMEDIATE_RESULT_REQ = 0x80000018;
+	public static final int MSGTYPE_ST_MEAS_INTERMEDIATE_RESULT_REQ = 0x80000018;//按下停止按钮后获取的数据
 	public static final int MSGTYPE_ST_SET_REALTIME_CLOCK_REQ = 0x80000019;
 	public static final int MSGTYPE_ST_GWZG_STATE_QUERY_REQ = 0x80000020; 
 	public static final int MSGTYPE_ST_SENSOR_CONFIG_REQ = 0x80000021; 

@@ -29,10 +29,18 @@
         android:layout_toRightOf="@+id/FSend" />
 
     <Button
-        android:id="@+id/resuleDisplay"
+        android:id="@+id/resuleDisplay4ecg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ipet"
-        android:text="显示结果"/>
+        android:text="显示心电结果"/>
+
+    <Button
+        android:id="@+id/resuleDisplay4bloodPressure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ipet"
+        android:layout_toRightOf="@+id/resuleDisplay4ecg"
+        android:text="显示血压结果"/>
 
 </RelativeLayout>

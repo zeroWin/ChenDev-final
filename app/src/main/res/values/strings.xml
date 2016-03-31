@@ -203,4 +203,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_ai_charts_display">aiChartsDisplay</string>
+    <string name="title_activity_ai_charts_display4blood_pressure">aiChartsDisplay4bloodPressure
+    </string>
 </resources>

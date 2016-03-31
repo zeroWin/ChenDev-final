@@ -172,8 +172,12 @@
             android:label="@string/title_activity_file_transmission" >
         </activity>
         <activity
-            android:name=".aiChartsDisplay"
+            android:name=".aiChartsDisplay4ECG"
             android:label="@string/title_activity_ai_charts_display" >
+        </activity>
+        <activity
+            android:name=".aiChartsDisplay4bloodPressure"
+            android:label="@string/title_activity_ai_charts_display4blood_pressure" >
         </activity>
     </application>
 

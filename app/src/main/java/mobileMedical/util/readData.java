@@ -46,8 +46,10 @@ public class readData {
         String[] resTemp = temp.split("\n");
         res = new double[resTemp.length];
         for(int i=0;i<resTemp.length;i++){
-            r = Double.valueOf(resTemp[i].toString());
-            res[i] = r;
+            if(!(resTemp[i].equals("")) && !(resTemp[i].contains("*"))) {
+                r = Double.valueOf(resTemp[i].toString());
+                res[i] = r;
+            }
         }
         return res;
     }

@@ -1,13 +1,10 @@
 package mobileMedical.Message;
 
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import org.apache.http.util.ByteArrayBuffer;
-
-import android.R.string;
-import devDataType.Parameters.*;
+import devDataType.Parameters.IntParameter;
+import devDataType.Parameters.ShortParameter;
 
 
 
@@ -56,6 +53,7 @@ public class MeasStopMessage extends OutMessage{
 	  private void AddParmsToOutMsgBuff()
 	  {
 		  try {
+			  msgType = 402653312;//修改之后的msgType对应为0x80000018
 			outDataStream.writeShort(msgHeader);
 			outDataStream.writeShort(msgBuffSize);
 			outDataStream.writeInt(msgType);

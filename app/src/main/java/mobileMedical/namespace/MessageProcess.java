@@ -266,37 +266,37 @@ public class MessageProcess {
 		TransID_Parm += 1;
 
 		((ShortParameter) MessageData.parmsDataHashMap
-				.get(ParameterDataKeys.MSGHEADER))		//头
+				.get(ParameterDataKeys.MSGHEADER))		//头1
 				.SetValue(MessageInfo.MSG_HEADER_SYNC_WORD);
 		((ShortParameter) MessageData.parmsDataHashMap
-				.get(ParameterDataKeys.MSGEND))			//尾
+				.get(ParameterDataKeys.MSGEND))			//尾2
 				.SetValue(MessageInfo.MSG_TAIL_SYNC_WORD);
 		((ShortParameter) MessageData.parmsDataHashMap
-				.get(ParameterDataKeys.MSGBUFFERSIZE))	//大小
+				.get(ParameterDataKeys.MSGBUFFERSIZE))	//大小3
 				.SetValue(MessageInfo.SINGLE_MEAS_REQ_PARMS_SIZE);
 		((IntParameter) MessageData.parmsDataHashMap
-				.get(ParameterDataKeys.MSGTYPE))		//类型
+				.get(ParameterDataKeys.MSGTYPE))		//类型4
 				.SetValue(MessageInfo.MSGTYPE_ST_MEAS_START_REQ);
 		((IntParameter) MessageData.parmsDataHashMap
-				.get(ParameterDataKeys.TRANSID)).SetValue(TransID_Parm);	//transID
+				.get(ParameterDataKeys.TRANSID)).SetValue(TransID_Parm);	//transID5
 		((IntParameter) MessageData.parmsDataHashMap
-				.get(ParameterDataKeys.SENSORNUM)).SetValue(1);			//传感器代号
+				.get(ParameterDataKeys.SENSORNUM)).SetValue(1);			//传感器代号6
 		((IntParameter) MessageData.parmsDataHashMap
-				.get(ParameterDataKeys.RESERVEDPARM1)).SetValue(1);		//RESERVEDPARM1
+				.get(ParameterDataKeys.RESERVEDPARM1)).SetValue(1);		//RESERVEDPARM1   7
 
 		((FloatParameter) MessageData.parmsDataHashMap
-				.get(ParameterDataKeys.TIMEOUT)).SetValue(2);		//timeout
+				.get(ParameterDataKeys.TIMEOUT)).SetValue(2);		//timeout  8
 		((IntParameter) MessageData.parmsDataHashMap
-				.get(ParameterDataKeys.RESERVEDPARM2)).SetValue(0);		//RESERVEDPARM2
+				.get(ParameterDataKeys.RESERVEDPARM2)).SetValue(0);		//RESERVEDPARM2  9
 
 		((IntParameter) MessageData.parmsDataHashMap
 				.get(ParameterDataKeys.DOCTORID))
-				.SetValue(MemberManage.doctorID);			//医生id
+				.SetValue(MemberManage.doctorID);			//医生id  10
 		((IntParameter) MessageData.parmsDataHashMap
 				.get(ParameterDataKeys.PATIENTID))
-				.SetValue(MemberManage.patientID);			//病人id
+				.SetValue(MemberManage.patientID);			//病人id  11
 		((IntParameter) MessageData.parmsDataHashMap
-				.get(ParameterDataKeys.RESERVEDPARM3)).SetValue(0);		//RESERVEDPARM3
+				.get(ParameterDataKeys.RESERVEDPARM3)).SetValue(0);		//RESERVEDPARM3  12
 
 		switch (measID) {
 		case ConstDef.BodyTempTabIndex: // BodyTemp
@@ -304,21 +304,21 @@ public class MessageProcess {
 			if (BodyTmpActivity.baseTempBool) {
 				((IntParameter) MessageData.parmsDataHashMap
 						.get(ParameterDataKeys.SENSORTYPE))
-						.SetValue(MessageInfo.SENSORTYPE_THERMOMETER);		//传感器类型为体温
+						.SetValue(MessageInfo.SENSORTYPE_THERMOMETER);		//传感器类型为体温 13
 				((StringParameter) MessageData.parmsDataHashMap
-						.get(ParameterDataKeys.SENSORID)).SetValue("THERMOME");		//传感器id为THERMOME
+						.get(ParameterDataKeys.SENSORID)).SetValue("THERMOME");		//传感器id为THERMOME 14
 				((IntParameter) MessageData.parmsDataHashMap
 						.get(ParameterDataKeys.MEASMODE))
-						.SetValue(MessageInfo.SINGLE_MEAS_MODE);		//测量类型
+						.SetValue(MessageInfo.SINGLE_MEAS_MODE);		//测量类型 15
 				((IntParameter) MessageData.parmsDataHashMap
-						.get(ParameterDataKeys.MEASITEMNUM)).SetValue(1);		//meas-item-num为1
+						.get(ParameterDataKeys.MEASITEMNUM)).SetValue(1);		//meas-item-num为1  16
 				((IntParameter) MessageData.parmsDataHashMap
 						.get(ParameterDataKeys.MEASITEM))
-						.SetValue(MessageInfo.MM_MI_BODY_BASE_TEMPERATURE);		//measitem设定为4096（基本体温的代号）
+						.SetValue(MessageInfo.MM_MI_BODY_BASE_TEMPERATURE);		//measitem设定为4096（基本体温的代号）  17
 				((IntParameter) MessageData.parmsDataHashMap
-						.get(ParameterDataKeys.MEASCOUNT)).SetValue(1);			//Measure Count设为1
+						.get(ParameterDataKeys.MEASCOUNT)).SetValue(1);			//Measure Count设为1  18
 				((IntParameter) MessageData.parmsDataHashMap
-						.get(ParameterDataKeys.MEASINTERVAL)).SetValue(5);		//测量间隔为5
+						.get(ParameterDataKeys.MEASINTERVAL)).SetValue(5);		//测量间隔为5  19
 			} else {
 				((IntParameter) MessageData.parmsDataHashMap
 						.get(ParameterDataKeys.SENSORTYPE))
@@ -842,38 +842,38 @@ public class MessageProcess {
 
 			while (!ReceiveMsgProcessed && !MeasFinised) {
 				switch (mReceiveMsgProcessState) {
-				case INIT_STATE:
+				case INIT_STATE:		//1
 					InitProcess();
 				case FIND_MSG_HEADER_STATE:
-					GetReceiveMsgParmsProcess();
+					GetReceiveMsgParmsProcess();		//2
 					break;
 				case FIND_MSG_BUFFER_SIZE_STATE:
-					GetReceiveMsgParmsProcess();
+					GetReceiveMsgParmsProcess();		//3
 					break;
 				case FIND_MSG_MSG_TYPE_STATE:
-					GetReceiveMsgParmsProcess();
+					GetReceiveMsgParmsProcess();		//4
 					break;
 				case GET_PARMS_RESULTS_STATE:
-					GetReceiveMsgRetsProcess();
+					GetReceiveMsgRetsProcess();//此处报错		//5
 					break;
 				case FIND_MSG_END_STATE:
-					GetReceiveMsgParmsProcess();
+					GetReceiveMsgParmsProcess();		//6
 				case SEDN_RESPONSE_MSG_STATE:
-					SendRespProcess();
+					SendRespProcess();		//7
 				case PROCESS_RESULTS_STATE:
-					ProcessResultsProcess();
+					ProcessResultsProcess();		//8
 					break;
 				case SEND_RESULTS_STATE:
 					// Send Results to UI
-					SendResultsProcess();
+					SendResultsProcess();		//9
 					break;
 				case SEND_ERROR_MSG_STATE:
 					// Send Results to UI
-					SendErrorMessageProcess();
+					SendErrorMessageProcess();		//10
 					break;
 				case FINISHED_MEAS:
 					// Reset Parameters
-					FinishedProcess();
+					FinishedProcess();		//11
 					break;
 				}
 			}
@@ -904,7 +904,7 @@ public class MessageProcess {
 			return indexOfValue;
 		}
 
-		private void InitProcess() {
+		private void InitProcess() {//1
 
 			// We may need to use the ArraySearch to do the first step MsgHeader
 			// searching.
@@ -912,14 +912,14 @@ public class MessageProcess {
 			SetReceiveMessageProcessParm();
 		}
 
-		private void FinishedProcess() {
+		private void FinishedProcess() {		//11
 			// Measurment finished, can enable the start button for next measure
 			// or give some indication
 			ResetParms();
 			SetReceiveMessageProcessParm();
 		}
 
-		private void GetReceiveMsgRetsProcess() {
+		private void GetReceiveMsgRetsProcess() {		//5
 			int retSizeWOMsgtype = mReceiveMsgBufferSize - INT_FLOAT_PARM_SIZE;
 			mRemainReceiveRetsBufferSize = retSizeWOMsgtype
 					- mReceiveRetsBufferSize;
@@ -942,8 +942,8 @@ public class MessageProcess {
 			}
 		}
 
-		private void ProcessResultsProcess() {
-			switch (mReceiveMsgMsgType) {
+		private void ProcessResultsProcess() {		//8
+			switch (mReceiveMsgMsgType) {		//有问题
 			case MessageInfo.MSGTYPE_ST_MEAS_RESULT_IND:
 				mInMsg = new SingleSensorMeasRetMessage();
 				mInMsg.GetInMsg(mReceiveRetsBuffer, 0, mReceiveRetsBufferSize);
@@ -977,13 +977,13 @@ public class MessageProcess {
 			SetReceiveMessageProcessParm();
 		}
 
-		private void SendRespProcess() {
+		private void SendRespProcess() {		//7
 			// Currently, do not send the ResponseMessage
 
 			SetReceiveMessageProcessParm();
 		}
 
-		private void GetReceiveMsgParmsProcess() {
+		private void GetReceiveMsgParmsProcess() {//2,3,4,6
 			int idx;
 			if (mFindReceiveMsgParmProcessOne) {
 				mReceiveMsgParmIdx = mReceiveMsgPreParmEndIdx + 1;
@@ -1084,11 +1084,11 @@ public class MessageProcess {
 
 		}
 
-		private void SendErrorMessageProcess() {
+		private void SendErrorMessageProcess() {		//10
 			ResetParms();
 		}
 
-		private void SendResultsProcess() {
+		private void SendResultsProcess() {		//9
 			MeasResultsReady = true;
 			if (BuildConfig.DEBUG) {
 				Log.i(TAG, "MessageProcess SendResults");

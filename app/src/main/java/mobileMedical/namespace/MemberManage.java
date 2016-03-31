@@ -274,7 +274,7 @@ public class MemberManage extends Activity {
 
 			}
 		});
-
+		//跳转到上传数据页面
 		fileTrans.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
