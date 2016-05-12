@@ -98,6 +98,9 @@ public class BluetoothServer extends Service{
         
         filter = new IntentFilter(ConstDef.MEAS_REQ_BROADCAST_MESSAGE);        
         registerReceiver(cmdReceiver,filter);
+
+		filter = new IntentFilter(ConstDef.MEAS_SYNC_BROADCAST_MESSAGE);
+		registerReceiver(cmdReceiver,filter);
         
         filter = new IntentFilter(ConstDef.GW_STATE_QUERY_REQ_BROADCAST_MESSAGE);        
         registerReceiver(cmdReceiver,filter);
@@ -211,7 +214,8 @@ public class BluetoothServer extends Service{
 						// find the Ender;
 						if(endIdx == -1)
 						{
-						endIdx = ArrayFind(tempbuff,tempBuffCount,EndBytes, false);
+//						endIdx = ArrayFind(tempbuff,tempBuffCount,EndBytes, false);
+							endIdx = ArrayFind(tempbuff,tempBuffCount,EndBytes, true);		/////////////xiugai
 						}
 						if (endIdx != -1)
 						{
@@ -235,7 +239,8 @@ public class BluetoothServer extends Service{
 							}
 							else {
 								// has one frame result
-								outbuffCount = endIdx-headerIdx+1;
+//								outbuffCount = endIdx-headerIdx+1;
+								outbuffCount = endIdx-headerIdx+2;		//////////////xiugai
 								System.arraycopy(tempbuff, headerIdx+2, resultsSizeBuff, 0, resultsSizeBuff.length);
 								resultsBuffSize = MessageBase.InvBytesToShort(resultsSizeBuff);		//查看resultsBuffSize的内容，并和resultsSizeBuff对比
 								
@@ -586,6 +591,17 @@ public class BluetoothServer extends Service{
                 sendCmd(dataBuff, dataBuffSize);  
                 
             }
+			else if (intent.getAction().equals(ConstDef.MEAS_SYNC_BROADCAST_MESSAGE))//获取同步信息
+			{
+
+				Bundle bundle = intent.getExtras();
+				int measType = bundle.getInt(ConstDef.MeasType);  //获取测量类型信息
+				mMessageProcess.CreateSyncCommandMessage(measType);
+				int dataBuffSize= mMessageProcess.GetSendMsgSize();
+				byte[] dataBuff = mMessageProcess.GetSendMsgBuffer();		//点击开始按钮后会发送的指令
+				sendCmd(dataBuff, dataBuffSize);
+
+			}
             else if (intent.getAction().equals(ConstDef.GW_STATE_QUERY_REQ_BROADCAST_MESSAGE))		//获取GW_STATE_QUERY_REQ信息
             {
             	mMessageProcess.CreateGWStateQueryCommandMessage(1);// 1 is no meaningful
@@ -615,7 +631,7 @@ public class BluetoothServer extends Service{
             	Bundle bundle = intent.getExtras();   
             	float[] coeffs = bundle.getFloatArray(ConstDef.ALARM_TIME_COEFFS);
             	mMessageProcess.CreateAlarmTimeConfigCommandMessage(coeffs);
-            	int dataBuffSize= mMessageProcess.GetSendMsgSize();
+				int dataBuffSize= mMessageProcess.GetSendMsgSize();
             	byte[] dataBuff = mMessageProcess.GetSendMsgBuffer();
                 sendCmd(dataBuff, dataBuffSize);    
             }
@@ -630,8 +646,8 @@ public class BluetoothServer extends Service{
             {
             	mMessageProcess.CreateMeasureStopCommandMessage(1);// 1 is no meaningful
             	int dataBuffSize= mMessageProcess.GetSendMsgSize();
-            	byte[] dataBuff = mMessageProcess.GetSendMsgBuffer();
-                sendCmd(dataBuff, dataBuffSize);     
+				byte[] dataBuff = mMessageProcess.GetSendMsgBuffer();
+				sendCmd(dataBuff, dataBuffSize);
             }
             else if (intent.getAction().equals(ConstDef.MEAS_RESULTS_DISPLAY_STATE_BROADCAST_MESSAGE))
             {
@@ -712,13 +728,13 @@ public class BluetoothServer extends Service{
       		mResultsObject = msg.obj; 		//查看数据结果
       		switch (mMsgType)
         	{
-        	case MessageInfo.MSGTYPE_ST_MEAS_RESULT_IND:
+        	case MessageInfo.MSGTYPE_ST_MEAS_RESULT_IND:		//数据处理操作0xA0000017
         	{
         		mMsgSensorType =  msg.arg2;
         		            		            	 
         		switch (mMsgSensorType)
             	{
-            	case MessageInfo.SENSORTYPE_BLOODOXYGENMETER://血氧
+            	case MessageInfo.SENSORTYPE_BLOODOXYGENMETER://血氧0xA6
             	{    
             		/*// 
                      intent.putExtra(ConstDef.CMD, ConstDef.BLOODOX_RESULTS);  
@@ -740,7 +756,7 @@ public class BluetoothServer extends Service{
                       sendBroadcast(intent);    
             	}
             		break;
-            	case MessageInfo.SENSORTYPE_BLOODPRESSUREMETER://血压
+            	case MessageInfo.SENSORTYPE_BLOODPRESSUREMETER://血压0xA3
             	{
             		ArrayList<MeasItemResult> measItemResultList = new ArrayList<MeasItemResult>();
             		
@@ -754,9 +770,9 @@ public class BluetoothServer extends Service{
                      sendBroadcast(intent);  
             	}
             		break;
-            	case MessageInfo.SENSORTYPE_BLOODSUGARMETER://血糖
+            	case MessageInfo.SENSORTYPE_BLOODSUGARMETER://血糖0xA4
             		break;
-            	case MessageInfo.SENSORTYPE_ELECTROCARDIOGRAMMETER://心电
+            	case MessageInfo.SENSORTYPE_ELECTROCARDIOGRAMMETER://心电0xA2
             	{
             		  ArrayList<MeasItemResult> measItemResultList = new ArrayList<MeasItemResult>();
                		
@@ -819,18 +835,18 @@ public class BluetoothServer extends Service{
             	}
         	}
         		break;
-        	case MessageInfo.MSGTYPE_ST_GWZG_STATE_QUERY_IND:
+        	case MessageInfo.MSGTYPE_ST_GWZG_STATE_QUERY_IND:		//蓝牙连接后的未开始前的操作0xA0000020
         		ArrayList<SensorInfoResult> sensorInfoItemResultList = new ArrayList<SensorInfoResult>();
         		GWStateRetMessage tmp = (GWStateRetMessage) mResultsObject;
-        		GWInfoResult gwInfoResultsGwInfoResult = tmp.GetGWInfoResults();
-        		 SensorInfoResult[] sensorInfoResults = tmp.GetSensorInfoResults();
+        		GWInfoResult gwInfoResultsGwInfoResult = tmp.GetGWInfoResults();		//网关信息
+        		 SensorInfoResult[] sensorInfoResults = tmp.GetSensorInfoResults();		//节点信息
         		for (int i = 0; i < ((SensorInfoResult[])sensorInfoResults).length; i++) {       				
         			sensorInfoItemResultList.add(((SensorInfoResult[])sensorInfoResults)[i]);
     			}
         		
         		 intent.putExtra(ConstDef.CMD, ConstDef.GW_STATE_QUERY_RESULTS);  
-        		 intent.putExtra(ConstDef.GW_INFO_RESULTS, gwInfoResultsGwInfoResult);
-        		 intent.putParcelableArrayListExtra(ConstDef.SENSOR_INFO_RESULTS, sensorInfoItemResultList);
+        		 intent.putExtra(ConstDef.GW_INFO_RESULTS, gwInfoResultsGwInfoResult);		//将网关信息传送
+        		 intent.putParcelableArrayListExtra(ConstDef.SENSOR_INFO_RESULTS, sensorInfoItemResultList);		//将节点信息传送
                  intent.setAction(ConstDef.GW_STATE_QUERY_RESULTS_BROADCAST_MESSAGE);  
                  sendBroadcast(intent); 
                  

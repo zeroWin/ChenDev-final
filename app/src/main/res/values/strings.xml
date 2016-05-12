@@ -3,6 +3,7 @@
 
     <string name="hello">Hello World, MobileMedicalActivity!</string>
     <string name="Sync">开始同步</string>
+    <string name="sync">同步</string>
     <string name="saving">正在保存</string>
     <string name="app_name">MobileMedical</string>
     <string name="CreatID">创建用户ID</string>

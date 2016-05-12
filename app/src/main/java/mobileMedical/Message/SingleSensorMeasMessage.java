@@ -1,13 +1,12 @@
 package mobileMedical.Message;
 
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import org.apache.http.util.ByteArrayBuffer;
-
-import android.R.string;
-import devDataType.Parameters.*;
+import devDataType.Parameters.FloatParameter;
+import devDataType.Parameters.IntParameter;
+import devDataType.Parameters.ShortParameter;
+import devDataType.Parameters.StringParameter;
 
 
 
@@ -86,7 +85,7 @@ public class SingleSensorMeasMessage extends OutMessage{
 		  
 	  }
 	  
-	  private void AddParmsToOutMsgBuff()
+	  private void  AddParmsToOutMsgBuff()
 	  {
 		  try {
 			outDataStream.writeShort(msgHeader);

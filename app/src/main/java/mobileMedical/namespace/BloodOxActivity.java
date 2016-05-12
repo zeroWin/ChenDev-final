@@ -112,7 +112,7 @@ private boolean m_NewResults = true;
         m_ChartView = (ChartView)findViewById(R.id.chartView);
         
         m_DataBaseSQL = boDbHelper.getWritableDb();
-        m_TotalDataPackage = new StringBuilder();
+        m_TotalDataPackage = new StringBuilder(36);
 		m_ContentValues = new ContentValues();
 		
 		m_ChartSeries = new ChartSeries("FastLineSeries", ChartTypes.FastLine);

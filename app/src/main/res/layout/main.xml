@@ -85,6 +85,17 @@
                 android:textSize="15sp" />
 
             <Button
+                android:id="@+id/buttonSync"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/buttonStart"
+                android:layout_below="@+id/buttonStart"
+                android:bufferType="editable"
+                android:text="@string/sync"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="15sp" />
+
+            <Button
                 android:id="@+id/buttonStop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

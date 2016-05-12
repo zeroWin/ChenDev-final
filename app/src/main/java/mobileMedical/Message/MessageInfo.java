@@ -71,9 +71,10 @@ public class MessageInfo {
 	public static final int MSGTYPE_ST_GWZG_STATE_QUERY = 0x20;
 	public static final int MSGTYPE_ST_SENSOR_CONFIG = 0x21;
 
-	public static final int MSGTYPE_ST_MEAS_START_REQ = 0x80000013;
-	public static final int MSGTYPE_ST_MEAS_STOP_REQ = 0x80000014;
-	public static final int MSGTYPE_ST_SENSOR_ATTACH_REQ = 0x80000015;
+	public static final int MSGTYPE_ST_MEAS_START_REQ = 0x80000013;//开始命令
+	public static final int MSGTYPE_ST_MEAS_STOP_REQ = 0x80000014;//停止命令
+//	public static final int MSGTYPE_ST_SENSOR_ATTACH_REQ = 0x80000015;
+	public static final int MSGTYPE_ST_MEAS_SYNC_REQ = 0x80000015;//同步命令
 	public static final int MSGTYPE_ST_MEAS_CONFIG_REQ = 0x80000016;
 	public static final int MSGTYPE_ST_MEAS_RESULT_REQ = 0x80000017;
 	public static final int MSGTYPE_ST_MEAS_INTERMEDIATE_RESULT_REQ = 0x80000018;//按下停止按钮后获取的数据
@@ -231,14 +232,20 @@ public class MessageInfo {
       	int16 SpO2_waveform[SPO2_WAVEFORM_SAMPLER_NUM_PER_PACKET];
       	}SpO2Hybrid_SubRlt_t;*/
 
-    public static int SPO2_WAVEFORM_SAMPLES_NUM_PER_PACKET =10;
-    public static int ECG_WAVEFORM_SAMPLES_NUM_PER_PACKET =10;
+//    public static int SPO2_WAVEFORM_SAMPLES_NUM_PER_PACKET =10;
+	public static int SPO2_WAVEFORM_SAMPLES_NUM_PER_PACKET =30;	//edited by xy,for longer data package
+//    public static int ECG_WAVEFORM_SAMPLES_NUM_PER_PACKET =10;
+	public static int ECG_WAVEFORM_SAMPLES_NUM_PER_PACKET =30;		//edited by xy,for longer data package
 	//尚未定义血压包长度
 
-    public static int PULSERATE_RESULT_IDX = 8; // From 0
-    public static int SPO2_VALUE_RESULT_IDX = 9;
-	public static int SPO2_WAVEFORM_RESULT_STARTIDX = 10;
-	public static int SPO2_HYBRID_MEASITEM_RESULT_LEN = 20;
+//    public static int PULSERATE_RESULT_IDX = 8; // From 0
+	public static int PULSERATE_RESULT_IDX = 0; // edit by xy, first oxy data
+//    public static int SPO2_VALUE_RESULT_IDX = 9;
+	public static int SPO2_VALUE_RESULT_IDX = 1;//edit by xy, second oxy data
+//	public static int SPO2_WAVEFORM_RESULT_STARTIDX = 10;
+	public static int SPO2_WAVEFORM_RESULT_STARTIDX = 4;	//edit by xy, start of oxy meas data
+//	public static int SPO2_HYBRID_MEASITEM_RESULT_LEN = 20;
+	public static int SPO2_HYBRID_MEASITEM_RESULT_LEN = 34;		//edited by xy,for longer data pack
 	public static int PULVENTVAL_RESULT_IDX = 0; // From 0
 	public static int PULVENT_WAVEFORM_SAMPLES_NUM_PER_PACKET =25;
 	public static int PULVENT_WAVEFORM_RESULT_STARTIDX = 1;
@@ -250,5 +257,6 @@ public class MessageInfo {
 	public static int BLOODPRESS_WAVEFORM_RESULT_STARTIDX = 3;
 	public static int BLOODPRESS_WAVEFORM_SAMPLES_NUM_PER_PACKET =8;
 	
-	public static int ECG_HYBRID_MEASITEM_RESULT_LEN = 14;
+//	public static int ECG_HYBRID_MEASITEM_RESULT_LEN = 14;
+	public static int ECG_HYBRID_MEASITEM_RESULT_LEN = 34;			//edit by xy , for longer data package
 }

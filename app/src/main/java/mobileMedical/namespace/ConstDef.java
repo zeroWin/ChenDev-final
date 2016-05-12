@@ -7,6 +7,7 @@ public class ConstDef {
 	public static final String BT_RECEIVED_DATA_BROADCAST_MESSAGE =  "android.intent.action.received";
 	
 	public static final String MEAS_REQ_BROADCAST_MESSAGE = "android.intent.action.measreq";
+	public static final String MEAS_SYNC_BROADCAST_MESSAGE = "android.intent.action.meassync";//同步命令
 	public static final String GW_STATE_QUERY_REQ_BROADCAST_MESSAGE = "android.intent.action.gwStateQuery";
 	public static final String BODYTEMP_CAL_REQ_BROADCAST_MESSAGE = "android.intent.action.bodyTempCal";
 	public static final String BODYTEMP_CAL_COEFF_CONFIG_REQ_BROADCAST_MESSAGE = "android.intent.action.bodyTempCalCoeffConfig";

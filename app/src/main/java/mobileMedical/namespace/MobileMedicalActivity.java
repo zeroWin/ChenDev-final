@@ -90,10 +90,11 @@ public class MobileMedicalActivity extends TabActivity {
 		intent.setClass(this, PulmonaryVentilationActivity.class);
 		intent.putExtra("time", this.getIntent().getStringExtra("time"));
 
-		tabHost.addTab(tabHost
+		//delete this code to hide pulmonaryventilation
+		/*tabHost.addTab(tabHost
 				.newTabSpec(getString(R.string.pulmonaryventilation))
 				.setIndicator(getString(R.string.pulmonaryventilation))
-				.setContent(intent));
+				.setContent(intent));*/
 
 		TabWidget tabWidget = tabHost.getTabWidget();
 		int width = this.getWindowManager().getDefaultDisplay().getWidth() / 8;
@@ -201,6 +202,27 @@ public class MobileMedicalActivity extends TabActivity {
 
 //				currentContext.sendBroadcast(intent);
 //以上删除掉了“点击停止按钮，则停止蓝牙服务”的功能
+			}
+		});
+		//初始化同步按钮
+		Button buttonSync = (Button)findViewById(R.id.buttonSync);
+		buttonSync.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				// Send the create the meas command and init the meas
+				Intent measIntent = new Intent();
+				Bundle bundle = new Bundle();
+				mCurrentTabIndex = tabHost.getCurrentTab();
+				bundle.putInt(ConstDef.MeasType, mCurrentTabIndex);
+				measIntent.putExtras(bundle);
+				measIntent.setAction(ConstDef.MEAS_SYNC_BROADCAST_MESSAGE);
+				sendBroadcast(measIntent);
+
+				// Send the meas init message to reset the meas display
+//				Intent startIntent = new Intent();
+//				startIntent.putExtras(bundle);
+//				startIntent.setAction(ConstDef.MEAS_INIT_BROADCAST_MESSAGE);
+//				sendBroadcast(startIntent);
 			}
 		});
 

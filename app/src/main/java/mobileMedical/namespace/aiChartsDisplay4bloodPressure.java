@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.artfulbits.aiCharts.Base.ChartArea;
 import com.artfulbits.aiCharts.Base.ChartSeries;
@@ -38,31 +39,35 @@ public class aiChartsDisplay4bloodPressure extends Activity {
         llParams.height = 5*height/10;
         ll.setLayoutParams(llParams);
 
+        try {
 //        double[] bpdata1 = readData.readFileByChars( "data/data/mobileMedical.namespace/files/ac.txt");
 //        double[] bpdata2 = readData.readFileByChars( "data/data/mobileMedical.namespace/files/dc.txt");
-        double[] bpdata1 = readData.readFileByChars( Environment.getExternalStorageDirectory()
-                .getAbsolutePath() + "/mobileMedical.namespace/files/ac.txt");
-        double[] bpdata2 = readData.readFileByChars( Environment.getExternalStorageDirectory()
-                .getAbsolutePath() + "/mobileMedical.namespace/files/dc.txt");
+            double[] bpdata1 = readData.readFileByChars(Environment.getExternalStorageDirectory()
+                    .getAbsolutePath() + "/mobileMedical.namespace/files/ac.txt");
+            double[] bpdata2 = readData.readFileByChars(Environment.getExternalStorageDirectory()
+                    .getAbsolutePath() + "/mobileMedical.namespace/files/dc.txt");
 
-        ChartView bpcv1 = (ChartView)findViewById(R.id.bloodPressurechart1);
-        ChartView bpcv2 = (ChartView)findViewById(R.id.bloodPressurechart2);
+            ChartView bpcv1 = (ChartView) findViewById(R.id.bloodPressurechart1);
+            ChartView bpcv2 = (ChartView) findViewById(R.id.bloodPressurechart2);
 
-        //图1
-        ChartSeries bpcs1 = new ChartSeries(ChartTypes.FastLine);
-        ChartSeries bpcs12 = new ChartSeries(ChartTypes.FastLine);
-        ChartArea bpca1 = new ChartArea();
-        bpcs1.getPoints().setData(bpdata1);
-        bpcs12.getPoints().setData(bpdata2);
-        bpcv1.getSeries().add(bpcs1);
-        bpcv1.getSeries().add(bpcs12);
-        bpcv1.getAreas().add(bpca1);
+            //图1
+            ChartSeries bpcs1 = new ChartSeries(ChartTypes.FastLine);
+            ChartSeries bpcs12 = new ChartSeries(ChartTypes.FastLine);
+            ChartArea bpca1 = new ChartArea();
+            bpcs1.getPoints().setData(bpdata1);
+            bpcs12.getPoints().setData(bpdata2);
+            bpcv1.getSeries().add(bpcs1);
+            bpcv1.getSeries().add(bpcs12);
+            bpcv1.getAreas().add(bpca1);
 //图2
-        ChartSeries bpcs2 = new ChartSeries(ChartTypes.FastLine);
-        ChartArea bpca2 = new ChartArea();
-        bpcs2.getPoints().setData(bpdata2);
-        bpcv2.getSeries().add(bpcs2);
-        bpcv2.getAreas().add(bpca2);
+            ChartSeries bpcs2 = new ChartSeries(ChartTypes.FastLine);
+            ChartArea bpca2 = new ChartArea();
+            bpcs2.getPoints().setData(bpdata2);
+            bpcv2.getSeries().add(bpcs2);
+            bpcv2.getAreas().add(bpca2);
+        }catch (Exception e){
+            Toast.makeText(this,"没找到文件",Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void init() {

@@ -53,7 +53,7 @@ public class MeasStopMessage extends OutMessage{
 	  private void AddParmsToOutMsgBuff()
 	  {
 		  try {
-			  msgType = 402653312;//修改之后的msgType对应为0x80000018
+//			  msgType = 402653312;//修改之后的msgType对应为0x80000018
 			outDataStream.writeShort(msgHeader);
 			outDataStream.writeShort(msgBuffSize);
 			outDataStream.writeInt(msgType);

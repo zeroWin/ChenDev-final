@@ -483,6 +483,232 @@ public class MessageProcess {
 
 	}
 
+
+	public void CreateSyncCommandMessage(int measID){
+		// Set common parameters value
+		TransID_Parm = ((IntParameter) MessageData.parmsDataHashMap
+				.get(ParameterDataKeys.TRANSID)).GetValue();
+
+		TransID_Parm += 1;
+
+		((ShortParameter) MessageData.parmsDataHashMap
+				.get(ParameterDataKeys.MSGHEADER))		//头1
+				.SetValue(MessageInfo.MSG_HEADER_SYNC_WORD);
+		((ShortParameter) MessageData.parmsDataHashMap
+				.get(ParameterDataKeys.MSGEND))			//尾2
+				.SetValue(MessageInfo.MSG_TAIL_SYNC_WORD);
+		((ShortParameter) MessageData.parmsDataHashMap
+				.get(ParameterDataKeys.MSGBUFFERSIZE))	//大小3
+				.SetValue(MessageInfo.SINGLE_MEAS_REQ_PARMS_SIZE);
+		((IntParameter) MessageData.parmsDataHashMap
+				.get(ParameterDataKeys.MSGTYPE))		//类型4
+				.SetValue(MessageInfo.MSGTYPE_ST_MEAS_SYNC_REQ);
+		((IntParameter) MessageData.parmsDataHashMap
+				.get(ParameterDataKeys.TRANSID)).SetValue(TransID_Parm);	//transID5
+		((IntParameter) MessageData.parmsDataHashMap
+				.get(ParameterDataKeys.SENSORNUM)).SetValue(1);			//传感器代号6
+		((IntParameter) MessageData.parmsDataHashMap
+				.get(ParameterDataKeys.RESERVEDPARM1)).SetValue(1);		//RESERVEDPARM1   7
+
+		((FloatParameter) MessageData.parmsDataHashMap
+				.get(ParameterDataKeys.TIMEOUT)).SetValue(2);		//timeout  8
+		((IntParameter) MessageData.parmsDataHashMap
+				.get(ParameterDataKeys.RESERVEDPARM2)).SetValue(0);		//RESERVEDPARM2  9
+
+		((IntParameter) MessageData.parmsDataHashMap
+				.get(ParameterDataKeys.DOCTORID))
+				.SetValue(MemberManage.doctorID);			//医生id  10
+		((IntParameter) MessageData.parmsDataHashMap
+				.get(ParameterDataKeys.PATIENTID))
+				.SetValue(MemberManage.patientID);			//病人id  11
+		((IntParameter) MessageData.parmsDataHashMap
+				.get(ParameterDataKeys.RESERVEDPARM3)).SetValue(0);		//RESERVEDPARM3  12
+
+		switch (measID) {
+			case ConstDef.BodyTempTabIndex: // BodyTemp
+				mOnceMeas = true;
+				if (BodyTmpActivity.baseTempBool) {
+					((IntParameter) MessageData.parmsDataHashMap
+							.get(ParameterDataKeys.SENSORTYPE))
+							.SetValue(MessageInfo.SENSORTYPE_THERMOMETER);		//传感器类型为体温 13
+					((StringParameter) MessageData.parmsDataHashMap
+							.get(ParameterDataKeys.SENSORID)).SetValue("THERMOME");		//传感器id为THERMOME 14
+					((IntParameter) MessageData.parmsDataHashMap
+							.get(ParameterDataKeys.MEASMODE))
+							.SetValue(MessageInfo.SINGLE_MEAS_MODE);		//测量类型 15
+					((IntParameter) MessageData.parmsDataHashMap
+							.get(ParameterDataKeys.MEASITEMNUM)).SetValue(1);		//meas-item-num为1  16
+					((IntParameter) MessageData.parmsDataHashMap
+							.get(ParameterDataKeys.MEASITEM))
+							.SetValue(MessageInfo.MM_MI_BODY_BASE_TEMPERATURE);		//measitem设定为4096（基本体温的代号）  17
+					((IntParameter) MessageData.parmsDataHashMap
+							.get(ParameterDataKeys.MEASCOUNT)).SetValue(1);			//Measure Count设为1  18
+					((IntParameter) MessageData.parmsDataHashMap
+							.get(ParameterDataKeys.MEASINTERVAL)).SetValue(5);		//测量间隔为5  19
+				} else {
+					((IntParameter) MessageData.parmsDataHashMap
+							.get(ParameterDataKeys.SENSORTYPE))
+							.SetValue(MessageInfo.SENSORTYPE_THERMOMETER);
+					((StringParameter) MessageData.parmsDataHashMap
+							.get(ParameterDataKeys.SENSORID)).SetValue("THERMOME");
+					((IntParameter) MessageData.parmsDataHashMap
+							.get(ParameterDataKeys.MEASMODE))
+							.SetValue(MessageInfo.SINGLE_MEAS_MODE);
+					((IntParameter) MessageData.parmsDataHashMap
+							.get(ParameterDataKeys.MEASITEMNUM)).SetValue(1);
+					((IntParameter) MessageData.parmsDataHashMap
+							.get(ParameterDataKeys.MEASITEM))
+							.SetValue(MessageInfo.MM_MI_BODY_TEMPERATURE);			//measitem设定为64（体温的代号）
+					((IntParameter) MessageData.parmsDataHashMap
+							.get(ParameterDataKeys.MEASCOUNT)).SetValue(1);
+					((IntParameter) MessageData.parmsDataHashMap
+							.get(ParameterDataKeys.MEASINTERVAL)).SetValue(5);
+				}
+
+				break;
+			case ConstDef.BloodPresureTabIndex: // BloodPressure
+				mOnceMeas = true;
+
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.SENSORTYPE))
+						.SetValue(MessageInfo.SENSORTYPE_BLOODPRESSUREMETER);
+				((StringParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.SENSORID)).SetValue("THERMOME");
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASMODE))
+						.SetValue(MessageInfo.SINGLE_MEAS_MODE);
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASITEMNUM)).SetValue(1);
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASITEM))
+						.SetValue(MessageInfo.MM_MI_BLOOD_PRESSURE);
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASCOUNT)).SetValue(1);
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASINTERVAL)).SetValue(5);
+				break;
+			case ConstDef.ElectrocardiogramTabIndex: // Electrocardiogram
+				mOnceMeas = false;
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.SENSORTYPE))
+						.SetValue(MessageInfo.SENSORTYPE_ELECTROCARDIOGRAMMETER);
+				((StringParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.SENSORID)).SetValue("ECGTROCA");
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASMODE))
+						.SetValue(MessageInfo.SINGLE_MEAS_MODE);
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASITEMNUM)).SetValue(1);
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASITEM))
+						.SetValue(MessageInfo.MM_MI_ELECTRO_CARDIOGRAM);
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASCOUNT)).SetValue(1);
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASINTERVAL)).SetValue(5);
+				break;
+			case ConstDef.BloodOxygenTabIndex: // BloodOxygen
+				mOnceMeas = false;
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.SENSORTYPE))
+						.SetValue(MessageInfo.SENSORTYPE_BLOODOXYGENMETER);
+				((StringParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.SENSORID)).SetValue("BLOODOXY");
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASMODE))
+						.SetValue(MessageInfo.SINGLE_MEAS_MODE);
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASITEMNUM)).SetValue(1);
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASITEM))
+						.SetValue(MessageInfo.MM_MI_BLOOD_OXYGEN);
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASCOUNT)).SetValue(1);
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASINTERVAL)).SetValue(5);
+
+				break;
+			case ConstDef.BloodSugarTabIndex: // BloodSugar
+				mOnceMeas = true;
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.SENSORTYPE))
+						.SetValue(MessageInfo.SENSORTYPE_BLOODSUGARMETER);
+				((StringParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.SENSORID)).SetValue("THERMOME");
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASMODE))
+						.SetValue(MessageInfo.SINGLE_MEAS_MODE);
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASITEMNUM)).SetValue(1);
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASITEM))
+						.SetValue(MessageInfo.MM_MI_BLOOD_SUGAR);
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASCOUNT)).SetValue(1);
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASINTERVAL)).SetValue(5);
+				break;
+
+			case ConstDef.StethoscopeTabIndex: // Stethoscope
+				mOnceMeas = true;
+
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.SENSORTYPE))
+						.SetValue(MessageInfo.SENSORTYPE_STETHOSCOPE);
+				((StringParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.SENSORID)).SetValue("THERMOME");
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASMODE))
+						.SetValue(MessageInfo.SINGLE_MEAS_MODE);
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASITEMNUM)).SetValue(1);
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASITEM))
+						.SetValue(MessageInfo.MM_MI_HEART_RATE);
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASCOUNT)).SetValue(1);
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASINTERVAL)).SetValue(5);
+				break;
+			case ConstDef.PulVentTabIndex: // pulmonaryventilation
+				mOnceMeas = false;
+
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.SENSORTYPE))
+						.SetValue(MessageInfo.SENSORTYPE_PULMONARYVENTILATION);
+				((StringParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.SENSORID)).SetValue("PULVENT");
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASMODE))
+						.SetValue(MessageInfo.SINGLE_MEAS_MODE);
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASITEMNUM)).SetValue(1);
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASITEM))
+						.SetValue(MessageInfo.MM_MI_PULMONARY_VENTILATION);
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASCOUNT)).SetValue(1);
+				((IntParameter) MessageData.parmsDataHashMap
+						.get(ParameterDataKeys.MEASINTERVAL)).SetValue(5);
+				break;
+			case 7: // Complex
+			/*
+			 * mOnceMeas = false; Meas_CommandName_Parm = BATCH_MEAS_COMM;
+			 * Meas_CommandID_Parm += 1; Batch_MeasNum_Parm =
+			 * mSelectedBatch_MeasNum_Parm; Meas_MessageBufferSize_Parm =
+			 * BATCH_MEAS_MESSAGE_HEADER_SIZE + (SINGLE_MEAS_COMMAND_SIZE *
+			 * Batch_MeasNum_Parm); if (Batch_MeasNum_Parm > 0) {
+			 * CreateBatchMeasureCommandMessage(mSendMessBuffer, 0); }
+			 */
+				break;
+		}
+
+		mOutMsg = new SingleSensorMeasMessage();
+		mSendMsgBuffer = mOutMsg.CreaterMessage();
+		mSendMsgSize = mSendMsgBuffer.length;
+
+	}
+
 	public void CreateGWStateQueryCommandMessage(int measID) {
 		// Set common parameters value
 		// TransID_Parm += 1;
@@ -932,9 +1158,9 @@ public class MessageProcess {
 				mReceiveMsgPreParmEndIdx = -1;
 				ReceiveMsgProcessed = true;
 			} else {
-				System.arraycopy(mReceiveBuffer, mReceiveMsgPreParmEndIdx + 1,
-						mReceiveRetsBuffer, mReceiveRetsBufferSize,
-						mRemainReceiveRetsBufferSize);
+				System.arraycopy(mReceiveBuffer, mReceiveMsgPreParmEndIdx + 1,		//mReceiveBuffer是收到所有包的合集
+						mReceiveRetsBuffer, mReceiveRetsBufferSize,					//mReceiveRetsBuffer应该是所有收到的包的合集或者单个包的内容
+						mRemainReceiveRetsBufferSize);								//mReceiveRetsBuffer接收蓝牙连接命令包时去掉了头八位和包尾
 				// It should equal to mReceiveRetsBufferSize;
 				mReceiveRetsBufferSize += mRemainReceiveRetsBufferSize;
 				mReceiveMsgPreParmEndIdx += mRemainReceiveRetsBufferSize;
@@ -946,11 +1172,11 @@ public class MessageProcess {
 			switch (mReceiveMsgMsgType) {		//有问题
 			case MessageInfo.MSGTYPE_ST_MEAS_RESULT_IND:
 				mInMsg = new SingleSensorMeasRetMessage();
-				mInMsg.GetInMsg(mReceiveRetsBuffer, 0, mReceiveRetsBufferSize);
-				mInMsg.Process();
+				mInMsg.GetInMsg(mReceiveRetsBuffer, 0, mReceiveRetsBufferSize);			//看一看mReceiveRetsBuffer的长度，其中包含了除包头尾长度和网关指令之外的所有信息
+				mInMsg.Process();														//mInMsg包含了除包头尾长度网关之外所有信息
 				mRetsError = mInMsg.GetMessageError();
 				if (!mRetsError) {
-					mResults = ((SingleSensorMeasRetMessage) mInMsg)
+					mResults = ((SingleSensorMeasRetMessage) mInMsg)////////////////////////
 							.GetMeasItemResults();
 					mReceiveMsgSensorType = ((SingleSensorMeasRetMessage) mInMsg)
 							.GetSensorType();
@@ -1007,7 +1233,7 @@ public class MessageProcess {
 					mReadReceiveMsgParmIdx = mReceiveBufferSize
 							- mReceiveMsgParmIdx - 1;
 					for (idx = 0; idx <= mReadReceiveMsgParmIdx; idx++) {
-						mReceiveMsgParm[idx] = mReceiveBuffer[mReceiveMsgParmIdx
+						mReceiveMsgParm[idx] = mReceiveBuffer[mReceiveMsgParmIdx		//mReceiveMsgParm可能包含所有指令信息
 								+ idx];
 					}
 
@@ -1144,7 +1370,7 @@ public class MessageProcess {
 				break;
 
 			case FIND_MSG_MSG_TYPE_STATE:
-				mReceiveMsgMsgType = MessageBase
+				mReceiveMsgMsgType = MessageBase			//查看类型
 						.InvBytesToInt(mReceiveMsgMsgTypeParm);
 				mReceiveMsgProcessState = ReceiveMsgProcessState.GET_PARMS_RESULTS_STATE;
 				break;
@@ -1200,6 +1426,9 @@ public class MessageProcess {
 
 			}
 		}
+
+		//以下为我自己写的
+
 	}
 
 }

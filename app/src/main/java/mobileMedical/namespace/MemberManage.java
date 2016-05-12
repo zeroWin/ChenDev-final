@@ -1195,7 +1195,8 @@ public class MemberManage extends Activity {
 		doctor = "";
 		doctorId = 0;
 
-		cursor = boDbHelper
+		//delete this code to hide pulmonaryventilation
+/*		cursor = boDbHelper
 				.getLatestInfo(MessageInfo.SENSORTYPE_PULMONARYVENTILATION);
 		if (cursor.moveToNext()) {
 			value = cursor.getString(cursor
@@ -1222,7 +1223,7 @@ public class MemberManage extends Activity {
 		map5.put("time", dateString);
 		map5.put("doctor", doctor);
 		map5.put("doctorId", doctorId);
-		patientSignsMeasInfoList.add(map5);
+		patientSignsMeasInfoList.add(map5);*/
 	}
 
 	/**
