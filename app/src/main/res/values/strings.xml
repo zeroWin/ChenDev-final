@@ -142,7 +142,7 @@
     <string name="pulmonaryDisplayFrameLenMessage">配置肺通波形显示帧长度，范围1~50秒</string>
     <string name="sendCommand">发送命令</string>
     <string name="sendCommandMessage">发送控制，配置命令</string>
-    <string name="clearDataBase ">清楚数据</string>
+    <string name="clearDataBase">清除数据</string>
     <string name="clearDataBaseMessage">清楚存储的测量结果数据</string>
     <string name="TimeSet">配置定时时间</string>
     <string name="PulmonaryVentilation">肺通值</string>
@@ -198,7 +198,7 @@
      <string name="cancel">取消</string>
      <string name="sure">确定</string>
   <string name="idno_not_change">身份证号码不能修改</string>
-<string name="no_type">  未识别测量类型</string>
+<string name="no_type">未识别测量类型</string>
     <string name="title_activity_file_transmission">fileTransmission</string>
 
     <string name="hello_world">Hello world!</string>
@@ -206,4 +206,5 @@
     <string name="title_activity_ai_charts_display">aiChartsDisplay</string>
     <string name="title_activity_ai_charts_display4blood_pressure">aiChartsDisplay4bloodPressure
     </string>
+    <string name="title_activity_ai_charts_display4blood_ox">aiChartsDisplay4bloodOx</string>
 </resources>

@@ -14,6 +14,7 @@ public class ConstDef {
 	
 	public static final String SN_CONFIG_REQ_BROADCAST_MESSAGE = "android.intent.action.snConfig";
 	public static final String MEAS_STOP_REQ_BROADCAST_MESSAGE = "android.intent.action.measstopreq";
+	public static final String MEAS_STOP_RESET_REQ_BROADCAST_MESSAGE = "android.intent.action.measstopresetreq";//added by xy
 	public static final String ALARM_TIME_REQ_BROADCAST_MESSAGE = "android.intent.action.alarmTime";
 	
 	public static final String BLOODOX_MEAS_RESULTS_BROADCAST_MESSAGE = "android.intent.action.bloodox";

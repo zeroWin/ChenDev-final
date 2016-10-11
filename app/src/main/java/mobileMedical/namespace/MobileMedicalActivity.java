@@ -196,6 +196,11 @@ public class MobileMedicalActivity extends TabActivity {
 						.setAction(ConstDef.MEAS_STOP_REQ_BROADCAST_MESSAGE);
 				sendBroadcast(stopMeasIntent);
 
+//				Intent stopResetMeasIntent = new Intent();//added by xy
+//				stopResetMeasIntent
+//						.setAction(ConstDef.MEAS_STOP_RESET_REQ_BROADCAST_MESSAGE);
+//				sendBroadcast(stopResetMeasIntent);
+
 //				Intent intent = new Intent();// 创建Intent对象
 //				intent.setAction(ConstDef.CMD_BROADCAST_MESSAGE);
 //				intent.putExtra(ConstDef.CMD, ConstDef.CMD_STOP_SERVICE);

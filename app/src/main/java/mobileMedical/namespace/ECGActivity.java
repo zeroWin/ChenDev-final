@@ -33,13 +33,15 @@ public class ECGActivity extends Activity {
 
 
 boDb boDbHelper = new boDb(this, "bloodox.db", null, 1);
-private final int MaxPoints = 200;
+//private final int MaxPoints = 200;
+	private final int MaxPoints = 300;
 
 private final float mSampleRate = 200.0f;
 private int m_ResultsPackageIndex = 0;
 private boolean m_NewResults = true;
 
 private int m_ViewMaxPoints = 100000;
+//	private int m_ViewMaxPoints = 1000;//xy
 private int m_ViewMaxPointsRepeat = 0;
 
 private int mResultsIdx = 0;
@@ -98,9 +100,11 @@ private static final String TAG = "EGCActivity";
         setContentView(R.layout.ecg);
         
         
-        IntentFilter filter = new IntentFilter(ConstDef.ECG_MEAS_RESULTS_BROADCAST_MESSAGE);        
-        this.registerReceiver(mReceiver,filter); 
-        m_HeartRate = (TextView) findViewById(R.id.textViewECGHeartRateValue);
+        IntentFilter filter = new IntentFilter(ConstDef.ECG_MEAS_RESULTS_BROADCAST_MESSAGE);
+//		IntentFilter filter2 = new IntentFilter(ConstDef.MEAS_STOP_RESET_REQ_BROADCAST_MESSAGE);//added by xy
+        this.registerReceiver(mReceiver,filter);
+//		this.registerReceiver(mReceiver,filter2);//added by xy
+		m_HeartRate = (TextView) findViewById(R.id.textViewECGHeartRateValue);
     	
        m_ChartView = (ChartView)findViewById(R.id.chartViewECG);
        
@@ -179,6 +183,9 @@ private static final String TAG = "EGCActivity";
 				m_ResultsPackageIndex = 0;
 
             }
+//			else if(action.equals(ConstDef.MEAS_STOP_RESET_REQ_BROADCAST_MESSAGE)){//added by xy
+//				m_NewResults = true;
+//			}
             else if(action.equals(ConstDef.ECG_MEAS_RESULTS_BROADCAST_MESSAGE))
              {  
             	 
@@ -188,7 +195,7 @@ private static final String TAG = "EGCActivity";
 
            	    m_NewResults = false;
            	    m_TransID = ((IntParameter) MessageData.parmsDataHashMap
-    						.get(ParameterDataKeys.TRANSID)).GetValue();
+    						.get(ParameterDataKeys.TRANSID)).GetValue();//需要自加
            	    // Should increase TransId by 1 to keep it is monotonic increasing.
 //           	    m_TransID +=1;
   				   ((IntParameter)MessageData.parmsDataHashMap.get(ParameterDataKeys.TRANSID)).SetValue(m_TransID);			 
@@ -221,6 +228,8 @@ private static final String TAG = "EGCActivity";
                    
               m_ModeTimes = m_PointsCounter % m_MaxPoints;
            	  m_MultipleTimes = m_PointsCounter / m_MaxPoints;
+				 Log.e("------m_ModeTimes--", String.valueOf(m_ModeTimes));
+				 Log.e("------m_MultipleTimes--", String.valueOf(m_MultipleTimes));
            	 if (m_PointsCounter > m_ViewMaxPoints)
         	  {
         		  m_TargetCollection.clear();
@@ -238,7 +247,7 @@ private static final String TAG = "EGCActivity";
 				
 								
            		m_ChartArea.getDefaultXAxis()
-					.getScale().setZoom(m_MultipleTimes*m_MaxPoints/mSampleRate , m_MaxPoints/mSampleRate);
+						.getScale().setZoom(m_MultipleTimes * m_MaxPoints/mSampleRate , m_MaxPoints/mSampleRate);
            	 }
            	 
                 	//test

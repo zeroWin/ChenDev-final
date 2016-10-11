@@ -184,7 +184,12 @@ public class BluetoothServer extends Service{
 						{
 							tempBuffIndex = tempBuffCount -1;
 						}*/
-						System.arraycopy(buff, 0, tempbuff, tempBuffCount, value);
+						if(tempBuffCount+value<=2048) {//this if-else block added by xy.
+							System.arraycopy(buff, 0, tempbuff, tempBuffCount, value);
+						}
+						else{
+							tempBuffCount=2048-value;
+						}
 						if (BuildConfig.DEBUG) {
 						Log.i("BYTELEN", String.valueOf(value));
 						}
@@ -502,14 +507,19 @@ public class BluetoothServer extends Service{
             }              
         return ret;  
     }  
-      
+
+//	public void btSocketInstantiation(){
+//		btSocket = btSocket.newInstance();
+//		isBtSocketClosed = false;
+//	}
     public void stopService(){//停止服务      
         threadFlag = false;//停止线程  
         try{
            btSocket.close();
-          } catch (IOException e2) {                          
-             
-          }  
+          } catch (IOException e2) {
+//		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
           
          // this.unregisterReceiver(cmdReceiver);    
         stopSelf();//停止服务  
@@ -569,7 +579,7 @@ public class BluetoothServer extends Service{
             	 }*/
                       
                   if(cmd == ConstDef.CMD_STOP_SERVICE){  	//收到停止命令则停止服务
-                	  stopService();  
+                	  stopService();
                   }    
                     
                 /*  if(cmd == ConstDef.CMD_SEND_DATA)  

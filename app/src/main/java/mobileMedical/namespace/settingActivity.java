@@ -204,11 +204,11 @@ public class settingActivity extends TabActivity {
         //stop bt if connected
         if(!mConnectedDeviceStr.equals(mNoConnection))
         {
-        Intent intent = new Intent();//卢鈥⒙?艗漏卢脝Intent鈥毭犆団?脛貌鈮埫垰玫  
+        Intent intent = new Intent();
         intent.setAction(ConstDef.CMD_BROADCAST_MESSAGE);  
         intent.putExtra(ConstDef.CMD, ConstDef.CMD_STOP_SERVICE);  
           
-        sendBroadcast(intent);//鈥毭犆⑩垰脛鈭毭撁勨?脛没鈥毭⒙р?脛垄  
+        sendBroadcast(intent);
         }
        
     }

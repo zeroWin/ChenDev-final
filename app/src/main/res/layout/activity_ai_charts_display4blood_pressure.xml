@@ -35,4 +35,20 @@
             />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/bloodPressureDataDisp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BP:"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DP:"/>
+    </LinearLayout>
+
 </LinearLayout>

@@ -31,6 +31,7 @@ public class fileTransmission extends Activity {
     private Button FSendButton;
     private Button resuleDisplay4ECG;
     private Button resultDisplay4bloodPressure;
+    private Button resultDisplay4bloodOx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class fileTransmission extends Activity {
         //设置ipet与edittext相关联
         ipet=(EditText)findViewById(R.id.ipet);
         //此处为服务器ip
-        ipet.setText("10.108.170.195");
+        ipet.setText("10.108.170.196");
 //        ipet.setText("10.108.168.155");
         //--------------文件接收到手机-------------------//
         FReceiveButton=(Button)findViewById(R.id.FReceive);
@@ -152,6 +153,8 @@ public class fileTransmission extends Activity {
                             //文件名为123.txt
                             sendFile(socketChannel, new File(Environment.getExternalStorageDirectory()
                                     .getAbsolutePath() + "/mobileMedical.namespace/files/measdata.txt"));
+//                            sendFile(socketChannel, new File(Environment.getExternalStorageDirectory()
+//                                    .getAbsolutePath() + "/mobileMedical.namespace/files/measdatainfo.txt"));
                         }catch (Exception ex){
                             Log.i("FSendERROR",null,ex);
                         }
@@ -179,8 +182,15 @@ public class fileTransmission extends Activity {
                 startActivity(intent);
             }
         });
-
-
+        resultDisplay4bloodOx = (Button)findViewById(R.id.resuleDisplay4bloodOx);
+        resultDisplay4bloodOx.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(fileTransmission.this,aiChartsDisplay4bloodOx.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private static void sendFile(SocketChannel socketChannel, File file) throws IOException {

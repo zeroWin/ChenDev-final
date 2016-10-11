@@ -37,8 +37,8 @@ boDb boDbHelper = new boDb(this, "bloodox.db", null, 1);
 private final int MaxPoints = 200;
 
 private int mResultsIdx = 0;
-private char[] mResults = null;
-private char[] mMeasItemCharResults = null;
+private int[] mResults = null;
+private int[] mMeasItemCharResults = null;
 private final int mResultsParameters = 3;
 private int mResultsItemNum = 0;
 
@@ -75,12 +75,13 @@ private boolean m_NewResults = true;
 		private int m_MesaItemsResultLen;
 		private int m_Idx;
 		private	int m_MeasItemIdex;
-		private	int m_PulseWaveResult;
+		private	int m_PulseWaveResult;	//总共传过来两组数据，包含RED和IR
 		private	int m_SPO2Result;
 		private	int m_HeartRateResult;
+		private int m_totalResult;//added by xy,contains two information including m_HeartRateResult & m_SPO2Result
 		private int m_MaxPoints = 200;
-		private int m_YAxisMax = 6000;
-		private int m_YAxisMin = 0;
+		private int m_YAxisMax = -50000;
+		private int m_YAxisMin = -250000;
 		private int m_XAxisMin = 0;
 	
 		private int m_TransID;
@@ -112,7 +113,7 @@ private boolean m_NewResults = true;
         m_ChartView = (ChartView)findViewById(R.id.chartView);
         
         m_DataBaseSQL = boDbHelper.getWritableDb();
-        m_TotalDataPackage = new StringBuilder(36);
+        m_TotalDataPackage = new StringBuilder(20);
 		m_ContentValues = new ContentValues();
 		
 		m_ChartSeries = new ChartSeries("FastLineSeries", ChartTypes.FastLine);
@@ -196,9 +197,9 @@ private boolean m_NewResults = true;
 
             	    m_NewResults = false;
             	    m_TransID = ((IntParameter) MessageData.parmsDataHashMap
-     						.get(ParameterDataKeys.TRANSID)).GetValue();
+     						.get(ParameterDataKeys.TRANSID)).GetValue();//查看为什么没有自加
             	    // Should increase TransId by 1 to keep it is monotonic increasing.
-            	    m_TransID +=1;
+//            	    m_TransID +=1;
    				   ((IntParameter)MessageData.parmsDataHashMap.get(ParameterDataKeys.TRANSID)).SetValue(m_TransID);			 
      				m_SensorType = MessageInfo.SENSORTYPE_BLOODOXYGENMETER;
      				m_MeasItem = MessageInfo.MM_MI_BLOOD_OXYGEN;
@@ -246,13 +247,15 @@ private boolean m_NewResults = true;
 				
 								
            		m_ChartArea.getDefaultXAxis()
-					.getScale().setZoom(m_MultipleTimes*m_MaxPoints/mSampleRate , m_MaxPoints/mSampleRate);
+//					.getScale().setZoom(m_MultipleTimes*m_MaxPoints/mSampleRate , m_MaxPoints/mSampleRate);
+				 .getScale().setZoom(m_MultipleTimes*m_MaxPoints/mSampleRate , 5);
            	 }
            	 
 
                  m_MesaItemsResultLen = mResultsItemNum * MessageInfo.SPO2_HYBRID_MEASITEM_RESULT_LEN;
                  m_Idx = 0;
-                  mResults = new char[m_MesaItemsResultLen];
+                  mResults = new int[m_MesaItemsResultLen];
+				  m_totalResult = 0;	//initial it,added by xy
                   m_HeartRateResult = 0;
                   m_SPO2Result = 0;
                   m_PulseWaveResult =0;
@@ -265,7 +268,7 @@ private boolean m_NewResults = true;
                 	do {
 
 						mResultsItemNum -= 1;
-						mMeasItemCharResults = m_MeasItemResults[m_MeasItemIdex].GetCharResults();
+						mMeasItemCharResults = m_MeasItemResults[m_MeasItemIdex].GetIntResults();
 						System.arraycopy(mMeasItemCharResults, 0, mResults, m_Idx, MessageInfo.SPO2_HYBRID_MEASITEM_RESULT_LEN);	
 						m_Idx += MessageInfo.SPO2_HYBRID_MEASITEM_RESULT_LEN;
 						/*
@@ -277,9 +280,12 @@ private boolean m_NewResults = true;
 						 * 
 						 * m.setData(bundle); updateHandler .sendMessage(m);
 						 */
-					
-						m_HeartRateResult = mMeasItemCharResults[MessageInfo.PULSERATE_RESULT_IDX];
-						m_SPO2Result = mMeasItemCharResults[MessageInfo.SPO2_VALUE_RESULT_IDX];
+						m_totalResult = mMeasItemCharResults[MessageInfo.PULSERATE_RESULT_IDX];
+						m_HeartRateResult = m_totalResult >>> 16;	//取高位
+						m_SPO2Result = (byte)m_totalResult;	//取低位
+						Log.i("first data", String.valueOf(m_totalResult));
+//						m_HeartRateResult = mMeasItemCharResults[MessageInfo.PULSERATE_RESULT_IDX];
+//						m_SPO2Result = mMeasItemCharResults[MessageInfo.SPO2_VALUE_RESULT_IDX];
 						
 						m_TotalDataPackage.append(m_HeartRateResult + " ");
 						m_TotalDataPackage.append(m_SPO2Result + " ");
@@ -287,7 +293,7 @@ private boolean m_NewResults = true;
 						m_HeartRate.setText(String.valueOf(m_HeartRateResult));
 						m_SPO2.setText(String.valueOf(m_SPO2Result));
 					
-					  
+
 						
 						for (int index = 0; index < MessageInfo.SPO2_WAVEFORM_SAMPLES_NUM_PER_PACKET; index++)
 						{
@@ -296,9 +302,11 @@ private boolean m_NewResults = true;
 						pulseWaveResult = Math.round(normPulseWaveResult * 200);*/
 						m_TotalDataPackage.append(m_PulseWaveResult + " ");
 
-
-						m_TargetCollection.addXY(m_PointsCounter/mSampleRate,m_PulseWaveResult);
-						m_PointsCounter++;											
+							if(index >=8) {//this "if" is added by xy,to display IR data
+//								m_TargetCollection.addXY(m_PointsCounter / mSampleRate, (byte)m_PulseWaveResult);
+								m_TargetCollection.addXY(m_PointsCounter / mSampleRate, -m_PulseWaveResult);
+								m_PointsCounter++;
+							}
 						}						
 					}while(mResultsItemNum > 0);
                 	

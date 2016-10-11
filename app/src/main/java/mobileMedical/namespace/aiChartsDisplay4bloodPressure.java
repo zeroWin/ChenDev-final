@@ -54,6 +54,7 @@ public class aiChartsDisplay4bloodPressure extends Activity {
             ChartSeries bpcs1 = new ChartSeries(ChartTypes.FastLine);
             ChartSeries bpcs12 = new ChartSeries(ChartTypes.FastLine);
             ChartArea bpca1 = new ChartArea();
+            bpca1.getDefaultYAxis().setTitle(getString(R.string.bloodpressDC));
             bpcs1.getPoints().setData(bpdata1);
             bpcs12.getPoints().setData(bpdata2);
             bpcv1.getSeries().add(bpcs1);
@@ -62,6 +63,7 @@ public class aiChartsDisplay4bloodPressure extends Activity {
 //图2
             ChartSeries bpcs2 = new ChartSeries(ChartTypes.FastLine);
             ChartArea bpca2 = new ChartArea();
+            bpca2.getDefaultYAxis().setTitle(getString(R.string.bloodpressAC));
             bpcs2.getPoints().setData(bpdata2);
             bpcv2.getSeries().add(bpcs2);
             bpcv2.getAreas().add(bpca2);

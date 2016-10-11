@@ -251,6 +251,12 @@ public class MemberManage extends Activity {
 							public void run() {
 								// TODO Auto-generated
 								// method stub
+								//按下存储按钮后，自动断开蓝牙连接
+								Intent intent = new Intent();// 创建Intent对象
+								intent.setAction(ConstDef.CMD_BROADCAST_MESSAGE);
+								intent.putExtra(ConstDef.CMD, ConstDef.CMD_STOP_SERVICE);	//发送停止服务的广播
+								sendBroadcast(intent);
+
 								stopService(new Intent(
 										getApplication(),
 										BluetoothServer.class));
@@ -268,10 +274,9 @@ public class MemberManage extends Activity {
 								boDbHelper
 										.UpdateTransIDParm(transID);
 								boDbHelper.close();
-								Toast.makeText(MemberManage.this,"存储完成",Toast.LENGTH_LONG).show();
+								Toast.makeText(MemberManage.this, "存储完成", Toast.LENGTH_LONG).show();
 							}
 						});
-
 			}
 		});
 		//跳转到上传数据页面
@@ -1760,6 +1765,7 @@ public class MemberManage extends Activity {
 				saveToFile();
 				if (context != null && runnable != null) {
 					((Activity) context).runOnUiThread(runnable);
+//					runnable.run();
 				}
 			}
 		}.start();
@@ -1782,7 +1788,7 @@ public class MemberManage extends Activity {
 
 		try {
 			fileContents = filesOperator.ReadMeasDataFromFile(
-					"measdatainfo.txt", false, 1);
+					"measdatainfo.txt"	, false, 1);
 			transIdinFile = Integer
 					.parseInt(fileContents[fileContents.length - 1]
 							.split(splitNoteString)[0]);
@@ -1844,9 +1850,7 @@ public class MemberManage extends Activity {
 
 				if (num > 1) {
 					if (count == 0) {
-						tmpAlreadyLinesInMeasDataFile =
-
-						alreadyLinesInMeasDataFile;
+						tmpAlreadyLinesInMeasDataFile = alreadyLinesInMeasDataFile;
 						tmpTransId = transId;
 					}
 					if (tmpTransId == transId) {

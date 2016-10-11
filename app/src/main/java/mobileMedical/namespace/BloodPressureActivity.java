@@ -35,7 +35,8 @@ public class BloodPressureActivity extends Activity {
 
 boDb boDbHelper = new boDb(this, "bloodox.db", null, 1);
 
-private final int MaxPoints = 1000;
+//private final int MaxPoints = 1000;
+	private final int MaxPoints = 1500;
 private final float mSampleRate = 200.0f;
 private int m_ResultsPackageIndex = 0;
 private boolean m_NewResults = true;
@@ -218,7 +219,7 @@ private static final String TAG = "BloodPressActivity";
             	    m_TransID = ((IntParameter) MessageData.parmsDataHashMap
      						.get(ParameterDataKeys.TRANSID)).GetValue();
             	    // Should increase TransId by 1 to keep it is monotonic increasing.
-            	    m_TransID +=1;
+//            	    m_TransID +=1;
    				   ((IntParameter)MessageData.parmsDataHashMap.get(ParameterDataKeys.TRANSID)).SetValue(m_TransID);			 
      				m_SensorType = MessageInfo.SENSORTYPE_BLOODPRESSUREMETER;
      				m_MeasItem = MessageInfo.MM_MI_BLOOD_PRESSURE;
@@ -264,14 +265,16 @@ private static final String TAG = "BloodPressActivity";
            	  else if(m_ModeTimes == 0 && m_PointsCounter !=0)
            	   {
          		m_BloodPressACChartArea.getDefaultXAxis()
-						.getScale().setRange(m_XAxisMin, (m_MultipleTimes +1)*m_MaxPoints/mSampleRate);							
+						.getScale().setRange(m_XAxisMin, (m_MultipleTimes + 1) * m_MaxPoints / mSampleRate);
          		m_BloodPressACChartArea.getDefaultXAxis()
-					.getScale().setZoom(m_MultipleTimes*m_MaxPoints/mSampleRate , m_MaxPoints/mSampleRate);
+//					.getScale().setZoom(m_MultipleTimes*m_MaxPoints/mSampleRate , m_MaxPoints/mSampleRate);
+				   .getScale().setZoom(m_MultipleTimes*m_MaxPoints/mSampleRate , 5);
          		
          		m_BloodPressDCChartArea.getDefaultXAxis()
 				.getScale().setRange(m_XAxisMin, (m_MultipleTimes +1)*m_MaxPoints/mSampleRate);							
  		       m_BloodPressDCChartArea.getDefaultXAxis()
-			     .getScale().setZoom(m_MultipleTimes*m_MaxPoints/mSampleRate , m_MaxPoints/mSampleRate);
+//			     .getScale().setZoom(m_MultipleTimes*m_MaxPoints/mSampleRate , m_MaxPoints/mSampleRate);
+					   .getScale().setZoom(m_MultipleTimes*m_MaxPoints/mSampleRate , 5);
             	 }
            	 
            	m_MesaItemsResultLen = mResultsItemNum * MessageInfo.BLOODPRESS_HYBRID_MEASITEM_RESULT_LEN;
@@ -291,7 +294,8 @@ private static final String TAG = "BloodPressActivity";
 
 						mResultsItemNum -= 1;
 						mMeasItemIntResults =  m_MeasItemResults[m_MeasItemIdex].GetCharResults();
-						System.arraycopy(mMeasItemIntResults, 0, mResults, m_Idx, MessageInfo.BLOODPRESS_HYBRID_MEASITEM_RESULT_LEN);	
+//						System.arraycopy(mMeasItemIntResults, 0, mResults, m_Idx, MessageInfo.BLOODPRESS_HYBRID_MEASITEM_RESULT_LEN);
+						System.arraycopy(mMeasItemIntResults, 0, mResults, 0, MessageInfo.BLOODPRESS_HYBRID_MEASITEM_RESULT_LEN);//edit by xy
 						m_Idx += MessageInfo.BLOODPRESS_HYBRID_MEASITEM_RESULT_LEN;
 						/*
 						 * Message m = updateHandler .obtainMessage(1, Spo2,
@@ -305,11 +309,11 @@ private static final String TAG = "BloodPressActivity";
 					
 						 m_SPResult = mMeasItemIntResults[MessageInfo.BLOODPRESS_RESULT_IDX];
 						 m_DPResult = mMeasItemIntResults[MessageInfo.BLOODPRESS_RESULT_IDX+1];
-						 m_ACCountResult = mMeasItemIntResults[MessageInfo.BLOODPRESS_RESULT_IDX+2];
+//						 m_ACCountResult = mMeasItemIntResults[MessageInfo.BLOODPRESS_RESULT_IDX+2];
 						 
 							m_TotalDataPackage.append(m_SPResult + " ");
 							m_TotalDataPackage.append(m_DPResult + " ");
-							m_TotalDataPackage.append(m_ACCountResult + " ");
+//							m_TotalDataPackage.append(m_ACCountResult + " ");
 						if(m_SPResult != 65535)
 						{
 						
@@ -321,11 +325,11 @@ private static final String TAG = "BloodPressActivity";
 						m_DP.setText(String.valueOf(m_DPResult));
 						}		
 						
-						for (int index = 0; index < m_ACCountResult; index++)
+						for (int index = 0; index < MessageInfo.BLOODPRESS_WAVEFORM_SAMPLES_NUM_PER_PACKET/2; index++)
 						{
-						 m_ACWaveResult = mResults[MessageInfo.BLOODPRESS_WAVEFORM_RESULT_STARTIDX + index];
-						 m_DCWaveResult = mResults[MessageInfo.BLOODPRESS_WAVEFORM_RESULT_STARTIDX + 
-						                            MessageInfo.BLOODPRESS_WAVEFORM_SAMPLES_NUM_PER_PACKET +index];
+						 m_DCWaveResult = mResults[MessageInfo.BLOODPRESS_WAVEFORM_RESULT_STARTIDX + index];
+						 m_ACWaveResult = mResults[MessageInfo.BLOODPRESS_WAVEFORM_RESULT_STARTIDX +
+						                            MessageInfo.BLOODPRESS_WAVEFORM_SAMPLES_NUM_PER_DATA +index];
 
 							m_TotalDataPackage.append(m_ACWaveResult + " ");
 							m_TotalDataPackage.append(m_DCWaveResult + " ");

@@ -179,6 +179,10 @@
             android:name=".aiChartsDisplay4bloodPressure"
             android:label="@string/title_activity_ai_charts_display4blood_pressure" >
         </activity>
+        <activity
+            android:name=".aiChartsDisplay4bloodOx"
+            android:label="@string/title_activity_ai_charts_display4blood_ox" >
+        </activity>
     </application>
 
 </manifest>
