@@ -41,7 +41,7 @@ public class fileTransmission extends Activity {
         //设置ipet与edittext相关联
         ipet=(EditText)findViewById(R.id.ipet);
         //此处为服务器ip
-        ipet.setText("10.108.170.196");
+        ipet.setText("172.20.195.1");
 //        ipet.setText("10.108.168.155");
         //--------------文件接收到手机-------------------//
         FReceiveButton=(Button)findViewById(R.id.FReceive);
@@ -145,16 +145,33 @@ public class fileTransmission extends Activity {
                     public void run() {
                         SocketChannel socketChannel=null;
                         try {
+                            // send measdatainfo.txt
                             socketChannel=SocketChannel.open();
                             //建立socket连接，服务器地址为ipstr，端口为1991
                             SocketAddress socketAddress = new InetSocketAddress(ipstr, 1991);
                             socketChannel.connect(socketAddress);
                             //手机发送文件，文件位置为data/data/com.example.practice.filetransferbetweenphonepc，
-                            //文件名为123.txt
+                            sendFile(socketChannel, new File(Environment.getExternalStorageDirectory()
+                                    .getAbsolutePath() + "/mobileMedical.namespace/files/measdatainfo.txt"));
+
+                            //send measdata.txt
+                            socketChannel=SocketChannel.open();
+                            //建立socket连接，服务器地址为ipstr，端口为1991
+                            socketChannel.connect(socketAddress);
+                            //send measdata.txt
                             sendFile(socketChannel, new File(Environment.getExternalStorageDirectory()
                                     .getAbsolutePath() + "/mobileMedical.namespace/files/measdata.txt"));
+
+
+//                            // send patientAndDoctor.txt
+//                            // read patient and doctor info write to file then send to server
+//                            socketChannel=SocketChannel.open();
+//                            //建立socket连接，服务器地址为ipstr，端口为1991
+//                            socketChannel.connect(socketAddress);
 //                            sendFile(socketChannel, new File(Environment.getExternalStorageDirectory()
-//                                    .getAbsolutePath() + "/mobileMedical.namespace/files/measdatainfo.txt"));
+//                                    .getAbsolutePath() + "/mobileMedical.namespace/files/patientAndDoctor.txt"));
+
+
                         }catch (Exception ex){
                             Log.i("FSendERROR",null,ex);
                         }
