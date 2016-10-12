@@ -2,6 +2,7 @@ package mobileMedical.namespace;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -21,10 +22,18 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.channels.SocketChannel;
 
+import mobileMedical.Contacts.Manager.ContactManager;
+import mobileMedical.Contacts.Manager.EmailManager;
+import mobileMedical.Contacts.Manager.IMManager;
+import mobileMedical.Contacts.Manager.TelManager;
+import mobileMedical.Contacts.Model.Contact;
 import mobileMedical.database.DBManager;
 
 public class fileTransmission extends Activity {
     private DBManager dbManager;
+    private ContactManager contactMgr;
+    private EmailManager emailMgr;
+    private TelManager telMgr;
     private EditText ipet;
     private Button FReceiveButton;
     private String ipstr;
@@ -33,6 +42,7 @@ public class fileTransmission extends Activity {
     private Button resultDisplay4bloodPressure;
     private Button resultDisplay4bloodOx;
 
+    boDb boDbHelper = new boDb(this, "bloodox.db", null, 1);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -162,14 +172,14 @@ public class fileTransmission extends Activity {
                             sendFile(socketChannel, new File(Environment.getExternalStorageDirectory()
                                     .getAbsolutePath() + "/mobileMedical.namespace/files/measdata.txt"));
 
-
-//                            // send patientAndDoctor.txt
-//                            // read patient and doctor info write to file then send to server
-//                            socketChannel=SocketChannel.open();
-//                            //建立socket连接，服务器地址为ipstr，端口为1991
-//                            socketChannel.connect(socketAddress);
-//                            sendFile(socketChannel, new File(Environment.getExternalStorageDirectory()
-//                                    .getAbsolutePath() + "/mobileMedical.namespace/files/patientAndDoctor.txt"));
+                            // send patientAndDoctor.txt
+                            // read patient and doctor info write to file then send to server
+                            readAndWritePaientAndDoctorInfo();
+                            socketChannel=SocketChannel.open();
+                            //建立socket连接，服务器地址为ipstr，端口为1991
+                            socketChannel.connect(socketAddress);
+                            sendFile(socketChannel, new File(Environment.getExternalStorageDirectory()
+                                    .getAbsolutePath() + "/mobileMedical.namespace/files/patientAndDoctor.txt"));
 
 
                         }catch (Exception ex){
@@ -294,5 +304,105 @@ public class fileTransmission extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void readAndWritePaientAndDoctorInfo()
+    {
+        String splitNoteString = ",";
+        // read doctor info and write to file
+        dbManager = new DBManager(fileTransmission.this);
+        Cursor cursor = dbManager.queryDoctorInfo(MemberManage.doctorID);
+        String username = "", doctorid = "", work = "", room = "", level = "", tel = "", email = "";
+
+        if (cursor.moveToNext()) {
+            username = cursor.getString(cursor
+                    .getColumnIndex(ConstDef.DATABASE_FIELD_USERNAME));
+            doctorid = cursor.getString(cursor
+                    .getColumnIndex(ConstDef.DATABASE_FIELD_ID));
+            work = cursor.getString(cursor
+                    .getColumnIndex(ConstDef.DATABASE_FIELD_WORK));
+            room = cursor.getString(cursor
+                    .getColumnIndex(ConstDef.DATABASE_FIELD_ROOM));
+            level = cursor.getString(cursor
+                    .getColumnIndex(ConstDef.DATABASE_FIELD_LEVEL));
+            tel = cursor.getString(cursor
+                    .getColumnIndex(ConstDef.DATABASE_FIELD_TEL));
+            email = cursor.getString(cursor
+                    .getColumnIndex(ConstDef.DATABASE_FIELD_EMAIL));
+        }
+        cursor.close();
+        dbManager.closeDB();
+
+        // 读取病人信息
+        contactMgr = new ContactManager(this);
+        telMgr = new TelManager(this);
+        emailMgr = new EmailManager(this);
+        int patientid = contactMgr.getAllContacts().get(0)
+                .getId();
+        Contact contact = contactMgr.getContactById(patientid);
+        String name = contact.getName();
+        String birthday = contact.getBirthday();
+        String address = contact.getAddress();
+        String idNo = contact.getIdNo();
+        String firstTelNumbertel = "";
+        String firstEmailName = "";
+
+        if (!telMgr.getTelNumbersByContactId(patientid).isEmpty()) {
+            firstTelNumbertel = telMgr.getTelNumbersByContactId(patientid).get(0);
+        }
+        if (!emailMgr.getEmailsByContactId(patientid).isEmpty()) {
+            firstEmailName = emailMgr.getEmailsByContactId(patientid).get(0)
+                    .getEmailAcount();
+        }
+        String relationName = contact.getRelationName();
+        String relation = contact.getRelation();
+        String relationTele = contact.getRelationTele();
+        String relationEmail = contact.getRelationEmail();
+
+
+        // 写入文件
+        String filePath = Environment.getExternalStorageDirectory()
+                .getAbsolutePath() + "/mobileMedical.namespace/files/";
+
+        File workingPath = new File(filePath);
+        // if this directory does not exists, make one.
+        if (!workingPath.exists()) {
+            if (!workingPath.mkdirs()) {
+            }
+        }
+        File fileWrite = new File( filePath + "patientAndDoctor.txt");
+        try {
+            fileWrite.createNewFile();
+            FileOutputStream fos =  new FileOutputStream(fileWrite);
+            // 插入医生信息
+            String doctorInfo = "1" + splitNoteString + doctorid +
+                    splitNoteString + username +
+                    splitNoteString + work +
+                    splitNoteString + room +
+                    splitNoteString + level +
+                    splitNoteString + tel +
+                    splitNoteString + email;
+            fos.write(doctorInfo.getBytes());
+            fos.write("\r\n".getBytes());
+
+            // 插入病人信息
+            String patientInfo = "2" + splitNoteString + patientid +
+                    splitNoteString + name +
+                    splitNoteString + birthday +
+                    splitNoteString + idNo +
+                    splitNoteString + address +
+                    splitNoteString + firstTelNumbertel +
+                    splitNoteString + firstEmailName +
+                    splitNoteString + relationName +
+                    splitNoteString + relation +
+                    splitNoteString + relationTele+
+                    splitNoteString + relationEmail;
+            fos.write(patientInfo.getBytes());
+            fos.write("\r\n".getBytes());
+            fos.close();
+        }
+        catch(Exception e){
+        }
+
     }
 }
