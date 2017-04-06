@@ -1339,7 +1339,7 @@ public class MemberManage extends Activity {
 		} else if (sensorType
 				.equalsIgnoreCase(MessageInfo.SENSORTYPE_STETHOSCOPE + "")) {
 			return context.getString(R.string.heartBeat);
-		} else if (sensorType.equalsIgnoreCase(MessageInfo.MM_MI_BLOOD_PRESSURE
+		} else if (sensorType.equalsIgnoreCase(MessageInfo.SENSORTYPE_BLOODPRESSUREMETER
 				+ "")) {
 			return context.getString(R.string.bloodPresure);
 		} else if (sensorType

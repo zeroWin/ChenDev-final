@@ -36,7 +36,7 @@ public class BloodPressureActivity extends Activity {
 boDb boDbHelper = new boDb(this, "bloodox.db", null, 1);
 
 //private final int MaxPoints = 1000;
-	private final int MaxPoints = 1500;
+private final int MaxPoints = 200;
 private final float mSampleRate = 200.0f;
 private int m_ResultsPackageIndex = 0;
 private boolean m_NewResults = true;
@@ -84,7 +84,7 @@ private static final String TAG = "BloodPressActivity";
 		private	int m_SPResult;
 		private	int m_DPResult;
 		private	int m_ACCountResult;
-		private int m_MaxPoints = 1000;
+		private int m_MaxPoints = 200;
 		private int m_YAxisMax = 3000;
 		private int m_YAxisMin = 0;
 		private int m_XAxisMin = 0;
@@ -121,16 +121,16 @@ private static final String TAG = "BloodPressActivity";
         m_TotalDataPackage = new StringBuilder();
 		m_ContentValues = new ContentValues();
 		
-        m_BloodPressDCChartView = (ChartView)findViewById(R.id.BloodPressDCchartView);		
+        m_BloodPressDCChartView = (ChartView)findViewById(R.id.BloodPressDCchartView);
 		m_BloodPressDCChartSeries = new ChartSeries("FastLineSeriesDC", ChartTypes.FastLine);
 		m_BloodPressDCChartView.setPanning(ChartView.PANNING_BOTH);
 		m_BloodPressDCChartView.getSeries().add(m_BloodPressDCChartSeries);
 		m_BloodPressDCChartArea = new ChartArea(getString(R.string.bloodpressDC));
 		m_BloodPressDCChartArea.getDefaultXAxis().getScale().setMargin(ChartAxisScale.MARGIN_NONE);
 		m_BloodPressDCChartArea.getDefaultXAxis().setShowLabels(false);
-		m_BloodPressDCChartArea.getDefaultYAxis().setTitle(getString(R.string.bloodpressDC));		
-		m_BloodPressDCChartView.getAreas().add(m_BloodPressDCChartArea);		
-		m_BloodPressDCChartArea.getDefaultYAxis().getScale().setRange(m_YAxisMin, m_YAxisMax);		
+		m_BloodPressDCChartArea.getDefaultYAxis().setTitle(getString(R.string.bloodpressDC));
+		m_BloodPressDCChartView.getAreas().add(m_BloodPressDCChartArea);
+		m_BloodPressDCChartArea.getDefaultYAxis().getScale().setRange(500,3000);
 		m_BloodPressDCChartArea.getDefaultXAxis().getScale().setRange(m_XAxisMin, m_MaxPoints);
 	
 		m_BloodPressACChartView = (ChartView)findViewById(R.id.BloodPressACchartView);		
@@ -140,9 +140,9 @@ private static final String TAG = "BloodPressActivity";
 		 m_BloodPressACChartArea = new ChartArea(getString(R.string.bloodpressAC));
 		 m_BloodPressACChartArea.getDefaultXAxis().getScale().setMargin(ChartAxisScale.MARGIN_NONE);
 		 m_BloodPressACChartArea.getDefaultXAxis().setShowLabels(false);
-		 m_BloodPressACChartArea.getDefaultYAxis().setTitle(getString(R.string.bloodpressAC));		
+		 m_BloodPressACChartArea.getDefaultYAxis().setTitle(getString(R.string.bloodpressAC));
 		 m_BloodPressACChartView.getAreas().add(m_BloodPressACChartArea);		
-		 m_BloodPressACChartArea.getDefaultYAxis().getScale().setRange(m_YAxisMin, m_YAxisMax);		
+		 m_BloodPressACChartArea.getDefaultYAxis().getScale().setRange(1000, 2500);
 		 m_BloodPressACChartArea.getDefaultXAxis().getScale().setRange(m_XAxisMin, m_MaxPoints);
         
 		
@@ -331,14 +331,17 @@ private static final String TAG = "BloodPressActivity";
 						 m_ACWaveResult = mResults[MessageInfo.BLOODPRESS_WAVEFORM_RESULT_STARTIDX +
 						                            MessageInfo.BLOODPRESS_WAVEFORM_SAMPLES_NUM_PER_DATA +index];
 
+							// 这个m_TotalDataPackage是写入用的。所以是一个AC一个DC
 							m_TotalDataPackage.append(m_ACWaveResult + " ");
 							m_TotalDataPackage.append(m_DCWaveResult + " ");
 
-						
-						m_DCTargetCollection.addXY(m_PointsCounter/mSampleRate,m_DCWaveResult);
-						
-						m_ACTargetCollection.addXY(m_PointsCounter/mSampleRate,m_ACWaveResult);						
-						m_PointsCounter++;
+//
+//							if(index  == 0)
+//							{
+//								m_DCTargetCollection.addXY(m_PointsCounter / mSampleRate, m_DCWaveResult);
+//								m_ACTargetCollection.addXY(m_PointsCounter / mSampleRate, m_ACWaveResult);
+//								m_PointsCounter++;
+//							}
 						}
 				
 						

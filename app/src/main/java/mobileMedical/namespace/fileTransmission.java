@@ -181,6 +181,16 @@ public class fileTransmission extends Activity {
                             sendFile(socketChannel, new File(Environment.getExternalStorageDirectory()
                                     .getAbsolutePath() + "/mobileMedical.namespace/files/patientAndDoctor.txt"));
 
+                            // 删除文件
+//                            File fileDelete = new File(Environment.getExternalStorageDirectory()
+//                                    .getAbsolutePath() + "/mobileMedical.namespace/files/measdatainfo.txt");
+//                            fileDelete.delete();
+//                            fileDelete = new File(Environment.getExternalStorageDirectory()
+//                                    .getAbsolutePath() + "/mobileMedical.namespace/files/measdata.txt");
+//                            fileDelete.delete();
+//                            fileDelete = new File(Environment.getExternalStorageDirectory()
+//                                    .getAbsolutePath() + "/mobileMedical.namespace/files/patientAndDoctor.txt");
+//                            fileDelete.delete();
 
                         }catch (Exception ex){
                             Log.i("FSendERROR",null,ex);

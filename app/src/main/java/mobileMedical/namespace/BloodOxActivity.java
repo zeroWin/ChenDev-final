@@ -302,6 +302,7 @@ private boolean m_NewResults = true;
 						pulseWaveResult = Math.round(normPulseWaveResult * 200);*/
 						m_TotalDataPackage.append(m_PulseWaveResult + " ");
 
+							// 意思就是画后面的部分，也就是红外光的部分
 							if(index >=8) {//this "if" is added by xy,to display IR data
 //								m_TargetCollection.addXY(m_PointsCounter / mSampleRate, (byte)m_PulseWaveResult);
 								m_TargetCollection.addXY(m_PointsCounter / mSampleRate, -m_PulseWaveResult);

@@ -247,7 +247,7 @@ private static final String TAG = "EGCActivity";
 				
 								
            		m_ChartArea.getDefaultXAxis()
-						.getScale().setZoom(m_MultipleTimes * m_MaxPoints/mSampleRate , m_MaxPoints/mSampleRate);
+						.getScale().setZoom(m_MultipleTimes * m_MaxPoints/mSampleRate , 5);
            	 }
            	 
                 	//test
